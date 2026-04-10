@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webshop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#f4efe6; --surface:#fffdf8; --surface-alt:#efe4d5; --ink:#1f2937; --muted:#6b7280; --accent:#b45309; --accent-dark:#8a3b06; --line:rgba(31,41,55,.12); }
+    body { font-family:"Manrope",sans-serif; background:radial-gradient(circle at top left, rgba(180,83,9,.12), transparent 30%), linear-gradient(180deg, #f8f3eb 0%, #f4efe6 100%); color:var(--ink); }
+    h1,h2,h3,.font-display { font-family:"Fraunces",serif; }
+    .glass { background:rgba(255,253,248,.84); backdrop-filter:blur(12px); }
+    .lift { transition:transform 180ms ease, box-shadow 180ms ease; }
+    .lift:hover { transform:translateY(-4px); box-shadow:0 22px 40px rgba(31,41,55,.12); }
+    .fade-up { animation:fadeUp 320ms ease; }
+    .toast-in { animation:toastIn 250ms ease; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes toastIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="min-h-screen">
+    <header class="sticky top-0 z-20 border-b border-[color:var(--line)] glass">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="#shop" class="font-display text-2xl font-bold tracking-tight" id="storeName">Webshop</a>
+        <nav class="flex items-center gap-3 sm:gap-5 text-sm font-semibold">
+          <a href="#shop" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]">Shop</a>
+          <a href="#checkout" class="text-[color:var(--muted)] hover:text-[color:var(--ink)]">Afrekenen</a>
+          <button id="cartButton" type="button" class="rounded-full bg-[color:var(--ink)] px-4 py-2 text-white shadow-sm">Winkelwagen <span id="cartCount" class="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs">0</span></button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="mx-auto grid max-w-7xl gap-10 px-4 pb-10 pt-8 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:pt-10">
+        <div class="fade-up">
+          <p class="mb-3 inline-flex rounded-full bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--accent)]">Ambachtelijke webshop</p>
+          <h1 class="max-w-3xl text-4xl font-bold leading-tight sm:text-5xl">Bestellen zonder gedoe, beheren zonder spreadsheets-chaos.</h1>
+          <p class="mt-4 max-w-2xl text-base leading-7 text-[color:var(--muted)]">Bekijk het assortiment, voeg producten toe aan je winkelwagen en plaats direct je bestelling.</p>
+          <div class="mt-6 flex flex-wrap items-center gap-3 text-sm">
+            <div id="storeStatus" class="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 font-semibold text-emerald-700">Winkelstatus laden...</div>
+            <div id="shippingInfo" class="rounded-full border border-[color:var(--line)] bg-white/70 px-4 py-2 font-semibold text-[color:var(--muted)]">Verzendinformatie laden...</div>
+          </div>
+        </div>
+        <aside class="fade-up rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_60px_rgba(31,41,55,0.08)]">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--accent)]">Winkelwagen</p>
+              <h2 class="mt-2 text-2xl font-bold">Je bestelling</h2>
+            </div>
+            <button id="clearCartButton" type="button" class="text-sm font-semibold text-[color:var(--muted)] hover:text-[color:var(--ink)]">Leegmaken</button>
+          </div>
+          <div id="cartEmpty" class="mt-6 rounded-2xl border border-dashed border-[color:var(--line)] bg-[color:var(--surface-alt)]/50 px-4 py-8 text-center text-sm text-[color:var(--muted)]">Je winkelwagen is nog leeg.</div>
+          <div id="cartItems" class="mt-6 space-y-3"></div>
+          <div class="mt-6 space-y-3 rounded-2xl bg-[color:var(--surface-alt)]/55 p-4">
+            <div class="flex items-center justify-between text-sm"><span class="text-[color:var(--muted)]">Subtotaal</span><span class="font-semibold" id="subtotalValue">EUR 0.00</span></div>
+            <div class="flex items-center justify-between text-sm"><span class="text-[color:var(--muted)]">Verzending</span><span class="font-semibold" id="shippingValue">EUR 0.00</span></div>
+            <div class="rounded-xl border border-[color:var(--line)] bg-white/70 px-3 py-2 text-xs font-semibold text-[color:var(--muted)]" id="freeShippingNote">Gratis verzending info wordt geladen.</div>
+            <div class="flex items-center justify-between border-t border-[color:var(--line)] pt-3 text-base font-bold"><span>Totaal</span><span id="totalValue">EUR 0.00</span></div>
+          </div>
+          <a href="#checkout" class="mt-6 block rounded-2xl bg-[color:var(--accent)] px-5 py-3 text-center text-sm font-bold text-white shadow-sm transition hover:bg-[color:var(--accent-dark)]">Naar afrekenen</a>
+        </aside>
+      </section>
+
+      <section id="shop" class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+        <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--accent)]">Collectie</p>
+            <h2 class="mt-2 text-3xl font-bold">Beschikbare producten</h2>
+          </div>
+          <button id="refreshProductsButton" type="button" class="rounded-full border border-[color:var(--line)] bg-white/70 px-4 py-2 text-sm font-semibold">Producten vernieuwen</button>
+        </div>
+        <div id="productsState" class="rounded-2xl border border-[color:var(--line)] bg-white/70 px-4 py-10 text-center text-sm text-[color:var(--muted)]">Producten laden...</div>
+        <div id="productsGrid" class="mt-6 grid gap-5 sm:grid-cols-2 xl:grid-cols-3"></div>
+      </section>
+
+      <section id="checkout" class="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
+        <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+          <div class="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_60px_rgba(31,41,55,0.08)]">
+            <p class="text-xs font-bold uppercase tracking-[0.24em] text-[color:var(--accent)]">Bestelling</p>
+            <h2 class="mt-2 text-3xl font-bold">Afrekenen</h2>
+            <p class="mt-3 text-sm leading-6 text-[color:var(--muted)]">Vul je gegevens in. De backend berekent het ordertotaal opnieuw en maakt direct een ordernummer aan.</p>
+          </div>
+
+          <form id="checkoutForm" class="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface)] p-6 shadow-[0_20px_60px_rgba(31,41,55,0.08)]">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="block"><span class="mb-1.5 block text-sm font-semibold">Naam</span><input id="customerName" required class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700" placeholder="Voor- en achternaam"></label>
+              <label class="block"><span class="mb-1.5 block text-sm font-semibold">E-mail</span><input id="customerEmail" type="email" required class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700" placeholder="naam@email.nl"></label>
+            </div>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+              <label class="block"><span class="mb-1.5 block text-sm font-semibold">Telefoon</span><input id="customerPhone" required class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700" placeholder="+31 6 12345678"></label>
+              <label class="block"><span class="mb-1.5 block text-sm font-semibold">Levering</span><select id="deliveryType" required class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700"><option value="">Kies een optie</option><option value="verzenden">Verzenden</option><option value="ophalen">Ophalen</option></select></label>
+            </div>
+            <label class="mt-4 block"><span class="mb-1.5 block text-sm font-semibold">Adres</span><textarea id="customerAddress" required rows="3" class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700" placeholder="Straat, huisnummer, postcode, plaats"></textarea></label>
+            <label class="mt-4 block"><span class="mb-1.5 block text-sm font-semibold">Opmerking</span><textarea id="customerNotes" rows="3" class="w-full rounded-2xl border border-[color:var(--line)] bg-white px-4 py-3 text-sm outline-none transition focus:border-amber-700" placeholder="Extra informatie voor je bestelling"></textarea></label>
+            <div class="mt-5 rounded-2xl bg-[color:var(--surface-alt)]/55 p-4 text-sm">
+              <div class="flex items-center justify-between"><span class="text-[color:var(--muted)]">Artikelen</span><span class="font-semibold" id="summaryItems">0</span></div>
+              <div class="mt-2 flex items-center justify-between"><span class="text-[color:var(--muted)]">Subtotaal</span><span class="font-semibold" id="summarySubtotal">EUR 0.00</span></div>
+              <div class="mt-2 flex items-center justify-between"><span class="text-[color:var(--muted)]">Verzending</span><span class="font-semibold" id="summaryShipping">EUR 0.00</span></div>
+              <div class="mt-3 flex items-center justify-between border-t border-[color:var(--line)] pt-3 text-base font-bold"><span>Totaal</span><span id="summaryTotal">EUR 0.00</span></div>
+            </div>
+            <div id="checkoutMessage" class="mt-4 hidden rounded-2xl px-4 py-3 text-sm font-semibold"></div>
+            <button id="submitOrderButton" type="submit" class="mt-5 w-full rounded-2xl bg-[color:var(--ink)] px-5 py-3 text-sm font-bold text-white transition hover:opacity-95">Bestelling plaatsen</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+  <div id="toastStack" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
+
+  <script>
+    const API_BASE = 'https://script.google.com/macros/s/AKfycbxj_Ierv6wIP49zPeKzHGpQkA-_lHNzOLHgEswBNC_RihHFggR-ivM3cTianA9XBLUH7A/exec';
+    const CART_KEY = 'wbsysteem_cart_v1';
+    const state = { settings: {}, products: [], cart: loadCart() };
+
+    function loadCart() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveCart() { localStorage.setItem(CART_KEY, JSON.stringify(state.cart)); }
+    function formatCurrency(value) { return 'EUR ' + Number(value || 0).toFixed(2); }
+    function escapeHtml(value) { return String(value == null ? '' : value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
+
+    function showToast(message, type = 'info') {
+      const palette = { info: 'bg-slate-900 text-white', success: 'bg-emerald-700 text-white', error: 'bg-red-700 text-white' };
+      const item = document.createElement('div');
+      item.className = `toast-in rounded-2xl px-4 py-3 text-sm font-semibold shadow-xl ${palette[type] || palette.info}`;
+      item.textContent = message;
+      document.getElementById('toastStack').appendChild(item);
+      window.setTimeout(() => item.remove(), 2800);
+    }
+
+    async function apiGet(action) {
+      const response = await fetch(`${API_BASE}?action=${encodeURIComponent(action)}`);
+      return response.json();
+    }
+
+    async function apiPost(payload) {
+      const response = await fetch(API_BASE, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+      return response.json();
+    }
+
+    function applySettings(settings) {
+      state.settings = settings || {};
+      const storeName = settings.store_name || settings.shop_title || 'Webshop';
+      document.getElementById('storeName').textContent = storeName;
+      const forceClosed = String(settings.force_closed || '').toLowerCase() === 'true';
+      const isOpen = String(settings.store_status || '').toLowerCase() === 'open' && !forceClosed;
+      const storeStatus = document.getElementById('storeStatus');
+      storeStatus.className = isOpen ? 'rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 font-semibold text-emerald-700' : 'rounded-full border border-red-200 bg-red-50 px-4 py-2 font-semibold text-red-700';
+      storeStatus.textContent = isOpen ? 'Open voor bestellingen' : 'Momenteel gesloten';
+      const shippingCost = Number(settings.shipping_cost || 0);
+      const freeShippingAbove = Number(settings.free_shipping_above || 0);
+      document.getElementById('shippingInfo').textContent = freeShippingAbove > 0 ? `Verzending ${formatCurrency(shippingCost)} • gratis vanaf ${formatCurrency(freeShippingAbove)}` : `Verzending ${formatCurrency(shippingCost)}`;
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('productsGrid');
+      const stateBox = document.getElementById('productsState');
+      grid.innerHTML = '';
+      if (!state.products.length) {
+        stateBox.classList.remove('hidden');
+        stateBox.textContent = 'Geen actieve producten gevonden.';
+        return;
+      }
+      stateBox.classList.add('hidden');
+      state.products.forEach((product) => {
+        const card = document.createElement('article');
+        card.className = 'lift overflow-hidden rounded-[28px] border border-[color:var(--line)] bg-[color:var(--surface)] shadow-[0_18px_50px_rgba(31,41,55,0.06)]';
+        const imageMarkup = product.image_url ? `<img src="${escapeHtml(product.image_url)}" alt="${escapeHtml(product.name)}" class="h-56 w-full object-cover">` : `<div class="flex h-56 items-center justify-center bg-[color:var(--surface-alt)] text-sm font-semibold text-[color:var(--muted)]">Geen afbeelding</div>`;
+        card.innerHTML = `
+          ${imageMarkup}
+          <div class="space-y-4 p-5">
+            <div class="flex items-start justify-between gap-3">
+              <div>
+                <h3 class="text-xl font-bold">${escapeHtml(product.name)}</h3>
+                <p class="mt-2 text-sm leading-6 text-[color:var(--muted)]">${escapeHtml(product.description || '')}</p>
+              </div>
+              <span class="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-[color:var(--accent)]">${formatCurrency(product.price)}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="text-sm font-semibold ${Number(product.stock) > 0 ? 'text-emerald-700' : 'text-red-700'}">${Number(product.stock) > 0 ? `${product.stock} op voorraad` : 'Uitverkocht'}</div>
+              <button type="button" data-product-id="${product.id}" class="rounded-full bg-[color:var(--ink)] px-4 py-2 text-sm font-bold text-white transition hover:opacity-95" ${Number(product.stock) <= 0 ? 'disabled' : ''}>Toevoegen</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      grid.querySelectorAll('[data-product-id]').forEach((button) => button.addEventListener('click', () => addToCart(Number(button.dataset.productId))));
+    }
+
+    function addToCart(productId) {
+      const product = state.products.find((item) => Number(item.id) === Number(productId));
+      if (!product) return showToast('Product niet gevonden.', 'error');
+      const existing = state.cart.find((item) => Number(item.product_id) === Number(productId));
+      if (existing) {
+        if (existing.quantity >= Number(product.stock)) return showToast('Niet meer voorraad beschikbaar.', 'error');
+        existing.quantity += 1;
+      } else {
+        state.cart.push({ product_id: Number(product.id), product_name: product.name, price: Number(product.price), quantity: 1, image_url: product.image_url || '' });
+      }
+      saveCart();
+      renderCart();
+      showToast(`${product.name} toegevoegd aan je winkelwagen.`, 'success');
+    }
+
+    function updateCartItem(productId, nextQuantity) {
+      const item = state.cart.find((entry) => Number(entry.product_id) === Number(productId));
+      const product = state.products.find((entry) => Number(entry.id) === Number(productId));
+      if (!item) return;
+      if (nextQuantity <= 0) {
+        state.cart = state.cart.filter((entry) => Number(entry.product_id) !== Number(productId));
+      } else {
+        const maxStock = product ? Number(product.stock) : nextQuantity;
+        item.quantity = Math.min(nextQuantity, maxStock);
+      }
+      saveCart();
+      renderCart();
+    }
+
+    function getCartSummary() {
+      const subtotal = state.cart.reduce((sum, item) => sum + Number(item.price) * Number(item.quantity), 0);
+      const shippingCost = Number(state.settings.shipping_cost || 0);
+      const freeShippingAbove = Number(state.settings.free_shipping_above || 0);
+      const delivery = document.getElementById('deliveryType').value;
+      const shipping = delivery === 'ophalen' ? 0 : (freeShippingAbove > 0 && subtotal >= freeShippingAbove ? 0 : shippingCost);
+      return { itemCount: state.cart.reduce((sum, item) => sum + Number(item.quantity), 0), subtotal, shipping, total: subtotal + shipping, freeShippingAbove };
+    }
+
+    function renderCart() {
+      const cartCount = state.cart.reduce((sum, item) => sum + Number(item.quantity), 0);
+      document.getElementById('cartCount').textContent = String(cartCount);
+      document.getElementById('cartEmpty').classList.toggle('hidden', state.cart.length > 0);
+      const cartItems = document.getElementById('cartItems');
+      cartItems.innerHTML = '';
+      state.cart.forEach((item) => {
+        const row = document.createElement('div');
+        row.className = 'fade-up rounded-2xl border border-[color:var(--line)] bg-white/75 p-3';
+        row.innerHTML = `
+          <div class="flex items-start gap-3">
+            <div class="h-16 w-16 overflow-hidden rounded-2xl bg-[color:var(--surface-alt)]">${item.image_url ? `<img src="${escapeHtml(item.image_url)}" alt="${escapeHtml(item.product_name)}" class="h-full w-full object-cover">` : ''}</div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <h3 class="font-bold">${escapeHtml(item.product_name)}</h3>
+                  <p class="mt-1 text-sm text-[color:var(--muted)]">${formatCurrency(item.price)} per stuk</p>
+                </div>
+                <button type="button" data-remove-id="${item.product_id}" class="text-xs font-bold uppercase tracking-[0.2em] text-[color:var(--muted)]">Verwijder</button>
+              </div>
+              <div class="mt-3 flex items-center justify-between">
+                <div class="inline-flex items-center rounded-full border border-[color:var(--line)] bg-white">
+                  <button type="button" data-dec-id="${item.product_id}" class="px-3 py-1.5 text-lg font-bold">-</button>
+                  <span class="px-3 text-sm font-semibold">${item.quantity}</span>
+                  <button type="button" data-inc-id="${item.product_id}" class="px-3 py-1.5 text-lg font-bold">+</button>
+                </div>
+                <strong>${formatCurrency(Number(item.price) * Number(item.quantity))}</strong>
+              </div>
+            </div>
+          </div>
+        `;
+        cartItems.appendChild(row);
+      });
+
+      cartItems.querySelectorAll('[data-remove-id]').forEach((button) => button.addEventListener('click', () => updateCartItem(Number(button.dataset.removeId), 0)));
+      cartItems.querySelectorAll('[data-dec-id]').forEach((button) => button.addEventListener('click', () => {
+        const productId = Number(button.dataset.decId);
+        const item = state.cart.find((entry) => Number(entry.product_id) === productId);
+        if (item) updateCartItem(productId, Number(item.quantity) - 1);
+      }));
+      cartItems.querySelectorAll('[data-inc-id]').forEach((button) => button.addEventListener('click', () => {
+        const productId = Number(button.dataset.incId);
+        const item = state.cart.find((entry) => Number(entry.product_id) === productId);
+        if (item) updateCartItem(productId, Number(item.quantity) + 1);
+      }));
+
+      const summary = getCartSummary();
+      document.getElementById('subtotalValue').textContent = formatCurrency(summary.subtotal);
+      document.getElementById('shippingValue').textContent = formatCurrency(summary.shipping);
+      document.getElementById('totalValue').textContent = formatCurrency(summary.total);
+      document.getElementById('summaryItems').textContent = String(summary.itemCount);
+      document.getElementById('summarySubtotal').textContent = formatCurrency(summary.subtotal);
+      document.getElementById('summaryShipping').textContent = formatCurrency(summary.shipping);
+      document.getElementById('summaryTotal').textContent = formatCurrency(summary.total);
+      const freeShippingNote = document.getElementById('freeShippingNote');
+      if (summary.freeShippingAbove > 0 && summary.subtotal < summary.freeShippingAbove) {
+        freeShippingNote.textContent = `Nog ${formatCurrency(summary.freeShippingAbove - summary.subtotal)} tot gratis verzending.`;
+      } else if (summary.freeShippingAbove > 0) {
+        freeShippingNote.textContent = 'Je bestelling komt in aanmerking voor gratis verzending.';
+      } else {
+        freeShippingNote.textContent = 'Verzendkosten worden bepaald op basis van je winkelinstellingen.';
+      }
+    }
+
+    function validateCheckout() {
+      if (!state.cart.length) throw new Error('Je winkelwagen is leeg.');
+      const name = document.getElementById('customerName').value.trim();
+      const email = document.getElementById('customerEmail').value.trim();
+      const phone = document.getElementById('customerPhone').value.trim();
+      const address = document.getElementById('customerAddress').value.trim();
+      const deliveryType = document.getElementById('deliveryType').value;
+      if (!name || !email || !phone || !address || !deliveryType) throw new Error('Vul alle verplichte velden in.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Vul een geldig e-mailadres in.');
+      return { customer_name: name, email, phone, address, delivery_type: deliveryType, pickup_time: '', notes: document.getElementById('customerNotes').value.trim(), items: state.cart.map((item) => ({ product_id: Number(item.product_id), quantity: Number(item.quantity) })) };
+    }
+
+    async function submitOrder(event) {
+      event.preventDefault();
+      const messageBox = document.getElementById('checkoutMessage');
+      const submitButton = document.getElementById('submitOrderButton');
+      messageBox.classList.add('hidden');
+      try {
+        const payload = validateCheckout();
+        submitButton.disabled = true;
+        submitButton.textContent = 'Bestelling wordt geplaatst...';
+        const response = await apiPost({ action: 'createOrder', customer_name: payload.customer_name, email: payload.email, phone: payload.phone, address: payload.address, delivery_type: payload.delivery_type, pickup_time: payload.pickup_time, notes: payload.notes, items: payload.items });
+        if (!response.success) throw new Error(response.error && response.error.message ? response.error.message : 'Bestelling mislukt.');
+        const data = response.data || {};
+        state.cart = [];
+        saveCart();
+        renderCart();
+        document.getElementById('checkoutForm').reset();
+        messageBox.className = 'mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700';
+        messageBox.innerHTML = `Bestelling geplaatst. Je ordernummer is <strong>${escapeHtml(data.order_id || '')}</strong>.`;
+        messageBox.classList.remove('hidden');
+        showToast('Je bestelling is succesvol geplaatst.', 'success');
+        window.location.hash = '#shop';
+      } catch (error) {
+        messageBox.className = 'mt-4 rounded-2xl bg-red-50 px-4 py-3 text-sm font-semibold text-red-700';
+        messageBox.textContent = error.message || 'Er ging iets mis bij het plaatsen van je bestelling.';
+        messageBox.classList.remove('hidden');
+        showToast(messageBox.textContent, 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Bestelling plaatsen';
+        renderCart();
+      }
+    }
+
+    async function loadSettings() {
+      try {
+        const response = await apiGet('settings');
+        if (response.success) applySettings(response.data || {});
+      } catch (error) {
+        showToast('Instellingen konden niet geladen worden.', 'error');
+      }
+    }
+
+    async function loadProducts() {
+      const stateBox = document.getElementById('productsState');
+      stateBox.classList.remove('hidden');
+      stateBox.textContent = 'Producten laden...';
+      try {
+        const response = await apiGet('products');
+        if (!response.success) throw new Error(response.error && response.error.message ? response.error.message : 'Producten laden mislukt.');
+        state.products = Array.isArray(response.data) ? response.data : [];
+        renderProducts();
+        renderCart();
+      } catch (error) {
+        document.getElementById('productsGrid').innerHTML = '';
+        stateBox.classList.remove('hidden');
+        stateBox.textContent = error.message || 'Producten konden niet geladen worden.';
+      }
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', submitOrder);
+    document.getElementById('refreshProductsButton').addEventListener('click', loadProducts);
+    document.getElementById('clearCartButton').addEventListener('click', () => { state.cart = []; saveCart(); renderCart(); showToast('Winkelwagen geleegd.'); });
+    document.getElementById('cartButton').addEventListener('click', () => { window.location.hash = '#checkout'; });
+    document.getElementById('deliveryType').addEventListener('change', renderCart);
+
+    loadSettings();
+    loadProducts();
+    renderCart();
+  </script>
+</body>
+</html>
