@@ -14,7 +14,2015 @@
   <meta name="apple-mobile-web-app-title" content="RW CUTZZ">
   <link rel="manifest" href="/site.webmanifest">
   <script src="/_sdk/element_sdk.js"></script>
-  <script>window.__RWCUTZZ_RENDERED__ = false;</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(18, 18, 18, 0.99);
+      backdrop-filter: blur(12px);
+      padding: 0.8rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      height: 60px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    #mainNav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
+
+    nav a {
+      font-size: 0.8rem;
+      text-decoration: none;
+      color: #B0B0B0;
+      transition: all 0.3s;
+      font-weight: 500;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #1A4BFF;
+      transition: width 0.3s;
+    }
+
+    nav a:hover::after,
+    nav a:hover {
+      width: 100%;
+      color: #4D7CFF;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cart-button {
+      background: none;
+      border: none;
+      color: #1A4BFF;
+      cursor: pointer;
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+    }
+
+    .cart-button:hover {
+      color: #4D7CFF;
+      transform: scale(1.1);
+    }
+
+    .cart-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      animation: cartPop 0.4s ease-out;
+    }
+
+    @keyframes cartPop {
+      0% { transform: scale(0.8); }
+      100% { transform: scale(1); }
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      padding: 0.5rem;
+      -webkit-tap-highlight-color: transparent;
+      flex-shrink: 0;
+    }
+
+    /* MOBILE MENU DRAWER */
+    .mobile-menu-drawer {
+      position: fixed;
+      left: -80%;
+      top: 60px;
+      width: 80%;
+      height: calc(100% - 60px);
+      background: #1a1a1a;
+      z-index: 999;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-drawer {
+        display: block;
+      }
+    }
+
+    .mobile-menu-drawer.active {
+      left: 0;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      padding: 1rem;
+      font-size: 1.5rem;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .mobile-menu-link {
+      padding: 1rem 1.5rem;
+      text-decoration: none;
+      color: #B0B0B0;
+      font-weight: 500;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+    }
+
+    .mobile-menu-link:hover {
+      color: #1A4BFF;
+      padding-left: 2rem;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+      overflow: hidden;
+    }
+
+    .hero-background {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2C2C2C 0%, #121212 100%);
+      background-image: url('https://drive.google.com/uc?export=view&id=1yldYDJolbfbEMR67X_5Ds2QqO7lheQfS');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      z-index: 1;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+      padding: 0 1.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: #FFFFFF;
+      text-shadow: 0 0 30px rgba(26, 75, 255, 0.6);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      color: #B0B0B0;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline {
+      font-size: 0.95rem;
+      color: #4D7CFF;
+      margin-bottom: 2rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1A4BFF;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #808080;
+      margin-top: 0.3rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary, .btn-secondary {
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-primary {
+      background: #1A4BFF;
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
+    }
+
+    .btn-primary:hover {
+      background: #4D7CFF;
+      transform: translateY(-3px);
+      box-shadow: 0 0 30px rgba(26, 75, 255, 0.8);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #1A4BFF;
+      border: 2px solid #1A4BFF;
+    }
+
+    .btn-secondary:hover {
+      background: #1A4BFF;
+      color: #FFFFFF;
+      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.98);
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      color: #FFFFFF;
+      text-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: #808080;
+      margin-bottom: 3rem;
+    }
+
+    /* SERVICES */
+    .services-section {
+      background: #121212;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .services-grid > :nth-child(1) { grid-column: span 3; }
+    .services-grid > :nth-child(2) { grid-column: span 3; }
+    .services-grid > :nth-child(3) { grid-column: span 2; }
+    .services-grid > :nth-child(4) { grid-column: span 2; }
+    .services-grid > :nth-child(5) { grid-column: span 2; }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #1A4BFF;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #1A4BFF;
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      transition: transform 0.3s;
+    }
+
+    .service-card:hover .service-image {
+      transform: scale(1.05);
+    }
+
+    .service-badge {
+      display: inline-block;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .service-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #FFFFFF;
+    }
+
+    .service-details {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #B0B0B0;
+    }
+
+    .service-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1A4BFF;
+      margin: 1rem 0;
+    }
+
+    .btn-book {
+      width: 100%;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+      box-shadow: 0 0 10px rgba(26, 75, 255, 0.3);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-book:hover {
+      background: #4D7CFF;
+      transform: translateY(-2px);
+      box-shadow: 0 0 15px rgba(26, 75, 255, 0.6);
+    }
+
+    .btn-book:active {
+      transform: translateY(0);
+    }
+
+    /* SHOP SECTION */
+    #shop {
+      background: #2C2C2C;
+    }
+
+    #shop-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+      width: 100%;
+      max-width: 240px;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(26, 75, 255, 0.2);
+      border-color: #1A4BFF;
+    }
+
+    .product-image-container {
+      position: relative;
+      height: 200px;
+      background: #2C2C2C;
+      overflow: hidden;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-content {
+      padding: 1rem;
+    }
+
+    .product-name {
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1A4BFF;
+      margin-bottom: 0.6rem;
+    }
+
+    .product-stock {
+      font-size: 0.75rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-stock.in-stock {
+      color: #4ade80;
+    }
+
+    .product-stock.out-of-stock {
+      color: #ef4444;
+    }
+
+    .product-description {
+      font-size: 0.8rem;
+      color: #B0B0B0;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+      min-height: 30px;
+      max-height: 60px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.85rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-add-cart:hover {
+      background: #4D7CFF;
+    }
+
+    .btn-add-cart:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* CHECKOUT SECTION */
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .checkout-form {
+      background: #2C2C2C;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .checkout-form h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.8rem;
+      color: #FFFFFF;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: #1A4BFF;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .checkout-summary {
+      background: #2C2C2C;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+      height: fit-content;
+    }
+
+    .checkout-summary h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #B0B0B0;
+      margin-bottom: 0.8rem;
+    }
+
+    .summary-row.total {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1A4BFF;
+    }
+
+    .summary-value {
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .summary-value.total {
+      color: #1A4BFF;
+    }
+
+    /* BOOKING */
+    .booking-section {
+      background: #2C2C2C;
+      padding: 5rem 2rem;
+    }
+
+    .booking-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #121212;
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid #3A3A3A;
+      box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);
+    }
+
+    .booking-container iframe {
+      border-radius: 12px;
+      width: 100%;
+      height: 800px;
+    }
+
+    /* REVIEWS */
+    .reviews-section {
+      background: #2C2C2C;
+    }
+
+    .reviews-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .rating-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .rating-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: #1A4BFF;
+    }
+
+    .stars {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .stars svg {
+      width: 24px;
+      height: 24px;
+      fill: #1A4BFF;
+    }
+
+    .review-count {
+      font-size: 0.9rem;
+      color: #B0B0B0;
+    }
+
+    .review-slider-wrapper {
+      position: relative;
+      margin-top: 2rem;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .review-slider {
+      display: flex;
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+    }
+
+    .review-slide {
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      pointer-events: none;
+      visibility: hidden;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .review-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
+      position: relative;
+      left: auto;
+      transform: none;
+    }
+
+    .review-author-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 1rem;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #E0E0E0;
+      margin-bottom: 1.2rem;
+      max-width: 100%;
+      font-style: italic;
+    }
+
+    .review-stars {
+      display: flex;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .review-stars svg {
+      width: 18px;
+      height: 18px;
+      fill: #1A4BFF;
+    }
+
+    .review-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      padding: 0;
+    }
+
+    .dot.active {
+      background: #1A4BFF;
+      width: 30px;
+      border-radius: 5px;
+    }
+
+    .dot:hover {
+      background: rgba(26, 75, 255, 0.7);
+    }
+
+    /* ABOUT */
+    .about-section {
+      background: #2C2C2C;
+    }
+
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(1.8rem, 6vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 2rem;
+      color: #FFFFFF;
+    }
+
+    .about-text h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1A4BFF;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .about-text h3:first-of-type {
+      margin-top: 0;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: #B0B0B0;
+      margin-bottom: 1rem;
+    }
+
+    .about-image {
+      aspect-ratio: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(26, 75, 255, 0.3);
+      box-shadow: 0 0 30px rgba(26, 75, 255, 0.2);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 14px;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      background: #121212;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-card {
+      background: #2C2C2C;
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+      text-align: center;
+    }
+
+    .contact-card:hover {
+      border-color: #1A4BFF;
+      box-shadow: 0 0 15px rgba(26, 75, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-icon svg {
+      width: 100%;
+      height: 100%;
+      stroke: #1A4BFF;
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .contact-label {
+      font-size: 0.9rem;
+      color: #808080;
+      margin-bottom: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    .contact-info {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      word-break: break-word;
+    }
+
+    .contact-link {
+      color: #1A4BFF;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-link:hover {
+      color: #4D7CFF;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0A0A0A;
+      padding: 3rem 2rem;
+      border-top: 1px solid #2C2C2C;
+      font-size: 0.85rem;
+      color: #606060;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h4 {
+      color: #1A4BFF;
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-section p {
+      font-size: 0.85rem;
+      color: #808080;
+      line-height: 1.8;
+    }
+
+    .footer-divider {
+      border-top: 1px solid #2C2C2C;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    /* STICKY BUTTON */
+    .sticky-book {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 500;
+      background: #1A4BFF;
+      color: #FFFFFF;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(26, 75, 255, 0.6);
+      transition: all 0.3s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .sticky-book:hover {
+      background: #4D7CFF;
+      transform: scale(1.05);
+      box-shadow: 0 0 35px rgba(26, 75, 255, 0.8);
+    }
+
+    .sticky-book:active {
+      transform: scale(1.02);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 0.6rem 0.8rem;
+        height: 50px;
+      }
+
+      .logo {
+        font-size: 0.95rem;
+        letter-spacing: 1px;
+      }
+
+      .logo img {
+        width: 30px !important;
+        height: 30px !important;
+      }
+
+      #mainNav {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        margin-top: 45px;
+        height: 60vh;
+      }
+
+      .hero-background {
+        background-attachment: scroll;
+      }
+
+      .section {
+        padding: 3rem 1.5rem;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+
+      .services-grid .service-card:nth-child(1),
+      .services-grid .service-card:nth-child(2),
+      .services-grid .service-card:nth-child(3),
+      .services-grid .service-card:nth-child(4),
+      .services-grid .service-card:nth-child(5) {
+        grid-column: span 1;
+      }
+
+      .service-image {
+        height: 120px;
+      }
+
+      #shop-products {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+      }
+
+      .product-card {
+        max-width: 100%;
+      }
+
+      .product-image-container {
+        height: 150px;
+      }
+
+      .checkout-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .review-slider-wrapper {
+        height: auto;
+      }
+
+      .review-slide {
+        padding: 1.5rem 1rem;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .sticky-book {
+        display: block;
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .mobile-menu-drawer {
+        width: 100%;
+        left: -100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0.5rem 0.6rem;
+        height: 45px;
+      }
+
+      .logo {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+      }
+
+      .logo img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      .hero {
+        height: 55vh;
+        margin-top: 40px;
+      }
+
+      .hero-title {
+        font-size: 1.4rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.85rem;
+      }
+
+      .hero-stats {
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .section {
+        padding: 2rem 0.8rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .section-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .service-card {
+        padding: 0.8rem;
+      }
+
+      .service-image {
+        height: 100px;
+        margin-bottom: 0.6rem;
+      }
+
+      .service-name {
+        font-size: 0.95rem;
+      }
+
+      .service-price {
+        font-size: 1.3rem;
+      }
+
+      #shop-products {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .product-card {
+        max-width: 100%;
+      }
+
+      .product-image-container {
+        height: 180px;
+      }
+
+      .review-slide {
+        padding: 1rem 0.8rem;
+      }
+
+      .review-author-name {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .review-text {
+        font-size: 0.85rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .about-text h3 {
+        font-size: 1rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .about-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+      }
+
+      .contact-card {
+        padding: 1rem;
+      }
+
+      .sticky-book {
+        width: calc(100% - 0.8rem);
+        bottom: 0.6rem;
+        right: 0.4rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+      }
+
+      footer {
+        padding: 1.5rem 0.8rem;
+      }
+
+      .booking-container {
+        padding: 1rem;
+      }
+
+      .booking-container iframe {
+        height: 400px;
+      }
+
+      .checkout-form,
+      .checkout-summary {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+ </head>
+ <body><!-- HEADER -->
+  <header>
+   <div class="logo"><img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo"> <span>RWCUTZZ</span>
+   </div>
+   <nav id="mainNav"><a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
+   </nav>
+   <div class="header-actions"><button id="cartButtonHeader" class="cart-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">
+     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+     </svg><span id="cartCountHeader" class="cart-badge">0</span> </button> <button class="mobile-menu-toggle" id="mobileMenuToggle">
+     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+     </svg></button>
+   </div>
+  </header><!-- MOBILE MENU DRAWER -->
+  <div id="mobileMenuDrawer" class="mobile-menu-drawer"><button class="mobile-menu-close" id="mobileMenuClose">
+    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+     <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg></button>
+   <nav class="mobile-menu-nav"><a href="#home" class="mobile-menu-link">Home</a> <a href="#services" class="mobile-menu-link">Services</a> <a href="#shop" class="mobile-menu-link">Shop</a> <a href="#booking" class="mobile-menu-link">Boeken</a> <a href="#reviews" class="mobile-menu-link">Reviews</a> <a href="#about" class="mobile-menu-link">Over</a> <a href="#contact" class="mobile-menu-link">Contact</a>
+   </nav>
+  </div>
+  <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div><!-- HERO -->
+  <section class="hero" id="home">
+   <div class="hero-background"></div>
+   <div class="hero-overlay"></div>
+   <div class="hero-content">
+    <h1 class="hero-title">Welkom bij RWCutzz</h1>
+    <p class="hero-subtitle">Gereed voor de perfecte cut?</p>
+    <p class="hero-tagline">Precision cuts. Consistent results.</p>
+    <div class="hero-stats">
+     <div class="stat">
+      <div class="stat-value">
+       €15+
+      </div>
+      <div class="stat-label">
+       Vanaf
+      </div>
+     </div>
+     <div class="stat">
+      <div class="stat-value">
+       5.0
+      </div>
+      <div class="stat-label">
+       58 reviews
+      </div>
+     </div>
+     <div class="stat">
+      <div class="stat-value">
+       Amsterdam Noord
+      </div>
+      <div class="stat-label">
+       Locatie
+      </div>
+     </div>
+    </div>
+    <div class="hero-buttons">
+     <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
+    </div>
+   </div>
+  </section><!-- SERVICES -->
+  <section class="section services-section" id="services">
+   <h2 class="section-title">Onze Services</h2>
+   <p class="section-subtitle">Alle behandelingen met perfectie</p>
+   <div class="services-grid">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+     <div class="service-badge">
+      POPULAIR
+     </div>
+     <h3 class="service-name">Taper / Low / Mid Fade</h3>
+     <div class="service-details">
+      <span>⏱ 40 min</span>
+     </div>
+     <div class="service-price">
+      €30
+     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
+    </div>
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy" onerror="this.style.display='none'">
+     <h3 class="service-name">Only Hairline</h3>
+     <div class="service-details">
+      <span>⏱ 10 min</span>
+     </div>
+     <div class="service-price">
+      €15
+     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
+    </div>
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+     <h3 class="service-name">Kids Fade (5–15)</h3>
+     <div class="service-details">
+      <span>⏱ 40 min</span>
+     </div>
+     <div class="service-price">
+      €20
+     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
+    </div>
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy" onerror="this.style.display='none'">
+     <h3 class="service-name">RW Cut + Beard</h3>
+     <div class="service-details">
+      <span>⏱ 45 min</span>
+     </div>
+     <div class="service-price">
+      €35
+     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
+    </div>
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy" onerror="this.style.display='none'">
+     <h3 class="service-name">Propplekken</h3>
+     <div class="service-details">
+      <span>⏱ 45 min</span>
+     </div>
+     <div class="service-price">
+      €35
+     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
+    </div>
+   </div>
+  </section><!-- WEBSHOP SECTION -->
+  <section class="section" id="shop">
+   <h2 class="section-title">RWCutzz Merchandise</h2>
+   <p class="section-subtitle">Gerelateerde producten &amp; accessories</p>
+   <div id="shop-products"></div>
+  </section><!-- CHECKOUT SECTION -->
+  <section class="section" id="shop-checkout" style="background: #121212; padding: 5rem 2rem;">
+   <h2 class="section-title" style="margin-bottom: 3rem;">Afrekenen</h2>
+   <div class="checkout-container">
+    <form id="shop-form" class="checkout-form">
+     <h3>Je gegevens</h3>
+     <div class="form-group"><label class="form-label">Naam *</label> <input id="shop-name" type="text" required placeholder="Voor- en achternaam" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">E-mail *</label> <input id="shop-email" type="email" required placeholder="naam@email.nl" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">Telefoon *</label> <input id="shop-phone" type="tel" required placeholder="+31 6 12345678" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">Adres *</label> <textarea id="shop-address" required placeholder="Straat, huisnummer, postcode, plaats" rows="3" class="form-textarea"></textarea>
+     </div>
+     <div class="form-group"><label class="form-label">Opmerking</label> <textarea id="shop-notes" placeholder="Extra informatie voor je bestelling" rows="3" class="form-textarea"></textarea>
+     </div>
+     <div id="shop-message" style="display: none; background: rgba(26, 75, 255, 0.1); border: 1px solid #1A4BFF; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #4D7CFF;"></div><button id="shop-submit" type="submit" class="btn-primary" style="width: 100%; margin-top: 0;">Bestelling plaatsen</button>
+    </form>
+    <div class="checkout-summary">
+     <h3>Samenvatting</h3>
+     <div class="summary-row"><span>Aantal items</span> <span class="summary-value" id="shop-summary-count">0</span>
+     </div>
+     <div class="summary-row"><span>Subtotaal</span> <span class="summary-value" id="shop-summary-subtotal">€0,00</span>
+     </div>
+     <div class="summary-row total"><span>Totaal</span> <span class="summary-value total" id="shop-summary-total">€0,00</span>
+     </div>
+    </div>
+   </div>
+  </section><!-- BOOKING -->
+  <section class="booking-section" id="booking">
+   <h2 class="section-title" style="margin-bottom: 2rem;">Boek je afspraak</h2>
+   <div class="booking-container"><iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/" style="border-radius: 12px;"></iframe>
+   </div>
+  </section><!-- REVIEWS -->
+  <section class="section reviews-section" id="reviews">
+   <div class="reviews-container">
+    <div class="reviews-header">
+     <h2 class="section-title">Wat zeggen klanten?</h2>
+     <div class="rating-display">
+      <div class="rating-number">
+       5.0
+      </div>
+      <div class="stars">
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       </svg>
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       </svg>
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       </svg>
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       </svg>
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       </svg>
+      </div>
+     </div>
+     <div class="review-count">
+      58 reviews
+     </div><a href="https://rwcutzz.setmore.com/reviews?sortBy=highestRated" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; font-size: 0.9rem; text-decoration: none;">Bekijk alle reviews</a>
+    </div>
+    <div class="review-slider-wrapper">
+     <div class="review-slider">
+      <div class="review-slide active">
+       <div class="review-author-name">
+        Marco D.
+       </div>
+       <p class="review-text">"Beste kapper in Amsterdam. RW weet wat hij doet. Altijd een strakke fade."</p>
+       <div class="review-stars">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+       </div>
+      </div>
+      <div class="review-slide">
+       <div class="review-author-name">
+        Ahmed K.
+       </div>
+       <p class="review-text">"Altijd fresh. Consistent kwaliteit. Hij luistert naar wat je wilt."</p>
+       <div class="review-stars">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+       </div>
+      </div>
+      <div class="review-slide">
+       <div class="review-author-name">
+        Simon R.
+       </div>
+       <p class="review-text">"Weet hoe hij met alle haar types moet omgaan. Echt een specialist."</p>
+       <div class="review-stars">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+       </div>
+      </div>
+      <div class="review-slide">
+       <div class="review-author-name">
+        Dirk B.
+       </div>
+       <p class="review-text">"Schoon, snel, professioneel. Alleen hier heen voor mijn cuts."</p>
+       <div class="review-stars">
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        </svg>
+       </div>
+      </div>
+     </div>
+     <div class="review-dots">
+      <span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
+     </div>
+    </div>
+   </div>
+  </section><!-- ABOUT -->
+  <section class="section about-section" id="about">
+   <div class="about-container">
+    <div class="about-text">
+     <h2>Over RWCutzz</h2>
+     <h3>Wie is RW?</h3>
+     <p>RWCutzz staat voor precision, consistency en perfectie. Met jaren ervaring in het vak specialiseer ik me in fades, tapers en fresh cuts die je altijd tevreden achterlaten.</p>
+     <h3>Waarom RW?</h3>
+     <p>Geen compromissen op kwaliteit. Elke klant krijgt dezelfde aandacht en vakmanschap. Fades, precision, consistent resultaat — dat is RWCutzz.</p>
+    </div>
+    <div class="about-image">
+     <img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy" onerror="this.style.display='none'">
+    </div>
+   </div>
+  </section><!-- CONTACT -->
+  <section class="section contact-section" id="contact">
+   <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Contact</h2>
+   <div class="contact-container">
+    <div class="contact-card">
+     <div class="contact-icon">
+      <svg viewbox="0 0 24 24">
+       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5" />
+      </svg>
+     </div>
+     <div class="contact-label">
+      Adres
+     </div>
+     <div class="contact-info">
+      <a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
+       1025 BW Amsterdam </a>
+     </div>
+    </div>
+    <div class="contact-card">
+     <div class="contact-icon">
+      <svg viewbox="0 0 24 24">
+       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5-8-5V6l8 5 8-5v2z" />
+      </svg>
+     </div>
+     <div class="contact-label">
+      Email
+     </div>
+     <div class="contact-info">
+      <a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
+     </div>
+    </div>
+    <div class="contact-card">
+     <div class="contact-icon">
+      <svg viewbox="0 0 24 24">
+       <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
+      </svg>
+     </div>
+     <div class="contact-label">
+      WhatsApp
+     </div>
+     <div class="contact-info">
+      <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- FOOTER -->
+  <footer>
+   <div class="footer-content">
+    <div class="footer-section">
+     <h4>RWCutzz</h4>
+     <p>Fresh cuts. Precision. Consistency.</p>
+    </div>
+    <div class="footer-section">
+     <h4>Bedrijfsinfo</h4>
+     <div>
+      <p><strong>KVK:</strong> 94077991</p>
+      <p><strong>Vorm:</strong> Eenmanszaak</p>
+      <p><strong>Vestiging:</strong> 000059578688</p>
+     </div>
+    </div>
+    <div class="footer-section">
+     <h4>Openingstijden</h4>
+     <p>Dinsdag – Zaterdag<br>
+      09:00 – 18:00</p>
+    </div>
+   </div>
+   <div class="footer-divider">
+    <p>© 2024 RWCUTZZ. Alle rechten voorbehouden.</p>
+   </div>
+  </footer><!-- STICKY BUTTON --> <button class="sticky-book" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button>
+  <script>
+    // MOBILE MENU
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+    function openMobileMenu() {
+      mobileMenuDrawer.classList.add('active');
+      mobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      mobileMenuDrawer.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    mobileMenuToggle.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    function updateMenuVisibility() {
+      if (window.innerWidth <= 768) {
+        mobileMenuToggle.style.display = 'block';
+        document.getElementById('mainNav').style.display = 'none';
+      } else {
+        mobileMenuToggle.style.display = 'none';
+        document.getElementById('mainNav').style.display = 'flex';
+        closeMobileMenu();
+      }
+    }
+
+    updateMenuVisibility();
+    window.addEventListener('resize', updateMenuVisibility);
+
+    let currentReviewIndex = 0;
+    const totalReviews = 4;
+    let autoRotateTimer;
+
+    function showReview(n) {
+      const slides = document.querySelectorAll('.review-slide');
+      const dots = document.querySelectorAll('.dot');
+      
+      currentReviewIndex = (n + totalReviews) % totalReviews;
+      
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      slides[currentReviewIndex].classList.add('active');
+      dots[currentReviewIndex].classList.add('active');
+    }
+
+    function currentReview(n) {
+      clearTimeout(autoRotateTimer);
+      currentReviewIndex = n;
+      showReview(currentReviewIndex);
+      startAutoRotate();
+    }
+
+    function nextReview() {
+      currentReviewIndex++;
+      showReview(currentReviewIndex);
+    }
+
+    function startAutoRotate() {
+      autoRotateTimer = setTimeout(() => {
+        nextReview();
+        startAutoRotate();
+      }, 5000);
+    }
+
+    window.addEventListener('scroll', () => {
+      const stickyBtn = document.querySelector('.sticky-book');
+      if (window.scrollY > 300) {
+        stickyBtn.style.display = 'block';
+      } else {
+        stickyBtn.style.display = 'none';
+      }
+    });
+
+    startAutoRotate();
+    lucide.createIcons();
+  </script>
+  <script>
+    // WEBSHOP SYSTEM
+    const SHOP_API = 'https://script.google.com/macros/s/AKfycbxj_Ierv6wIP49zPeKzHGpQkA-_lHNzOLHgEswBNC_RihHFggR-ivM3cTianA9XBLUH7A/exec';
+    const SHOP_CART_KEY = 'rwcutzz_shop_cart_v1';
+    
+    let shopState = {
+      cart: [],
+      products: [],
+      settings: {}
+    };
+
+    function shopLoadCart() {
+      try {
+        return JSON.parse(localStorage.getItem(SHOP_CART_KEY) || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function shopSaveCart() {
+      localStorage.setItem(SHOP_CART_KEY, JSON.stringify(shopState.cart));
+    }
+
+    function shopFormatCurrency(val) {
+      return '€' + Number(val || 0).toFixed(2).replace('.', ',');
+    }
+
+    function shopAddToCart(productId) {
+      const product = shopState.products.find(p => Number(p.id) === Number(productId));
+      if (!product) return;
+      
+      const existing = shopState.cart.find(item => Number(item.product_id) === Number(productId));
+      if (existing) {
+        if (existing.quantity >= Number(product.stock)) return;
+        existing.quantity += 1;
+      } else {
+        shopState.cart.push({
+          product_id: Number(product.id),
+          product_name: product.name,
+          price: Number(product.price),
+          quantity: 1,
+          image_url: product.image_url || ''
+        });
+      }
+      shopSaveCart();
+      shopRenderCart();
+    }
+
+    function shopRenderCart() {
+      const cartCount = shopState.cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = shopState.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      
+      document.getElementById('cartCountHeader').textContent = String(cartCount);
+      document.getElementById('shop-summary-count').textContent = String(cartCount);
+      document.getElementById('shop-summary-subtotal').textContent = shopFormatCurrency(subtotal);
+      document.getElementById('shop-summary-total').textContent = shopFormatCurrency(subtotal);
+    }
+
+    async function shopLoadProducts() {
+      try {
+        const resp = await fetch(`${SHOP_API}?action=products`);
+        const data = await resp.json();
+        if (data.success && Array.isArray(data.data)) {
+          shopState.products = data.data;
+          shopRenderProducts();
+        }
+      } catch (err) {
+        console.error('Shop products error:', err);
+      }
+    }
+
+    function shopRenderProducts() {
+      const grid = document.getElementById('shop-products');
+      grid.innerHTML = '';
+      
+      shopState.products.forEach((product, index) => {
+        const card = document.createElement('div');
+        const inStock = Number(product.stock) > 0;
+        const isPopular = index === 0;
+        
+        card.className = 'product-card';
+        
+        card.innerHTML = `
+          <div class="product-image-container">
+            ${isPopular ? '<div class="product-badge">⭐ POPULAIR</div>' : ''}
+            <img src="${product.image_url || 'https://via.placeholder.com/240x200?text=' + encodeURIComponent(product.name)}" 
+                 alt="${product.name}" 
+                 class="product-image"
+                 loading="lazy"
+                 onerror="this.src='https://via.placeholder.com/240x200?text=' + encodeURIComponent('${product.name}'); this.style.background='#2C2C2C';">
+          </div>
+          
+          <div class="product-content">
+            <h4 class="product-name">✂️ ${product.name}</h4>
+            
+            <div class="product-price">
+              ${shopFormatCurrency(product.price)}
+            </div>
+            
+            <div class="product-stock ${inStock ? 'in-stock' : 'out-of-stock'}">
+              ${inStock ? '🟢 Op voorraad (' + product.stock + ')' : '🔴 Uitverkocht'}
+            </div>
+            
+            <p class="product-description">
+              ${product.description || 'Premium product'}
+            </p>
+            
+            <button onclick="shopAddToCart(${product.id})" 
+                    class="btn-add-cart" 
+                    ${!inStock ? 'disabled' : ''}>
+              ${inStock ? 'Toevoegen' : 'Uitverkocht'}
+            </button>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+    }
+
+    document.getElementById('shop-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      if (shopState.cart.length === 0) {
+        alert('Je winkelwagen is leeg.');
+        return;
+      }
+
+      const name = document.getElementById('shop-name').value.trim();
+      const email = document.getElementById('shop-email').value.trim();
+      const phone = document.getElementById('shop-phone').value.trim();
+      const address = document.getElementById('shop-address').value.trim();
+      const notes = document.getElementById('shop-notes').value.trim();
+
+      if (!name || !email || !phone || !address) {
+        alert('Vul alle verplichte velden in.');
+        return;
+      }
+
+      const msgBox = document.getElementById('shop-message');
+      const submitBtn = document.getElementById('shop-submit');
+      
+      msgBox.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Bestelling wordt geplaatst...';
+
+      try {
+        const payload = {
+          action: 'createOrder',
+          customer_name: name,
+          email: email,
+          phone: phone,
+          address: address,
+          delivery_type: 'verzenden',
+          pickup_time: '',
+          notes: notes,
+          items: shopState.cart.map(item => ({
+            product_id: Number(item.product_id),
+            quantity: Number(item.quantity)
+          }))
+        };
+
+        const resp = await fetch(SHOP_API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await resp.json();
+
+        if (result.success) {
+          shopState.cart = [];
+          shopSaveCart();
+          shopRenderCart();
+          document.getElementById('shop-form').reset();
+          
+          msgBox.style.cssText = 'display: block; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981;';
+          msgBox.innerHTML = `Bestelling geplaatst! Ordernummer: <strong>${result.data?.order_id || 'N/A'}</strong>`;
+          
+          setTimeout(() => window.location.hash = '#shop', 2000);
+        } else {
+          throw new Error(result.error?.message || 'Bestelling mislukt');
+        }
+      } catch (err) {
+        msgBox.style.cssText = 'display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444;';
+        msgBox.textContent = err.message || 'Er ging iets fout.';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Bestelling plaatsen';
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      shopState.cart = shopLoadCart();
+      shopLoadProducts();
+      shopRenderCart();
+    });
+  </script>
+  <script src="/_sdk/data_sdk.js"></script>
   <style>
     * {
       margin: 0;
@@ -51,6 +2059,8 @@
       align-items: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       height: 60px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .logo {
@@ -116,28 +2126,16 @@
       cursor: pointer;
       padding: 0.5rem;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 0.2rem;
+      justify-content: center;
       transition: all 0.3s;
       -webkit-tap-highlight-color: transparent;
+      position: relative;
     }
 
     .cart-button:hover {
       color: #4D7CFF;
-    }
-
-    .cart-button svg {
-      width: 24px;
-      height: 24px;
-      stroke-width: 2;
-    }
-
-    .cart-info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0rem;
+      transform: scale(1.1);
     }
 
     .cart-badge {
@@ -151,6 +2149,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
+      top: -5px;
+      right: -5px;
       animation: cartPop 0.4s ease-out;
     }
 
@@ -163,20 +2164,98 @@
       }
     }
 
-    .cart-price {
-      font-size: 0.65rem;
-      color: #1A4BFF;
-      font-weight: 700;
-      line-height: 1;
-    }
-
     .mobile-menu-toggle {
       display: none;
       background: none;
       border: none;
       color: #FFFFFF;
       cursor: pointer;
+      padding: 0.5rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* MOBILE MENU DRAWER */
+    .mobile-menu-drawer {
+      position: fixed;
+      left: -100%;
+      top: 60px;
+      width: 100%;
+      height: calc(100% - 60px);
+      background: #121212;
+      z-index: 999;
+      transition: left 0.3s ease;
+      overflow-y: auto;
+      display: none;
+    }
+
+    .mobile-menu-drawer.active {
+      left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .mobile-menu-drawer {
+        display: block;
+        width: 80%;
+        left: -80%;
+        top: 60px;
+        height: calc(100% - 60px);
+      }
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      padding: 1rem;
       font-size: 1.5rem;
+      -webkit-tap-highlight-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    .mobile-menu-link {
+      padding: 1rem;
+      text-decoration: none;
+      color: #B0B0B0;
+      font-weight: 500;
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s;
+    }
+
+    .mobile-menu-link:hover {
+      color: #1A4BFF;
+      padding-left: 1.5rem;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+      opacity: 1;
     }
 
     /* HERO */
@@ -514,30 +2593,35 @@
       margin-top: 2rem;
       height: auto;
       display: flex;
-      align-items: stretch;
+      align-items: center;
       justify-content: center;
+      width: 100%;
     }
 
     .review-slider {
       display: flex;
       position: relative;
       width: 100%;
+      max-width: 700px;
       height: auto;
     }
 
     .review-slide {
       position: absolute;
       width: 100%;
-      max-width: 600px;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2rem 1.5rem;
       opacity: 0;
       transition: opacity 0.8s ease;
       pointer-events: none;
       visibility: hidden;
-      min-height: 300px;
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .review-slide.active {
@@ -553,36 +2637,36 @@
       font-size: 1.1rem;
       font-weight: 700;
       color: #FFFFFF;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
     }
 
     .review-text {
       font-size: 0.95rem;
       line-height: 1.6;
       color: #E0E0E0;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
       max-width: 100%;
-      margin-left: auto;
-      margin-right: auto;
       font-style: italic;
     }
 
-    .review-stars-row {
+    .review-stars {
       display: flex;
       gap: 0.4rem;
       justify-content: center;
       margin-bottom: 0;
     }
 
-    .review-stars-row svg {
-      width: 16px;
-      height: 16px;
+    .review-stars svg {
+      width: 18px;
+      height: 18px;
       fill: #1A4BFF;
     }
+
+    .review-dots {
       display: flex;
       justify-content: center;
       gap: 0.8rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
 
     .dot {
@@ -1188,62 +3272,28 @@
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
- </head>
- <body>
-  <!-- HEADER -->
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script> <!-- HEADER -->
   <header>
-   <div class="logo">
-    <img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo"> <span>RWCUTZZ</span>
+   <div class="logo"><img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo"> <span>RWCUTZZ</span>
    </div>
-   <nav>
-    <a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#gallery">Galerij</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
-   </nav><button id="cartButtonHeader" class="cta-button">Winkelwagen <span id="cartCountHeader" style="margin-left: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem;">0</span></button> <button class="mobile-menu-toggle">☰</button>
-  </header>
-  <script>
-    let currentReviewIndex = 0;
-    const totalReviews = 4;
-    let autoRotateTimer;
-
-    function showReview(n) {
-      const slides = document.querySelectorAll('.review-slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      currentReviewIndex = (n + totalReviews) % totalReviews;
-      
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-      
-      slides[currentReviewIndex].classList.add('active');
-      dots[currentReviewIndex].classList.add('active');
-    }
-
-    function nextReview() {
-      currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
-      showReview(currentReviewIndex);
-    }
-
-    function startAutoRotate() {
-      autoRotateTimer = setTimeout(() => {
-        nextReview();
-        startAutoRotate();
-      }, 5000);
-    }
-
-    window.addEventListener('scroll', () => {
-      const btn = document.querySelector('.sticky-book');
-      btn.style.display = window.scrollY > 300 ? 'block' : 'none';
-    });
-
-    startAutoRotate();
-    lucide.createIcons();
-  </script>
-  <header>
-   <div class="logo"><img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; margin-right: 0.5rem;"> <span>RWCUTZZ</span>
+   <nav id="mainNav"><a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
+   </nav>
+   <div style="display: flex; align-items: center; gap: 1rem;"><button id="cartButtonHeader" class="cart-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">
+     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+     </svg><span id="cartCountHeader" class="cart-badge">0</span> </button> <button class="mobile-menu-toggle" id="mobileMenuToggle" style="display: none; -webkit-tap-highlight-color: transparent;">
+     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+     </svg></button>
    </div>
-   <nav><a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#gallery">Galerij</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
-   </nav><button id="cartButtonHeader" class="cta-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">Winkelwagen <span id="cartCountHeader" style="margin-left: 0.5rem; background: rgba(255,255,255,0.2); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem;">0</span></button> <button class="mobile-menu-toggle">☰</button>
-  </header><!-- HERO -->
+  </header><!-- MOBILE MENU DRAWER -->
+  <div id="mobileMenuDrawer" class="mobile-menu-drawer"><button class="mobile-menu-close" id="mobileMenuClose">
+    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+     <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+    </svg></button>
+   <nav class="mobile-menu-nav"><a href="#home" class="mobile-menu-link">Home</a> <a href="#services" class="mobile-menu-link">Services</a> <a href="#shop" class="mobile-menu-link">Shop</a> <a href="#booking" class="mobile-menu-link">Boeken</a> <a href="#reviews" class="mobile-menu-link">Reviews</a> <a href="#about" class="mobile-menu-link">Over</a> <a href="#contact" class="mobile-menu-link">Contact</a>
+   </nav>
+  </div>
+  <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div><!-- HERO -->
   <section class="hero" id="home">
    <div class="hero-background"></div>
    <div class="hero-overlay"></div>
@@ -1277,7 +3327,8 @@
       </div>
      </div>
     </div>
-    <div class="hero-buttons"><button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
+    <div class="hero-buttons">
+     <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
     </div>
    </div>
   </section><!-- SERVICES -->
@@ -1285,44 +3336,54 @@
    <h2 class="section-title">Onze Services</h2>
    <p class="section-subtitle">Alle behandelingen met perfectie</p>
    <div class="services-grid">
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
      <div class="service-badge">
       POPULAIR
      </div>
      <h3 class="service-name">Taper / Low / Mid Fade</h3>
-     <div class="service-details"><span>⏱ 40 min</span>
+     <div class="service-details">
+      <span>⏱ 40 min</span>
      </div>
      <div class="service-price">
       €30
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy" onerror="this.style.display='none'">
      <h3 class="service-name">Only Hairline</h3>
-     <div class="service-details"><span>⏱ 10 min</span>
+     <div class="service-details">
+      <span>⏱ 10 min</span>
      </div>
      <div class="service-price">
       €15
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
      <h3 class="service-name">Kids Fade (5–15)</h3>
-     <div class="service-details"><span>⏱ 40 min</span>
+     <div class="service-details">
+      <span>⏱ 40 min</span>
      </div>
      <div class="service-price">
       €20
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy" onerror="this.style.display='none'">
      <h3 class="service-name">RW Cut + Beard</h3>
-     <div class="service-details"><span>⏱ 45 min</span>
+     <div class="service-details">
+      <span>⏱ 45 min</span>
      </div>
      <div class="service-price">
       €35
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
+     <img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy" onerror="this.style.display='none'">
      <h3 class="service-name">Propplekken</h3>
-     <div class="service-details"><span>⏱ 45 min</span>
+     <div class="service-details">
+      <span>⏱ 45 min</span>
      </div>
      <div class="service-price">
       €35
@@ -1335,25 +3396,11 @@
    <p class="section-subtitle" style="margin-bottom: 3rem;">Gerelateerde producten &amp; accessories</p>
    <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto;">
     <div>
-     <div id="shop-products" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 2rem; width: 100%;">
+     <div id="shop-products" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; width: 100%; justify-items: center;">
       <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.5rem; text-align: center; color: #B0B0B0;">
        <p>Producten laden...</p>
       </div>
      </div>
-    </div>
-    <div style="background: #121212; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; display: none;">
-     <p style="font-size: 0.9rem; color: #808080; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem;">Jouw bestelling</p>
-     <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Winkelwagen</h3>
-     <div id="shop-cart-empty" style="background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.1); border-radius: 12px; padding: 2rem; text-align: center; color: #808080; font-size: 0.9rem; margin-bottom: 1.5rem;">
-      Je winkelwagen is leeg.
-     </div>
-     <div id="shop-cart-items" style="space: 1rem; margin-bottom: 1.5rem;"></div>
-     <div style="background: rgba(255,255,255,0.05); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.8rem; color: #B0B0B0;"><span>Subtotaal</span> <span id="shop-subtotal" style="font-weight: 700; color: #FFFFFF;">EUR 0.00</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;"><span>Totaal</span> <span id="shop-total" style="font-weight: 700; font-size: 1.1rem; color: #1A4BFF;">EUR 0.00</span>
-      </div>
-     </div><button id="shop-checkout-btn" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })" style="width: 100%; background: #1A4BFF; color: #FFFFFF; padding: 1rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(26, 75, 255, 0.3);">Naar afrekenen</button>
     </div>
    </div>
   </section><!-- CHECKOUT SECTION -->
@@ -1367,12 +3414,15 @@
     <div style="background: #2C2C2C; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; height: fit-content;">
      <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">Samenvat</h3>
      <div style="space: 1rem;">
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 0.8rem;"><span>Aantal items</span> <span id="shop-summary-count" style="font-weight: 700; color: #FFFFFF;">0</span>
+      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 0.8rem;">
+       <span>Aantal items</span> <span id="shop-summary-count" style="font-weight: 700; color: #FFFFFF;">0</span>
       </div>
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 1rem;"><span>Subtotaal</span> <span id="shop-summary-subtotal" style="font-weight: 700; color: #FFFFFF;">EUR 0.00</span>
+      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 1rem;">
+       <span>Subtotaal</span> <span id="shop-summary-subtotal" style="font-weight: 700; color: #FFFFFF;">EUR 0.00</span>
       </div>
       <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
-       <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700;"><span>Totaal</span> <span id="shop-summary-total" style="color: #1A4BFF;">EUR 0.00</span>
+       <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700;">
+        <span>Totaal</span> <span id="shop-summary-total" style="color: #1A4BFF;">EUR 0.00</span>
        </div>
       </div>
      </div>
@@ -1381,7 +3431,8 @@
   </section>
   <section class="services" id="booking" style="background: #2C2C2C; padding: 5rem 2rem;">
    <h2 class="section-title" style="margin-bottom: 2rem;">Boek je afspraak</h2>
-   <div style="max-width: 900px; margin: 0 auto; background: #121212; border-radius: 16px; padding: 2rem; border: 1px solid #3A3A3A; box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);"><iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/" style="border-radius: 12px;"></iframe>
+   <div style="max-width: 900px; margin: 0 auto; background: #121212; border-radius: 16px; padding: 2rem; border: 1px solid #3A3A3A; box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);">
+    <iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/" style="border-radius: 12px;"></iframe>
    </div>
   </section><!-- REVIEWS -->
   <section class="reviews" id="reviews">
@@ -1393,15 +3444,20 @@
        5.0
       </div>
       <div class="stars">
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
       </div>
      </div>
@@ -1417,15 +3473,20 @@
        </div>
        <p class="review-text">"Beste kapper in Amsterdam. RW weet wat hij doet. Altijd een strakke fade."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
       </div>
@@ -1435,15 +3496,20 @@
        </div>
        <p class="review-text">"Altijd fresh. Consistent kwaliteit. Hij luistert naar wat je wilt."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
       </div>
@@ -1453,15 +3519,20 @@
        </div>
        <p class="review-text">"Weet hoe hij met alle haar types moet omgaan. Echt een specialist."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
       </div>
@@ -1471,42 +3542,28 @@
        </div>
        <p class="review-text">"Schoon, snel, professioneel. Alleen hier heen voor mijn cuts."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
+        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
       </div>
      </div>
-     <div class="review-dots"><span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
+     <div class="review-dots">
+      <span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
      </div>
     </div>
-   </div>
-  </section><!-- GALLERY -->
-  <section class="gallery" id="gallery">
-   <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Gallerij</h2>
-   <div class="gallery-slider-container">
-    <div class="gallery-slides" id="gallerySlides">
-     <div class="gallery-slide">
-      <img src="https://drive.google.com/uc?export=view&amp;id=1yldYDJolbfbEMR67X_5Ds2QqO7lheQfS" alt="Fade 1" loading="lazy" onerror="this.src='https://via.placeholder.com/900x500?text=Fade+1'; this.parentElement.style.background='#2C2C2C';">
-     </div>
-     <div class="gallery-slide">
-      <img src="https://via.placeholder.com/900x500?text=Fade+2" alt="Fade 2" loading="lazy">
-     </div>
-     <div class="gallery-slide">
-      <img src="https://via.placeholder.com/900x500?text=Fade+3" alt="Fade 3" loading="lazy">
-     </div>
-     <div class="gallery-slide">
-      <img src="https://via.placeholder.com/900x500?text=Fade+4" alt="Fade 4" loading="lazy">
-     </div>
-    </div><button class="gallery-nav prev" onclick="gallerySlide(-1)">❮</button> <button class="gallery-nav next" onclick="gallerySlide(1)">❯</button>
-    <div class="gallery-dots" id="galleryDots"></div>
    </div>
   </section><!-- ABOUT -->
   <section class="about">
@@ -1518,7 +3575,8 @@
      <h3>Waarom RW?</h3>
      <p>Geen compromissen op kwaliteit. Elke klant krijgt dezelfde aandacht en vakmanschap. Fades, precision, consistent resultaat — dat is RWCutzz.</p>
     </div>
-    <div class="about-image"><img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy" onerror="this.style.display='none'">
+    <div class="about-image">
+     <img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy" onerror="this.style.display='none'">
     </div>
    </div>
   </section><!-- CONTACT -->
@@ -1527,36 +3585,42 @@
    <div class="contact-container">
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5" />
+      <svg viewbox="0 0 24 24">
+       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5" />
       </svg>
      </div>
      <div class="contact-label">
       Adres
      </div>
-     <div class="contact-info"><a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
+     <div class="contact-info">
+      <a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
         1025 BW Amsterdam </a>
      </div>
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5-8-5V6l8 5 8-5v2z" />
+      <svg viewbox="0 0 24 24">
+       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5-8-5V6l8 5 8-5v2z" />
       </svg>
      </div>
      <div class="contact-label">
       Email
      </div>
-     <div class="contact-info"><a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
+     <div class="contact-info">
+      <a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
      </div>
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
+      <svg viewbox="0 0 24 24">
+       <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
       </svg>
      </div>
      <div class="contact-label">
       WhatsApp
      </div>
-     <div class="contact-info"><a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
+     <div class="contact-info">
+      <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
      </div>
     </div>
    </div>
@@ -3043,5 +5107,5 @@
     }
   </style>
   <script src="/_sdk/data_sdk.js"></script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ea8e147e394970e',t:'MTc3NTg5ODg1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ea8f677c3718477',t:'MTc3NTg5OTcyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html><!-- HEADER -->
