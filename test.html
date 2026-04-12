@@ -1204,6 +1204,28 @@
       .booking-container iframe { height: 80vh; }
     }
 
+    /* MOBILE SERVICES SLIDER */
+    @media (max-width: 480px) {
+      .services-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        padding: 1rem 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .service-card {
+        flex: 0 0 85%;
+        min-width: 85%;
+        scroll-snap-align: start;
+      }
+
+      /* Hide scrollbar but keep functionality */
+      .services-grid::-webkit-scrollbar { display: none; }
+      .services-grid { -ms-overflow-style: none; overflow-y: hidden; }
+    }
+
     @media (max-width: 480px) {
       header { padding: 0.5rem 0.6rem; height: 45px; }
       .logo { font-size: 0.85rem; }
@@ -1217,7 +1239,6 @@
       .section { padding: 2rem 0.8rem; }
       .section-title { font-size: 1.4rem; }
 
-      .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
       #shop-products {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.8rem;
@@ -1226,6 +1247,13 @@
       .product-price { font-size: 1rem; }
       .product-description { display: block; }
       .product-badge { font-size: 0.65rem; padding: 0.3rem 0.6rem; }
+
+      .sticky-book {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
 
       footer { padding: 2rem 0.8rem; }
       .booking-container { padding: 1rem; }
@@ -1308,7 +1336,9 @@
       POPULAIR
      </div>
      <h3 class="service-name">Taper / Low / Mid Fade</h3>
-     <div class="service-details"><span>⏱ 40 min</span>
+     <div class="service-details"><span>
+       <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+       </svg> 40 min</span>
      </div>
      <div class="service-price">
       €30
@@ -1317,7 +1347,9 @@
     <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
      <img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy">
      <h3 class="service-name">Only Hairline</h3>
-     <div class="service-details"><span>⏱ 10 min</span>
+     <div class="service-details"><span>
+       <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+       </svg> 10 min</span>
      </div>
      <div class="service-price">
       €15
@@ -1326,7 +1358,9 @@
     <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
      <img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy">
      <h3 class="service-name">Kids Fade (5–15)</h3>
-     <div class="service-details"><span>⏱ 40 min</span>
+     <div class="service-details"><span>
+       <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+       </svg> 40 min</span>
      </div>
      <div class="service-price">
       €20
@@ -1335,7 +1369,9 @@
     <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
      <img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy">
      <h3 class="service-name">RW Cut + Beard</h3>
-     <div class="service-details"><span>⏱ 45 min</span>
+     <div class="service-details"><span>
+       <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+       </svg> 45 min</span>
      </div>
      <div class="service-price">
       €35
@@ -1344,7 +1380,9 @@
     <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
      <img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy">
      <h3 class="service-name">Propplekken</h3>
-     <div class="service-details"><span>⏱ 45 min</span>
+     <div class="service-details"><span>
+       <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline; vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+       </svg> 45 min</span>
      </div>
      <div class="service-price">
       €35
@@ -1357,7 +1395,7 @@
    <p class="section-subtitle">Gerelateerde producten &amp; accessories</p><!-- SEARCH & FILTER -->
    <div class="shop-controls">
     <div class="search-container">
-     <input type="text" id="shop-search" placeholder="🔍 Zoeken..." class="search-input">
+     <input type="text" id="shop-search" placeholder="Zoeken..." class="search-input">
     </div>
     <div class="filter-container">
      <button class="filter-btn active" data-filter="all">Alle</button> <button class="filter-btn" data-filter="in-stock">Op Voorraad</button> <button class="filter-btn" data-filter="out-stock">Uitverkocht</button>
@@ -1535,7 +1573,8 @@
    <div class="contact-container">
     <div class="contact-card">
      <div class="contact-icon">
-      📍
+      <svg width="32" height="32" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>
+      </svg>
      </div>
      <div class="contact-label">
       Adres
@@ -1547,7 +1586,8 @@
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      ✉️
+      <svg width="32" height="32" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+      </svg>
      </div>
      <div class="contact-label">
       Email
@@ -1558,7 +1598,8 @@
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      💬
+      <svg width="32" height="32" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
      </div>
      <div class="contact-label">
       WhatsApp
@@ -1588,6 +1629,7 @@
    </div>
    <div class="footer-divider">
     <p>© 2024 RWCUTZZ. Alle rechten voorbehouden.</p>
+    <p style="margin-top: 1rem; font-size: 0.75rem; color: #505050;">Powered by <a href="https://vanappiah.com/" target="_blank" rel="noopener noreferrer" style="color: #1a4bff; text-decoration: none;">Appiah VA</a></p>
    </div>
   </footer><!-- STICKY BUTTON --> <button class="sticky-book" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
@@ -1728,7 +1770,7 @@
             <div class="product-info">
               <h4 class="product-name">${p.name}</h4>
               <div class="product-price">${formatCurrency(p.price)}</div>
-              <div class="product-stock ${p.stock > 0 ? 'in-stock' : 'out-of-stock'}">${p.stock > 0 ? '🟢 Op voorraad (' + p.stock + ')' : '🔴 Uitverkocht'}</div>
+              <div class="product-stock ${p.stock > 0 ? 'in-stock' : 'out-of-stock'}">${p.stock > 0 ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle></svg>Op voorraad (' + p.stock + ')' : '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="display: inline; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle></svg>Uitverkocht'}</div>
               <p class="product-description">${p.description}</p>
             </div>
             <button onclick="addToCart(${p.id})" class="btn-add-cart" ${p.stock <= 0 ? 'disabled' : ''}>${p.stock > 0 ? 'Toevoegen' : 'Uitverkocht'}</button>
@@ -1834,5 +1876,5 @@
       });
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb2d2e90331b234',t:'MTc3NjAwMzEyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb2d67e538bb234',t:'MTc3NjAwMzI3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
