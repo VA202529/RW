@@ -3,191 +3,361 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RWCUTZZ Kapper – Amsterdam Noord</title>
+  <title>RWCUTZZ – Kapper &amp; Premium Shop | Amsterdam Noord</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    html, body { height: 100%; margin: 0; }
-    .font-display { font-family: 'Bebas Neue', sans-serif; }
-    .font-body { font-family: 'DM Sans', sans-serif; }
-    .gold-gradient { background: linear-gradient(135deg, #c9a84c, #f0d078, #c9a84c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(201,168,76,0.15); }
-    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .stripe-bg {
-      background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(201,168,76,0.03) 20px, rgba(201,168,76,0.03) 40px);
-    }
-    .pulse-gold { animation: pulseGold 2s infinite; }
-    @keyframes pulseGold { 0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); } 50% { box-shadow: 0 0 0 12px rgba(201,168,76,0); } }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; width: 100%; }
+    body { font-family: 'DM Sans', sans-serif; background: #0a0a0a; color: #e8e0d0; overflow-x: hidden; }
+    h1, h2, h3, .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
+    
+    .gold-gradient { background: linear-gradient(135deg, #d4af37, #f0d078, #d4af37); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gold-text { color: #d4af37; }
+    
+    .card-hover { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
+    .card-hover:active { transform: translateY(-2px); }
+    @media (hover: hover) { .card-hover:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2); } }
+    
+    .fade-up { animation: fadeUp 0.6s ease-out forwards; opacity: 0; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } from { opacity: 0; transform: translateY(20px); } }
+    
+    .fade-in { animation: fadeIn 0.4s ease forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } from { opacity: 0; } }
+    
     .scroll-smooth { scroll-behavior: smooth; }
+    
+    .stripe-pattern {
+      background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(212, 175, 55, 0.04) 20px, rgba(212, 175, 55, 0.04) 40px);
+    }
+    
+    .barber-pole {
+      background: repeating-linear-gradient(90deg, #d4af37 0px, #d4af37 15px, transparent 15px, transparent 30px, #cc3333 30px, #cc3333 45px, transparent 45px, transparent 60px);
+      animation: poleSpin 8s linear infinite;
+    }
+    @keyframes poleSpin { to { background-position: 60px 0; } }
+    
+    .page-transition {
+      animation: pageSlideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes pageSlideIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .input-focus:focus { border-color: #d4af37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full font-body scroll-smooth" style="background-color: #0a0a0a; color: #e8e0d0;">
+ <body class="h-full w-full scroll-smooth">
   <div id="app" class="w-full h-full overflow-auto"><!-- Nav -->
-   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background: rgba(10,10,10,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.1);">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-     <div class="flex items-center gap-3"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-10 h-10 rounded-full object-cover border-2" style="border-color: #c9a84c;" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#c9a84c'; this.alt='Logo';"> <span class="font-display text-2xl tracking-wider" style="color: #c9a84c;">RWCUTZZ</span>
+   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(212,175,55,0.1);">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between"><button id="logo-btn" type="button" class="flex items-center gap-2 md:gap-3 min-w-0 hover:opacity-80 transition"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover border-2 flex-shrink-0" style="border-color: #d4af37;" loading="lazy" onerror="this.style.background='#d4af37'; this.alt='Logo';"> <span class="font-display text-xl md:text-2xl tracking-wider gold-text truncate">RWCUTZZ</span> </button>
+     <div class="hidden sm:flex items-center gap-4 md:gap-8 text-xs md:text-sm font-medium tracking-wide">
+      <a id="nav-home" href="javascript:void(0)" class="hover:opacity-100 opacity-70 transition cursor-pointer">Home</a> <a id="nav-shop" href="javascript:void(0)" class="hover:opacity-100 opacity-70 transition cursor-pointer">Shop</a> <a id="nav-services" href="#diensten" class="hover:opacity-100 opacity-70 transition">Diensten</a> <a id="nav-contact" href="#contact" class="hover:opacity-100 opacity-70 transition">Contact</a>
      </div>
-     <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide"><a href="#diensten" class="hover:opacity-100 opacity-70 transition">Diensten</a> <a href="#openingstijden" class="hover:opacity-100 opacity-70 transition">Openingstijden</a> <a href="#beleid" class="hover:opacity-100 opacity-70 transition">Info</a> <a href="#contact" class="hover:opacity-100 opacity-70 transition">Contact</a>
-     </div><a id="nav-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="px-5 py-2 rounded-full text-sm font-bold tracking-wide transition hover:scale-105" style="background: #c9a84c; color: #0a0a0a;"> Boek Nu </a>
+     <div class="flex items-center gap-2 md:gap-3"><button id="nav-cart" type="button" class="relative p-2 rounded-full hover:bg-white/5 transition" title="Winkelwagen"><i data-lucide="shopping-bag" style="width:20px;height:20px;color:#d4af37;"></i> <span id="cart-badge" class="absolute top-1 right-1 w-4 h-4 rounded-full text-xs font-bold flex items-center justify-center" style="background:#d4af37;color:#0a0a0a;display:none;">0</span> </button> <a id="nav-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="px-3 md:px-5 py-2 rounded-full text-xs md:text-sm font-bold tracking-wide transition active:scale-95 hidden sm:inline-block flex-shrink-0" style="background: #d4af37; color: #0a0a0a;">Boek Nu</a>
+     </div>
     </div>
-   </nav><!-- Hero -->
-   <header class="relative w-full flex items-center justify-center text-center" style="min-height: 90%; background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%);">
-    <div class="absolute inset-0 stripe-bg"></div><!-- Decorative barber pole lines -->
-    <div class="absolute top-0 left-8 w-1 h-full opacity-10" style="background: repeating-linear-gradient(180deg, #c9a84c 0px, #c9a84c 20px, transparent 20px, transparent 40px, #cc3333 40px, #cc3333 60px, transparent 60px, transparent 80px);"></div>
-    <div class="absolute top-0 right-8 w-1 h-full opacity-10" style="background: repeating-linear-gradient(180deg, #c9a84c 0px, #c9a84c 20px, transparent 20px, transparent 40px, #cc3333 40px, #cc3333 60px, transparent 60px, transparent 80px);"></div>
-    <div class="relative z-10 px-4 py-32">
-     <div class="mb-6"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-28 h-28 rounded-full mx-auto object-cover border-4 shadow-2xl" style="border-color: #c9a84c; box-shadow: 0 0 60px rgba(201,168,76,0.2);" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#c9a84c'; this.alt='Logo';">
-     </div>
-     <h1 id="hero-title" class="font-display text-7xl md:text-9xl tracking-widest gold-gradient mb-4">RWCUTZZ</h1>
-     <p class="text-sm tracking-[0.3em] uppercase mb-2 opacity-50">Kapper – Amsterdam Noord</p>
-     <p id="hero-subtitle" class="text-xl md:text-2xl font-light mb-2 opacity-80" style="color: #e8e0d0;">Ready for a clean cut? ✅</p><!-- Rating -->
-     <div class="flex items-center justify-center gap-2 mt-6 mb-10">
-      <div class="flex gap-0.5"><span style="color:#c9a84c;">★</span><span style="color:#c9a84c;">★</span><span style="color:#c9a84c;">★</span><span style="color:#c9a84c;">★</span><span style="color:#c9a84c;">★</span>
-      </div><span class="font-bold" style="color:#c9a84c;">5.0</span> <span class="opacity-50">–</span> <a href="https://rwcutzz.setmore.com/#reviews" target="_blank" rel="noopener noreferrer" class="underline opacity-60 hover:opacity-100 transition">58 beoordelingen</a>
-     </div><a id="hero-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-10 py-4 rounded-full text-lg font-bold tracking-wide transition hover:scale-105 pulse-gold" style="background: #c9a84c; color: #0a0a0a;"> <i data-lucide="scissors" style="width:22px;height:22px;"></i> Maak een Afspraak </a>
-    </div>
-   </header><!-- Diensten -->
-   <section id="diensten" class="w-full py-24 px-4">
-    <div class="max-w-5xl mx-auto">
-     <div class="text-center mb-16 fade-up">
-      <p class="text-sm tracking-[0.3em] uppercase mb-3" style="color: #c9a84c;">Wat we bieden</p>
-      <h2 class="font-display text-5xl md:text-6xl tracking-wider" style="color: #e8e0d0;">Diensten</h2>
-     </div>
-     <div class="grid md:grid-cols-2 gap-6"><!-- Service 1 -->
-      <div class="fade-up card-hover rounded-2xl p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #c9a84c, transparent);"></div>
-       <div class="flex items-start justify-between mb-4">
-        <div><span class="text-xs tracking-widest uppercase opacity-40">RW Service</span>
-         <h3 class="font-display text-3xl tracking-wide mt-1" style="color: #c9a84c;">Taper / Low / Midfade Hairline</h3>
-        </div><i data-lucide="scissors" style="width:28px;height:28px;color:#c9a84c;opacity:0.3;"></i>
+   </nav><!-- PAGE CONTAINER -->
+   <div id="page-container" class="w-full"><!-- HOME PAGE -->
+    <div id="page-home" class="w-full page-transition"><!-- Hero -->
+     <header class="relative w-full flex items-center justify-center text-center pt-20 md:pt-24" style="min-height: 100%; background: radial-gradient(ellipse at 50% 30%, rgba(212,175,55,0.08) 0%, transparent 70%);">
+      <div class="absolute inset-0 stripe-pattern"></div>
+      <div class="absolute top-0 left-4 w-0.5 h-full opacity-5 md:hidden" style="background: repeating-linear-gradient(180deg, #d4af37 0px, #d4af37 20px, transparent 20px, transparent 40px, #cc3333 40px, #cc3333 60px, transparent 60px, transparent 80px);"></div>
+      <div class="absolute top-0 right-4 w-0.5 h-full opacity-5 md:hidden" style="background: repeating-linear-gradient(180deg, #d4af37 0px, #d4af37 20px, transparent 20px, transparent 40px, #cc3333 40px, #cc3333 60px, transparent 60px, transparent 80px);"></div>
+      <div class="relative z-10 px-4 sm:px-6 py-16 md:py-24 lg:py-32 max-w-4xl mx-auto w-full">
+       <div class="mb-6 md:mb-8 fade-up">
+        <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-20 h-20 md:w-28 md:h-28 rounded-full mx-auto object-cover border-4 shadow-2xl" style="border-color: #d4af37; box-shadow: 0 0 60px rgba(212,175,55,0.2);" loading="lazy" onerror="this.style.background='#d4af37'; this.alt='Logo';">
        </div>
-       <div class="flex items-center gap-6 mt-6">
-        <div class="flex items-center gap-2 opacity-60">
-         <i data-lucide="clock" style="width:16px;height:16px;"></i><span class="text-sm">40 min</span>
+       <h1 id="hero-title" class="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider gold-gradient mb-3 md:mb-4 fade-up" style="animation-delay: 0.1s;">RWCUTZZ</h1>
+       <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-50 fade-up" style="animation-delay: 0.2s;">Kapper – Amsterdam Noord</p>
+       <p id="hero-subtitle" class="text-lg md:text-2xl font-light mb-4 md:mb-6 opacity-80 fade-up" style="animation-delay: 0.3s; color: #e8e0d0;">Ready for a clean cut? ✅</p>
+       <div class="flex items-center justify-center gap-2 md:gap-3 mt-6 mb-8 md:mb-10 fade-up" style="animation-delay: 0.4s;">
+        <div class="flex gap-0.5 text-lg md:text-2xl">
+         <span style="color:#d4af37;">★★★★★</span>
+        </div><span class="font-bold text-lg" style="color:#d4af37;">5.0</span> <span class="opacity-50 text-sm md:text-base">–</span> <a href="https://rwcutzz.setmore.com/#reviews" target="_blank" rel="noopener noreferrer" class="underline opacity-60 hover:opacity-100 transition text-sm md:text-base">58 beoordelingen</a>
+       </div>
+       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 fade-up" style="animation-delay: 0.5s;"><a id="hero-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95" style="background: #d4af37; color: #0a0a0a;"> <i data-lucide="scissors" style="width:20px;height:20px;"></i> <span>Maak een Afspraak</span> </a> <button id="hero-shop-btn" type="button" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95 border-2 gold-text" style="border-color:#d4af37;"> <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i> <span>Naar Shop</span> </button>
+       </div>
+      </div>
+     </header><!-- Diensten -->
+     <section id="diensten" class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto">
+       <div class="text-center mb-12 md:mb-16 fade-up">
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Wat we bieden</p>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Diensten</h2>
+       </div>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <div class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(212,175,55,0.15);">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #d4af37, transparent);"></div>
+         <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
+          <div class="min-w-0">
+           <span class="text-xs tracking-widest uppercase opacity-40">RW Service</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Taper / Low / Midfade</h3>
+          </div><i data-lucide="scissors" style="width:24px;height:24px;color:#d4af37;opacity:0.3;flex-shrink:0;"></i>
+         </div>
+         <div class="flex items-center gap-4 md:gap-6 mt-4">
+          <div class="flex items-center gap-2 opacity-60 text-sm">
+           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
+          </div>
+          <div class="font-display text-3xl md:text-4xl gold-text">
+           €30
+          </div>
+         </div>
         </div>
-        <div class="font-display text-4xl" style="color: #c9a84c;">
-         €30
+        <div class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.1s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #d4af37, transparent);"></div>
+         <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
+          <div class="min-w-0">
+           <span class="text-xs tracking-widest uppercase opacity-40">Quick</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Only Hairline</h3>
+          </div><i data-lucide="zap" style="width:24px;height:24px;color:#d4af37;opacity:0.3;flex-shrink:0;"></i>
+         </div>
+         <div class="flex items-center gap-4 md:gap-6 mt-4">
+          <div class="flex items-center gap-2 opacity-60 text-sm">
+           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>10 min</span>
+          </div>
+          <div class="font-display text-3xl md:text-4xl gold-text">
+           €15
+          </div>
+         </div>
+        </div>
+        <div class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.2s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #d4af37, transparent);"></div>
+         <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
+          <div class="min-w-0">
+           <span class="text-xs tracking-widest uppercase opacity-40">Young Cuts</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Kids Fade</h3>
+           <p class="text-xs md:text-sm opacity-50 mt-1">5 t/m 15 jaar</p>
+          </div><i data-lucide="smile" style="width:24px;height:24px;color:#d4af37;opacity:0.3;flex-shrink:0;"></i>
+         </div>
+         <div class="flex items-center gap-4 md:gap-6 mt-4">
+          <div class="flex items-center gap-2 opacity-60 text-sm">
+           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
+          </div>
+          <div class="font-display text-3xl md:text-4xl gold-text">
+           €20
+          </div>
+         </div>
+        </div>
+        <div class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.3s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #d4af37, transparent);"></div>
+         <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
+          <div class="min-w-0">
+           <span class="text-xs tracking-widest uppercase opacity-40">Custom</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Overige Diensten</h3>
+          </div><i data-lucide="star" style="width:24px;height:24px;color:#d4af37;opacity:0.3;flex-shrink:0;"></i>
+         </div>
+         <div class="flex items-center gap-4 md:gap-6 mt-4">
+          <div class="flex items-center gap-2 opacity-60 text-sm">
+           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>45 min</span>
+          </div>
+          <div class="font-display text-2xl md:text-3xl opacity-70 gold-text">
+           Op aanvraag
+          </div>
+         </div>
         </div>
        </div>
-      </div><!-- Service 2 -->
-      <div class="fade-up card-hover rounded-2xl p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #c9a84c, transparent);"></div>
-       <div class="flex items-start justify-between mb-4">
-        <div><span class="text-xs tracking-widest uppercase opacity-40">Quick Service</span>
-         <h3 class="font-display text-3xl tracking-wide mt-1" style="color: #c9a84c;">Only Hairline</h3>
-        </div><i data-lucide="zap" style="width:28px;height:28px;color:#c9a84c;opacity:0.3;"></i>
+      </div>
+     </section><!-- Openingstijden -->
+     <section id="openingstijden" class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8" style="background: #080808;">
+      <div class="max-w-3xl mx-auto">
+       <div class="text-center mb-12 md:mb-16 fade-up">
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Wanneer</p>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Openingstijden</h2>
        </div>
-       <div class="flex items-center gap-6 mt-6">
-        <div class="flex items-center gap-2 opacity-60">
-         <i data-lucide="clock" style="width:16px;height:16px;"></i><span class="text-sm">10 min</span>
+       <div class="fade-up rounded-2xl overflow-hidden" style="background: #111111; border: 1px solid rgba(212,175,55,0.15);">
+        <div id="schedule-list"></div>
+       </div>
+      </div>
+     </section><!-- Beleid -->
+     <section id="beleid" class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto">
+       <div class="text-center mb-12 md:mb-16 fade-up">
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Goed om te weten</p>
+        <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Huisregels</h2>
+       </div>
+       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15);">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
+          <i data-lucide="clock" style="width:24px;height:24px;color:#d4af37;"></i>
+         </div>
+         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">Te Laat</h3>
+         <p class="text-sm opacity-60 leading-relaxed">5 min → +€5<br>
+          10 min → +€10</p>
         </div>
-        <div class="font-display text-4xl" style="color: #c9a84c;">
-         €15
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.1s;">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
+          <i data-lucide="x-circle" style="width:24px;height:24px;color:#d4af37;"></i>
+         </div>
+         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">No Show</h3>
+         <p class="text-sm opacity-60 leading-relaxed">Tikkie van 50% van bedrag</p>
+        </div>
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.2s;">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
+          <i data-lucide="calendar" style="width:24px;height:24px;color:#d4af37;"></i>
+         </div>
+         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">Annulering</h3>
+         <p class="text-sm opacity-60 leading-relaxed">Tot 2 uur van tevoren</p>
         </div>
        </div>
-      </div><!-- Service 3 -->
-      <div class="fade-up card-hover rounded-2xl p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #c9a84c, transparent);"></div>
-       <div class="flex items-start justify-between mb-4">
-        <div><span class="text-xs tracking-widest uppercase opacity-40">Young Cuts</span>
-         <h3 class="font-display text-3xl tracking-wide mt-1" style="color: #c9a84c;">Kids Fade</h3>
-         <p class="text-sm opacity-50 mt-1">5 t/m 15 jaar</p>
-        </div><i data-lucide="smile" style="width:28px;height:28px;color:#c9a84c;opacity:0.3;"></i>
-       </div>
-       <div class="flex items-center gap-6 mt-6">
-        <div class="flex items-center gap-2 opacity-60">
-         <i data-lucide="clock" style="width:16px;height:16px;"></i><span class="text-sm">40 min</span>
+      </div>
+     </section><!-- Contact / Footer -->
+     <footer id="contact" class="w-full py-16 md:py-20 px-4 sm:px-6 lg:px-8" style="background: #080808; border-top: 1px solid rgba(212,175,55,0.1);">
+      <div class="max-w-4xl mx-auto text-center">
+       <div class="fade-up">
+        <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-14 h-14 md:w-16 md:h-16 rounded-full mx-auto object-cover border-2 mb-4 md:mb-6" style="border-color: #d4af37;" loading="lazy" onerror="this.style.background='#d4af37'; this.alt='Logo';">
+        <h2 class="font-display text-3xl md:text-4xl tracking-wider mb-2 gold-text">RWCUTZZ</h2>
+        <p class="opacity-50 text-xs md:text-sm mb-6 md:mb-8">Kapper – Amsterdam Noord</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 mb-8 md:mb-10 text-xs md:text-sm">
+         <div class="flex items-center gap-2 opacity-60">
+          <i data-lucide="map-pin" style="width:16px;height:16px;color:#d4af37;flex-shrink:0;"></i> <span>Mariëndaal 94, 1025BW Amsterdam</span>
+         </div>
+         <div class="flex items-center gap-2 opacity-60">
+          <i data-lucide="briefcase" style="width:16px;height:16px;color:#d4af37;flex-shrink:0;"></i> <span>KVK: 94077991</span>
+         </div>
         </div>
-        <div class="font-display text-4xl" style="color: #c9a84c;">
-         €20
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10">
+         <a id="footer-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 w-full sm:w-auto" style="background: #d4af37; color: #0a0a0a;"> <i data-lucide="scissors" style="width:18px;height:18px;"></i> Boek een Afspraak </a> <a id="instagram-btn" href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 border-2 gold-text w-full sm:w-auto" style="border-color: #d4af37;"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> Instagram </a>
+        </div>
+        <p class="text-xs opacity-30">© 2025 RWCUTZZ. Alle rechten voorbehouden.</p>
+       </div>
+      </div>
+     </footer>
+    </div><!-- SHOP PAGE -->
+    <div id="page-shop" class="w-full page-transition hidden"><!-- Shop Hero -->
+     <header class="relative w-full flex items-center justify-center text-center pt-20 md:pt-24 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8" style="background: radial-gradient(ellipse at 50% 20%, rgba(212,175,55,0.06) 0%, transparent 60%);">
+      <div class="relative z-10 max-w-3xl mx-auto w-full">
+       <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 gold-text fade-up">Premium Collectie</p>
+       <h1 id="shop-title" class="font-display text-4xl md:text-6xl lg:text-7xl tracking-wider gold-gradient mb-3 md:mb-4 fade-up" style="animation-delay: 0.1s;">Producten</h1>
+       <p id="shop-subtitle" class="text-base md:text-xl font-light mb-6 md:mb-8 opacity-70 fade-up" style="animation-delay: 0.2s; color: #e8e0d0;">Kwaliteit producten speciaal geselecteerd voor jouw look</p>
+      </div>
+     </header><!-- Shop Filters & Search -->
+     <section class="w-full px-4 sm:px-6 lg:px-8 pb-8 md:pb-12">
+      <div class="max-w-6xl mx-auto">
+       <div class="grid grid-cols-1 md:grid-cols-4 gap-4"><!-- Search -->
+        <div class="md:col-span-2 fade-up"><label class="block text-sm font-semibold mb-2 opacity-70">Zoeken</label>
+         <div class="relative"><input id="shop-search" type="text" placeholder="Zoek producten..." class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <i data-lucide="search" style="width:16px;height:16px;position:absolute;right:12px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none;"></i>
+         </div>
+        </div><!-- Sort -->
+        <div class="fade-up" style="animation-delay: 0.1s;"><label class="block text-sm font-semibold mb-2 opacity-70">Sorteren</label> <select id="shop-sort" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="naam-az">Naam: A → Z</option> <option value="naam-za">Naam: Z → A</option> <option value="prijs-laag">Prijs: Laag → Hoog</option> <option value="prijs-hoog">Prijs: Hoog → Laag</option> </select>
+        </div><!-- Filter Stock -->
+        <div class="fade-up" style="animation-delay: 0.2s;"><label class="block text-sm font-semibold mb-2 opacity-70">Voorraad</label> <select id="shop-stock" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="alle">Alle producten</option> <option value="voorraad">Op voorraad</option> <option value="uitverkocht">Uitverkocht</option> </select>
         </div>
        </div>
-      </div><!-- Service 4 -->
-      <div class="fade-up card-hover rounded-2xl p-8 relative overflow-hidden" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #c9a84c, transparent);"></div>
-       <div class="flex items-start justify-between mb-4">
-        <div><span class="text-xs tracking-widest uppercase opacity-40">Custom</span>
-         <h3 class="font-display text-3xl tracking-wide mt-1" style="color: #c9a84c;">Overige Diensten</h3>
-        </div><i data-lucide="star" style="width:28px;height:28px;color:#c9a84c;opacity:0.3;"></i>
+      </div>
+     </section><!-- Product Grid -->
+     <section class="w-full px-4 sm:px-6 lg:px-8 pb-16 md:pb-24">
+      <div class="max-w-6xl mx-auto">
+       <div id="shop-loading" class="text-center py-12 text-sm opacity-60">
+        Producten laden...
        </div>
-       <div class="flex items-center gap-6 mt-6">
-        <div class="flex items-center gap-2 opacity-60">
-         <i data-lucide="clock" style="width:16px;height:16px;"></i><span class="text-sm">45 min</span>
-        </div>
-        <div class="font-display text-2xl opacity-70" style="color: #c9a84c;">
-         Op aanvraag
+       <div id="shop-empty" class="text-center py-12 text-sm opacity-60 hidden">
+        Geen producten gevonden
+       </div>
+       <div id="shop-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-5"></div>
+      </div>
+     </section>
+    </div><!-- PRODUCT DETAIL PAGE -->
+    <div id="page-product" class="w-full page-transition hidden">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div class="max-w-5xl mx-auto"><!-- Back Button --> <button id="product-back" type="button" class="inline-flex items-center gap-2 mb-6 md:mb-8 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug naar shop </button> <!-- Product Content -->
+       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10"><!-- Image -->
+        <div class="fade-up">
+         <div class="rounded-2xl overflow-hidden bg-white/5" style="aspect-ratio:1;"><img id="product-image" src="" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='#d4af37';this.alt='Afbeelding niet beschikbaar';">
+         </div>
+        </div><!-- Details -->
+        <div class="fade-up" style="animation-delay: 0.1s;">
+         <div class="mb-6">
+          <p class="text-xs tracking-widest uppercase mb-2 opacity-50 gold-text">Product</p>
+          <h1 id="product-name" class="font-display text-4xl md:text-5xl tracking-wider gold-text mb-3">Loading...</h1>
+          <p id="product-desc" class="text-base md:text-lg leading-relaxed opacity-70 mb-4">Laden...</p>
+         </div>
+         <div class="space-y-4 mb-8">
+          <div class="flex items-baseline gap-3"><span id="product-price" class="font-display text-4xl md:text-5xl gold-text">€0</span> <span id="product-stock-status" class="text-sm font-semibold" style="color:#10b981;">Op voorraad</span>
+          </div>
+          <div id="product-stock-bar" class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+           <div id="product-stock-fill" class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600" style="width:100%;"></div>
+          </div>
+          <p id="product-stock-info" class="text-xs opacity-50">Nog ... stuks beschikbaar</p>
+         </div><!-- Quantity Selector -->
+         <div class="mb-8"><label class="block text-sm font-semibold mb-3 opacity-70">Aantal</label>
+          <div class="flex items-center gap-3"><button id="product-qty-dec" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:#d4af37;">−</button> <input id="product-qty" type="number" value="1" min="1" class="w-16 h-10 rounded-lg bg-white/5 border border-white/10 text-center text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <button id="product-qty-inc" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:#d4af37;">+</button>
+          </div>
+         </div><!-- Buttons -->
+         <div class="flex flex-col sm:flex-row gap-3 md:gap-4"><button id="product-add-cart" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide transition active:scale-95" style="background:#d4af37;color:#0a0a0a;"> <i data-lucide="shopping-bag" style="width:18px;height:18px;display:inline;margin-right:8px;vertical-align:middle;"></i>Direct bestellen </button> <button id="product-continue" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide border-2 gold-text transition active:scale-95" style="border-color:#d4af37;"> Verder winkelen </button>
+         </div>
         </div>
        </div>
       </div>
      </div>
-     <div class="text-center mt-12 fade-up"><a id="diensten-book-btn" href="https://rwcutzz.setmore.com/#services" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 rounded-full font-bold tracking-wide transition hover:scale-105" style="background: #c9a84c; color: #0a0a0a;"> Bekijk alle diensten <i data-lucide="arrow-right" style="width:18px;height:18px;"></i> </a>
-     </div>
-    </div>
-   </section><!-- Openingstijden -->
-   <section id="openingstijden" class="w-full py-24 px-4" style="background: #080808;">
-    <div class="max-w-3xl mx-auto">
-     <div class="text-center mb-16 fade-up">
-      <p class="text-sm tracking-[0.3em] uppercase mb-3" style="color: #c9a84c;">Wanneer</p>
-      <h2 class="font-display text-5xl md:text-6xl tracking-wider" style="color: #e8e0d0;">Openingstijden</h2>
-     </div>
-     <div class="fade-up rounded-2xl overflow-hidden" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-      <div id="schedule-list"></div>
-     </div>
-    </div>
-   </section><!-- Beleid -->
-   <section id="beleid" class="w-full py-24 px-4">
-    <div class="max-w-4xl mx-auto">
-     <div class="text-center mb-16 fade-up">
-      <p class="text-sm tracking-[0.3em] uppercase mb-3" style="color: #c9a84c;">Goed om te weten</p>
-      <h2 class="font-display text-5xl md:text-6xl tracking-wider" style="color: #e8e0d0;">Huisregels</h2>
-     </div>
-     <div class="grid md:grid-cols-3 gap-6">
-      <div class="fade-up card-hover rounded-2xl p-8 text-center" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background: rgba(201,168,76,0.1);"><i data-lucide="clock" style="width:24px;height:24px;color:#c9a84c;"></i>
+    </div><!-- CHECKOUT PAGE -->
+    <div id="page-checkout" class="w-full page-transition hidden">
+     <div class="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+      <div class="max-w-6xl mx-auto"><!-- Header -->
+       <div class="mb-8 md:mb-12 fade-up"><button id="checkout-back" type="button" class="inline-flex items-center gap-2 mb-4 md:mb-6 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
+        <p class="text-xs tracking-widest uppercase mb-2 opacity-50 gold-text">Afrekenen</p>
+        <h1 class="font-display text-4xl md:text-5xl tracking-wider gold-text">Je Bestelling</h1>
+       </div><!-- Checkout Layout -->
+       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8"><!-- Form (2 cols on desktop) -->
+        <div class="lg:col-span-2 fade-up">
+         <form id="checkout-form" class="space-y-6"><!-- Customer Info -->
+          <div class="rounded-2xl p-6 md:p-8" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
+           <h2 class="text-lg md:text-xl font-semibold mb-4 gold-text">Jouw gegevens</h2>
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Voornaam</span> <input id="checkout-name" type="text" required placeholder="Jan" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">E-mail</span> <input id="checkout-email" type="email" required placeholder="jan@example.com" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label>
+           </div>
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4"><label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Telefoon</span> <input id="checkout-phone" type="tel" required placeholder="+31 6 12345678" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Levering</span> <select id="checkout-delivery" required class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="">Kies optie...</option> <option value="verzenden">📦 Verzenden</option> <option value="ophalen">🏪 Ophalen</option> </select> </label>
+           </div>
+          </div><!-- Address -->
+          <div class="rounded-2xl p-6 md:p-8" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
+           <h2 class="text-lg md:text-xl font-semibold mb-4 gold-text">Adres</h2><label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Volledig adres</span> <textarea id="checkout-address" required rows="3" placeholder="Straat, huisnummer, postcode, plaats" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 resize-none focus:outline-none input-focus" style="color:#e8e0d0;"></textarea> </label> <label class="block mt-4"> <span class="text-sm font-semibold mb-2 block opacity-70">Opmerking (optioneel)</span> <textarea id="checkout-notes" rows="2" placeholder="Bijzonderheden voor je bestelling..." class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 resize-none focus:outline-none input-focus" style="color:#e8e0d0;"></textarea> </label>
+          </div><!-- Submit --> <button id="checkout-submit" type="submit" class="w-full px-6 py-4 rounded-lg text-base font-bold tracking-wide transition active:scale-95" style="background:#d4af37;color:#0a0a0a;"> Bestelling Plaatsen </button>
+          <div id="checkout-message" class="hidden rounded-lg px-4 py-3 text-sm font-semibold"></div>
+         </form>
+        </div><!-- Order Summary (sticky on desktop) -->
+        <div class="lg:col-span-1 fade-up" style="animation-delay: 0.1s;">
+         <div class="rounded-2xl p-6 md:p-8 sticky top-24" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
+          <h3 class="text-lg font-semibold mb-4 gold-text">Samenvatting</h3>
+          <div id="checkout-items" class="space-y-3 mb-4 max-h-64 overflow-y-auto"></div>
+          <div class="space-y-3 rounded-xl p-4 mb-4" style="background:rgba(212,175,55,0.05);">
+           <div class="flex justify-between text-sm opacity-70"><span>Subtotaal</span> <span id="checkout-subtotal">€0.00</span>
+           </div>
+           <div class="flex justify-between text-sm opacity-70"><span>Verzending</span> <span id="checkout-shipping">€0.00</span>
+           </div>
+           <div class="border-t border-white/10 pt-3 flex justify-between text-lg font-bold gold-text"><span>Totaal</span> <span id="checkout-total">€0.00</span>
+           </div>
+          </div><button id="checkout-edit-cart" type="button" class="w-full px-4 py-2 rounded-lg text-sm border border-white/20 hover:bg-white/5 transition"> ← Winkelwagen aanpassen </button>
+         </div>
+        </div>
        </div>
-       <h3 class="font-display text-2xl tracking-wide mb-3" style="color: #c9a84c;">Te Laat</h3>
-       <p class="text-sm opacity-60 leading-relaxed">5 min te laat → +€5<br>
-        10 min te laat → +€10</p>
       </div>
-      <div class="fade-up card-hover rounded-2xl p-8 text-center" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background: rgba(201,168,76,0.1);"><i data-lucide="x-circle" style="width:24px;height:24px;color:#c9a84c;"></i>
-       </div>
-       <h3 class="font-display text-2xl tracking-wide mb-3" style="color: #c9a84c;">No Show</h3>
-       <p class="text-sm opacity-60 leading-relaxed">Tikkie van de helft van het bedrag bij niet verschijnen</p>
-      </div>
-      <div class="fade-up card-hover rounded-2xl p-8 text-center" style="background: #111111; border: 1px solid rgba(201,168,76,0.15);">
-       <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background: rgba(201,168,76,0.1);"><i data-lucide="calendar" style="width:24px;height:24px;color:#c9a84c;"></i>
-       </div>
-       <h3 class="font-display text-2xl tracking-wide mb-3" style="color: #c9a84c;">Annulering</h3>
-       <p class="text-sm opacity-60 leading-relaxed">Tot 2 uur van tevoren annuleren of verzetten</p>
-      </div>
      </div>
     </div>
-   </section><!-- Contact / Footer -->
-   <footer id="contact" class="w-full py-20 px-4" style="background: #080808; border-top: 1px solid rgba(201,168,76,0.1);">
-    <div class="max-w-4xl mx-auto text-center">
-     <div class="fade-up"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-16 h-16 rounded-full mx-auto object-cover border-2 mb-6" style="border-color: #c9a84c;" loading="lazy" onerror="console.error('Image failed:', this.src); this.style.background='#c9a84c'; this.alt='Logo';">
-      <h2 class="font-display text-4xl tracking-wider mb-2" style="color: #c9a84c;">RWCUTZZ</h2>
-      <p class="opacity-50 text-sm mb-8">Kapper – Amsterdam Noord</p>
-      <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-10">
-       <div class="flex items-center gap-2 opacity-60"><i data-lucide="map-pin" style="width:16px;height:16px;color:#c9a84c;"></i> <span class="text-sm">Mariëndaal 94, 1025BW Amsterdam</span>
-       </div>
-       <div class="flex items-center gap-2 opacity-60"><i data-lucide="briefcase" style="width:16px;height:16px;color:#c9a84c;"></i> <span class="text-sm">KVK: 94077991</span>
-       </div>
-      </div><a id="footer-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-8 py-3 rounded-full font-bold tracking-wide transition hover:scale-105" style="background: #c9a84c; color: #0a0a0a;"> <i data-lucide="scissors" style="width:18px;height:18px;"></i> Boek een Afspraak </a>
-      <p class="mt-12 text-xs opacity-30">© 2025 RWCUTZZ. Alle rechten voorbehouden.</p>
-     </div>
-    </div>
-   </footer>
+   </div>
   </div>
   <script>
-    // Schedule data
+    // APP STATE & CONFIG
+    const appState = {
+      currentPage: 'home',
+      products: [],
+      cart: [],
+      selectedProduct: null,
+      config: {
+        hero_title: 'RWCUTZZ',
+        hero_subtitle: 'Ready for a clean cut? ✅',
+        booking_url: 'https://rwcutzz.setmore.com',
+        instagram_url: 'https://www.instagram.com/rwcutzzz',
+        shop_title: 'Producten',
+        shop_subtitle: 'Kwaliteit producten speciaal geselecteerd voor jouw look'
+      }
+    };
+
+    const STORAGE_KEY = 'rwcutzz_cart_v1';
+    const API_BASE = 'https://script.google.com/macros/s/AKfycbxj_Ierv6wIP49zPeKzHGpQkA-_lHNzOLHgEswBNC_RihHFggR-ivM3cTianA9XBLUH7A/exec';
+
+    // SCHEDULE DATA
     const schedule = [
       { day: 'Zondag', hours: 'Gesloten', closed: true },
       { day: 'Maandag', hours: 'Gesloten', closed: true },
@@ -198,6 +368,374 @@
       { day: 'Zaterdag', hours: '12:00 - 17:00', closed: false },
     ];
 
+    // ===== UTILITY FUNCTIONS =====
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function formatPrice(price) {
+      return '€' + Number(price || 0).toFixed(2);
+    }
+
+    function saveCart() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState.cart));
+    }
+
+    function loadCart() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+        return data ? JSON.parse(data) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function showPage(pageName) {
+      appState.currentPage = pageName;
+      
+      // Hide all pages
+      document.getElementById('page-home').classList.add('hidden');
+      document.getElementById('page-shop').classList.add('hidden');
+      document.getElementById('page-product').classList.add('hidden');
+      document.getElementById('page-checkout').classList.add('hidden');
+
+      // Show selected page
+      const pageEl = document.getElementById(`page-${pageName}`);
+      if (pageEl) {
+        pageEl.classList.remove('hidden');
+        window.scrollTo(0, 0);
+      }
+
+      // Update nav
+      updateNav();
+    }
+
+    function updateNav() {
+      const cartCount = appState.cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-badge');
+      if (cartCount > 0) {
+        badge.textContent = cartCount;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    // ===== API FUNCTIONS =====
+    async function apiGet(action) {
+      try {
+        const response = await fetch(`${API_BASE}?action=${encodeURIComponent(action)}`);
+        return await response.json();
+      } catch (error) {
+        console.error('API Error:', error);
+        return { success: false };
+      }
+    }
+
+    async function apiPost(payload) {
+      try {
+        const response = await fetch(API_BASE, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        return await response.json();
+      } catch (error) {
+        console.error('API Error:', error);
+        return { success: false };
+      }
+    }
+
+    async function loadProducts() {
+      const loading = document.getElementById('shop-loading');
+      const empty = document.getElementById('shop-empty');
+      const grid = document.getElementById('shop-grid');
+
+      loading.style.display = 'block';
+      empty.classList.add('hidden');
+      grid.innerHTML = '';
+
+      const response = await apiGet('products');
+      if (response.success && Array.isArray(response.data)) {
+        appState.products = response.data;
+        renderShopGrid();
+        loading.style.display = 'none';
+      } else {
+        loading.textContent = 'Producten konden niet geladen worden';
+      }
+    }
+
+    // ===== SHOP PAGE FUNCTIONS =====
+    function renderShopGrid() {
+      const grid = document.getElementById('shop-grid');
+      const empty = document.getElementById('shop-empty');
+
+      const searchTerm = document.getElementById('shop-search').value.toLowerCase();
+      const sortValue = document.getElementById('shop-sort').value;
+      const stockFilter = document.getElementById('shop-stock').value;
+
+      // Filter
+      let filtered = appState.products.filter(p => {
+        const matchesSearch = p.name.toLowerCase().includes(searchTerm) || 
+                            (p.description && p.description.toLowerCase().includes(searchTerm));
+        const matchesStock = stockFilter === 'alle' || 
+                           (stockFilter === 'voorraad' && Number(p.stock) > 0) ||
+                           (stockFilter === 'uitverkocht' && Number(p.stock) === 0);
+        return matchesSearch && matchesStock;
+      });
+
+      // Sort
+      if (sortValue === 'naam-az') {
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (sortValue === 'naam-za') {
+        filtered.sort((a, b) => b.name.localeCompare(a.name));
+      } else if (sortValue === 'prijs-laag') {
+        filtered.sort((a, b) => Number(a.price) - Number(b.price));
+      } else if (sortValue === 'prijs-hoog') {
+        filtered.sort((a, b) => Number(b.price) - Number(a.price));
+      }
+
+      if (filtered.length === 0) {
+        empty.classList.remove('hidden');
+        grid.innerHTML = '';
+        return;
+      }
+
+      empty.classList.add('hidden');
+      grid.innerHTML = '';
+
+      filtered.forEach((product, idx) => {
+        const card = document.createElement('div');
+        card.className = 'card-hover rounded-xl overflow-hidden cursor-pointer fade-in';
+        card.style.animationDelay = `${idx * 0.05}s`;
+        card.style.background = '#111111';
+        card.style.border = '1px solid rgba(212,175,55,0.15)';
+
+        const imgSrc = product.image_url ? escapeHtml(product.image_url) : '';
+        const inStock = Number(product.stock) > 0;
+
+        card.innerHTML = `
+          <div class="aspect-square overflow-hidden bg-white/5">
+            ${imgSrc ? `<img src="${imgSrc}" alt="${escapeHtml(product.name)}" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='#d4af37';this.alt='Unavailable';">` : '<div class="w-full h-full flex items-center justify-center text-xs opacity-40">Geen afbeelding</div>'}
+          </div>
+          <div class="p-3 md:p-4 space-y-2">
+            <h3 class="font-semibold text-sm md:text-base truncate gold-text">${escapeHtml(product.name)}</h3>
+            <p class="text-xs opacity-50 line-clamp-1">${escapeHtml(product.description || '')}</p>
+            <div class="flex items-center justify-between pt-2">
+              <span class="font-display text-lg md:text-xl gold-text">${formatPrice(product.price)}</span>
+              <span class="text-xs font-semibold px-2 py-1 rounded" style="background:${inStock ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)'};color:${inStock ? '#10b981' : '#ef4444'};">
+                ${inStock ? 'Op voorraad' : 'Uitverkocht'}
+              </span>
+            </div>
+          </div>
+        `;
+
+        card.addEventListener('click', () => viewProduct(product));
+        grid.appendChild(card);
+      });
+    }
+
+    // ===== PRODUCT DETAIL FUNCTIONS =====
+    function viewProduct(product) {
+      appState.selectedProduct = product;
+      document.getElementById('product-image').src = product.image_url || '';
+      document.getElementById('product-image').alt = product.name;
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-desc').textContent = product.description || '';
+      document.getElementById('product-price').textContent = formatPrice(product.price);
+
+      const inStock = Number(product.stock) > 0;
+      const status = document.getElementById('product-stock-status');
+      status.textContent = inStock ? 'Op voorraad' : 'Uitverkocht';
+      status.style.color = inStock ? '#10b981' : '#ef4444';
+
+      const fill = document.getElementById('product-stock-fill');
+      const fillPct = Math.max(10, Math.min(100, (Number(product.stock) / 100) * 100));
+      fill.style.width = fillPct + '%';
+
+      document.getElementById('product-stock-info').textContent = `Nog ${product.stock} stuks beschikbaar`;
+
+      // Reset quantity
+      document.getElementById('product-qty').value = '1';
+
+      showPage('product');
+    }
+
+    // ===== CART FUNCTIONS =====
+    function addToCart() {
+      if (!appState.selectedProduct) return;
+
+      const qty = Number(document.getElementById('product-qty').value) || 1;
+      const product = appState.selectedProduct;
+
+      if (Number(product.stock) <= 0) {
+        alert('Dit product is niet op voorraad');
+        return;
+      }
+
+      const existing = appState.cart.find(item => item.product_id === product.id);
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        appState.cart.push({
+          product_id: product.id,
+          product_name: product.name,
+          price: Number(product.price),
+          quantity: qty,
+          image_url: product.image_url || ''
+        });
+      }
+
+      saveCart();
+      updateNav();
+      showPage('checkout');
+    }
+
+    function removeFromCart(productId) {
+      appState.cart = appState.cart.filter(item => item.product_id !== productId);
+      saveCart();
+      updateNav();
+      updateCheckoutSummary();
+    }
+
+    function updateCartQuantity(productId, newQty) {
+      const item = appState.cart.find(item => item.product_id === productId);
+      if (item) {
+        if (newQty <= 0) {
+          removeFromCart(productId);
+        } else {
+          item.quantity = newQty;
+          saveCart();
+          updateCheckoutSummary();
+        }
+      }
+    }
+
+    // ===== CHECKOUT FUNCTIONS =====
+    function updateCheckoutSummary() {
+      const itemsContainer = document.getElementById('checkout-items');
+      itemsContainer.innerHTML = '';
+
+      let subtotal = 0;
+      appState.cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        const el = document.createElement('div');
+        el.className = 'rounded-lg p-3 bg-white/5 border border-white/10 fade-in';
+        el.innerHTML = `
+          <div class="flex justify-between items-start mb-2">
+            <div class="flex-1">
+              <p class="font-semibold text-sm">${escapeHtml(item.product_name)}</p>
+              <p class="text-xs opacity-50">${formatPrice(item.price)} × ${item.quantity}</p>
+            </div>
+            <p class="font-semibold">${formatPrice(itemTotal)}</p>
+          </div>
+          <div class="flex items-center gap-2 justify-end">
+            <button class="px-2 py-1 rounded text-xs bg-white/10 hover:bg-white/20 transition" onclick="updateCartQuantity(${item.product_id}, ${item.quantity - 1})">−</button>
+            <span class="text-xs w-6 text-center">${item.quantity}</span>
+            <button class="px-2 py-1 rounded text-xs bg-white/10 hover:bg-white/20 transition" onclick="updateCartQuantity(${item.product_id}, ${item.quantity + 1})">+</button>
+            <button class="px-2 py-1 rounded text-xs bg-red-500/20 hover:bg-red-500/30 text-red-400 transition" onclick="removeFromCart(${item.product_id})">Verwijder</button>
+          </div>
+        `;
+        itemsContainer.appendChild(el);
+      });
+
+      const shipping = 0; // Calculate based on delivery type if needed
+      const total = subtotal + shipping;
+
+      document.getElementById('checkout-subtotal').textContent = formatPrice(subtotal);
+      document.getElementById('checkout-shipping').textContent = formatPrice(shipping);
+      document.getElementById('checkout-total').textContent = formatPrice(total);
+    }
+
+    async function submitCheckout(e) {
+      e.preventDefault();
+
+      if (appState.cart.length === 0) {
+        alert('Je winkelwagen is leeg');
+        return;
+      }
+
+      const name = document.getElementById('checkout-name').value.trim();
+      const email = document.getElementById('checkout-email').value.trim();
+      const phone = document.getElementById('checkout-phone').value.trim();
+      const delivery = document.getElementById('checkout-delivery').value;
+      const address = document.getElementById('checkout-address').value.trim();
+      const notes = document.getElementById('checkout-notes').value.trim();
+
+      if (!name || !email || !phone || !delivery || !address) {
+        alert('Vul alle verplichte velden in');
+        return;
+      }
+
+      const btn = document.getElementById('checkout-submit');
+      btn.disabled = true;
+      btn.textContent = 'Bestelling wordt geplaatst...';
+
+      const items = appState.cart.map(item => ({
+        product_id: item.product_id,
+        quantity: item.quantity
+      }));
+
+      const response = await apiPost({
+        action: 'createOrder',
+        customer_name: name,
+        email: email,
+        phone: phone,
+        delivery_type: delivery,
+        address: address,
+        notes: notes,
+        items: items
+      });
+
+      btn.disabled = false;
+      btn.textContent = 'Bestelling Plaatsen';
+
+      if (response.success) {
+        const orderId = response.data?.order_id || 'N/A';
+        alert(`Bestelling geplaatst! Ordernummer: ${orderId}`);
+        appState.cart = [];
+        saveCart();
+        updateNav();
+        document.getElementById('checkout-form').reset();
+        showPage('home');
+      } else {
+        alert('Er ging iets mis: ' + (response.error?.message || 'Onbekende fout'));
+      }
+    }
+
+    // ===== EVENT LISTENERS =====
+    document.getElementById('logo-btn').addEventListener('click', () => showPage('home'));
+    document.getElementById('nav-home').addEventListener('click', () => showPage('home'));
+    document.getElementById('nav-shop').addEventListener('click', () => showPage('shop'));
+    document.getElementById('nav-cart').addEventListener('click', () => showPage('checkout'));
+    document.getElementById('hero-shop-btn').addEventListener('click', () => showPage('shop'));
+
+    document.getElementById('shop-search').addEventListener('input', renderShopGrid);
+    document.getElementById('shop-sort').addEventListener('change', renderShopGrid);
+    document.getElementById('shop-stock').addEventListener('change', renderShopGrid);
+
+    document.getElementById('product-qty-dec').addEventListener('click', () => {
+      const input = document.getElementById('product-qty');
+      input.value = Math.max(1, Number(input.value) - 1);
+    });
+    document.getElementById('product-qty-inc').addEventListener('click', () => {
+      const input = document.getElementById('product-qty');
+      input.value = Number(input.value) + 1;
+    });
+
+    document.getElementById('product-add-cart').addEventListener('click', addToCart);
+    document.getElementById('product-back').addEventListener('click', () => showPage('shop'));
+    document.getElementById('product-continue').addEventListener('click', () => showPage('shop'));
+
+    document.getElementById('checkout-form').addEventListener('submit', submitCheckout);
+    document.getElementById('checkout-back').addEventListener('click', () => showPage('shop'));
+    document.getElementById('checkout-edit-cart').addEventListener('click', () => showPage('shop'));
+
+    // ===== SCHEDULE SETUP =====
     const days = ['Zondag','Maandag','Dinsdag','Woensdag','Donderdag','Vrijdag','Zaterdag'];
     const todayIndex = new Date().getDay();
     const todayName = days[todayIndex];
@@ -206,74 +744,45 @@
     schedule.forEach((s, i) => {
       const isToday = s.day === todayName;
       const row = document.createElement('div');
-      row.className = 'flex items-center justify-between px-8 py-5';
-      row.style.cssText = i < schedule.length - 1 ? 'border-bottom: 1px solid rgba(201,168,76,0.07);' : '';
-      if (isToday) row.style.background = 'rgba(201,168,76,0.06)';
+      row.className = 'flex items-center justify-between px-4 md:px-8 py-4 md:py-5 text-sm md:text-base fade-up';
+      row.style.animationDelay = `${i * 0.05}s`;
+      row.style.borderBottom = i < schedule.length - 1 ? '1px solid rgba(212,175,55,0.07)' : '';
+      if (isToday) row.style.background = 'rgba(212,175,55,0.06)';
 
       row.innerHTML = `
-        <div class="flex items-center gap-3">
-          ${isToday ? '<span class="w-2 h-2 rounded-full" style="background:#c9a84c;"></span>' : ''}
-          <span class="font-medium ${isToday ? '' : 'opacity-70'}" ${isToday ? 'style="color:#c9a84c;"' : ''}>${s.day}</span>
-          ${isToday ? '<span class="text-xs px-2 py-0.5 rounded-full font-medium" style="background:rgba(201,168,76,0.15);color:#c9a84c;">Vandaag</span>' : ''}
+        <div class="flex items-center gap-2 md:gap-3 min-w-0">
+          ${isToday ? '<span class="w-2 h-2 rounded-full flex-shrink-0" style="background:#d4af37;"></span>' : ''}
+          <span class="font-medium truncate ${isToday ? '' : 'opacity-70'}" ${isToday ? 'style="color:#d4af37;"' : ''}>${s.day}</span>
+          ${isToday ? '<span class="text-xs px-2 py-0.5 rounded-full font-medium whitespace-nowrap" style="background:rgba(212,175,55,0.15);color:#d4af37;">Vandaag</span>' : ''}
         </div>
-        <span class="${s.closed ? 'opacity-30' : 'opacity-80'} font-medium text-sm">${s.hours}</span>
+        <span class="${s.closed ? 'opacity-30' : 'opacity-80'} font-medium text-sm md:text-base ml-2">${s.hours}</span>
       `;
       scheduleList.appendChild(row);
     });
 
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Element SDK
+    // ===== ELEMENT SDK SETUP =====
     const defaultConfig = {
       hero_title: 'RWCUTZZ',
       hero_subtitle: 'Ready for a clean cut? ✅',
       booking_url: 'https://rwcutzz.setmore.com',
-      background_color: '#0a0a0a',
-      surface_color: '#111111',
-      text_color: '#e8e0d0',
-      accent_color: '#c9a84c',
-      accent_dark: '#0a0a0a',
-      font_family: 'DM Sans',
-      font_size: 16
+      instagram_url: 'https://www.instagram.com/rwcutzzz',
+      shop_title: 'Producten',
+      shop_subtitle: 'Kwaliteit producten speciaal geselecteerd voor jouw look'
     };
 
     function applyConfig(config) {
       const c = { ...defaultConfig, ...config };
+      appState.config = c;
 
       document.getElementById('hero-title').textContent = c.hero_title;
       document.getElementById('hero-subtitle').textContent = c.hero_subtitle;
+      document.getElementById('shop-title').textContent = c.shop_title;
+      document.getElementById('shop-subtitle').textContent = c.shop_subtitle;
 
-      ['nav-book-btn','hero-book-btn','diensten-book-btn','footer-book-btn'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && el.tagName === 'A') {
-          el.href = id === 'diensten-book-btn' ? c.booking_url + '/#services' : c.booking_url;
-        }
-      });
-
-      // Colors
-      document.body.style.backgroundColor = c.background_color;
-      document.body.style.color = c.text_color;
-
-      document.querySelectorAll('[style*="background: #111111"], [style*="background:#111111"]').forEach(el => {
-        el.style.background = c.surface_color;
-      });
-
-      // Accent color on buttons
-      ['nav-book-btn','hero-book-btn','diensten-book-btn','footer-book-btn'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) { el.style.background = c.accent_color; el.style.color = c.accent_dark; }
-      });
-
-      // Font
-      const bodyStack = `${c.font_family}, DM Sans, sans-serif`;
-      document.body.style.fontFamily = bodyStack;
-      const base = c.font_size;
-      document.getElementById('hero-title').style.fontSize = '';
-      document.getElementById('hero-subtitle').style.fontSize = `${base * 1.4}px`;
+      document.getElementById('nav-book-btn').href = c.booking_url;
+      document.getElementById('hero-book-btn').href = c.booking_url;
+      document.getElementById('footer-book-btn').href = c.booking_url;
+      document.getElementById('instagram-btn').href = c.instagram_url;
     }
 
     if (window.elementSdk) {
@@ -282,27 +791,11 @@
         onConfigChange: async (config) => applyConfig(config),
         mapToCapabilities: (config) => {
           const c = { ...defaultConfig, ...config };
-          const makeColor = (key) => ({
-            get: () => c[key] || defaultConfig[key],
-            set: (v) => { c[key] = v; window.elementSdk.setConfig({ [key]: v }); }
-          });
           return {
-            recolorables: [
-              makeColor('background_color'),
-              makeColor('surface_color'),
-              makeColor('text_color'),
-              makeColor('accent_color'),
-              makeColor('accent_dark')
-            ],
+            recolorables: [],
             borderables: [],
-            fontEditable: {
-              get: () => c.font_family || defaultConfig.font_family,
-              set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
-            },
-            fontSizeable: {
-              get: () => c.font_size || defaultConfig.font_size,
-              set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
-            }
+            fontEditable: undefined,
+            fontSizeable: undefined
           };
         },
         mapToEditPanelValues: (config) => {
@@ -310,13 +803,29 @@
           return new Map([
             ['hero_title', c.hero_title],
             ['hero_subtitle', c.hero_subtitle],
-            ['booking_url', c.booking_url]
+            ['booking_url', c.booking_url],
+            ['instagram_url', c.instagram_url],
+            ['shop_title', c.shop_title],
+            ['shop_subtitle', c.shop_subtitle]
           ]);
         }
       });
     }
 
-    lucide.createIcons();
+    // ===== INITIALIZATION =====
+    function init() {
+      appState.cart = loadCart();
+      updateNav();
+      loadProducts();
+      lucide.createIcons();
+      applyConfig(appState.config);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb5d4c953598477',t:'MTc3NjAzNDY1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb5dfed74c78477',t:'MTc3NjAzNTExNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
