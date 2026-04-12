@@ -2,37 +2,19 @@
 <html lang="nl">
  <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
   <title>RW Cutzz | Kapper Amsterdam Noord | Fade &amp; Beard Specialist</title>
-  <meta name="description" content="RW Cutzz is dé kapper in Amsterdam Noord voor strakke fades, hairlines en baard trims. Boek snel jouw afspraak.">
-  <meta name="theme-color" content="#000000">
+  <meta name="description" content="RW Cutzz is dé kapper in Amsterdam Noord voor strakke fades, hairlines en baard trims.">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  <meta name="apple-mobile-web-app-title" content="RW CUTZZ">
   <link rel="manifest" href="/site.webmanifest">
   <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    html, body {
-      height: 100%;
-      width: 100%;
-    }
-
-    body {
-      font-family: 'Roboto', sans-serif;
-      background: #121212;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+    html, body { height: 100%; width: 100%; }
+    body { font-family: 'Roboto', sans-serif; background: #121212; color: #fff; overflow-x: hidden; }
 
     /* HEADER */
     header {
@@ -49,46 +31,34 @@
       align-items: center;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       height: 60px;
-      width: 100%;
-      box-sizing: border-box;
     }
 
     .logo {
       font-size: 1.2rem;
       font-weight: 900;
       letter-spacing: 2px;
-      color: #FFFFFF;
+      color: #fff;
       display: flex;
       align-items: center;
       gap: 0.5rem;
       text-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-      transition: all 0.3s;
-      flex-shrink: 0;
     }
 
-    .logo img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+    .logo img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
 
     #mainNav {
       display: flex;
       gap: 1.5rem;
       align-items: center;
-      flex: 1;
-      justify-content: center;
     }
 
     nav a {
       font-size: 0.8rem;
       text-decoration: none;
-      color: #B0B0B0;
+      color: #b0b0b0;
       transition: all 0.3s;
       font-weight: 500;
       position: relative;
-      white-space: nowrap;
     }
 
     nav a::after {
@@ -98,15 +68,12 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: #1A4BFF;
+      background: #1a4bff;
       transition: width 0.3s;
     }
 
-    nav a:hover::after,
-    nav a:hover {
-      width: 100%;
-      color: #4D7CFF;
-    }
+    nav a:hover { color: #4d7cff; }
+    nav a:hover::after { width: 100%; }
 
     .header-actions {
       display: flex;
@@ -117,27 +84,22 @@
     .cart-button {
       background: none;
       border: none;
-      color: #1A4BFF;
+      color: #1a4bff;
       cursor: pointer;
       padding: 0.5rem;
       display: flex;
       align-items: center;
-      justify-content: center;
       transition: all 0.3s;
-      -webkit-tap-highlight-color: transparent;
       position: relative;
     }
 
-    .cart-button:hover {
-      color: #4D7CFF;
-      transform: scale(1.1);
-    }
+    .cart-button:hover { transform: scale(1.1); }
 
     .cart-badge {
       font-size: 0.7rem;
       font-weight: 700;
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       width: 18px;
       height: 18px;
       border-radius: 50%;
@@ -147,26 +109,18 @@
       position: absolute;
       top: -5px;
       right: -5px;
-      animation: cartPop 0.4s ease-out;
-    }
-
-    @keyframes cartPop {
-      0% { transform: scale(0.8); }
-      100% { transform: scale(1); }
     }
 
     .mobile-menu-toggle {
       display: none;
       background: none;
       border: none;
-      color: #FFFFFF;
+      color: #fff;
       cursor: pointer;
       padding: 0.5rem;
-      -webkit-tap-highlight-color: transparent;
-      flex-shrink: 0;
     }
 
-    /* MOBILE MENU DRAWER */
+    /* MOBILE MENU */
     .mobile-menu-drawer {
       position: fixed;
       left: -80%;
@@ -181,2043 +135,10 @@
     }
 
     @media (max-width: 768px) {
-      .mobile-menu-drawer {
-        display: block;
-      }
+      .mobile-menu-drawer { display: block; }
     }
 
-    .mobile-menu-drawer.active {
-      left: 0;
-    }
-
-    .mobile-menu-close {
-      background: none;
-      border: none;
-      color: #FFFFFF;
-      cursor: pointer;
-      padding: 1rem;
-      font-size: 1.5rem;
-      -webkit-tap-highlight-color: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .mobile-menu-nav {
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-    }
-
-    .mobile-menu-link {
-      padding: 1rem 1.5rem;
-      text-decoration: none;
-      color: #B0B0B0;
-      font-weight: 500;
-      font-size: 0.95rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s;
-    }
-
-    .mobile-menu-link:hover {
-      color: #1A4BFF;
-      padding-left: 2rem;
-    }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 998;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.3s;
-      pointer-events: none;
-    }
-
-    .mobile-menu-overlay.active {
-      display: block;
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 60px;
-      overflow: hidden;
-    }
-
-    .hero-background {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #2C2C2C 0%, #121212 100%);
-      background-image: url('https://drive.google.com/uc?export=view&id=1yldYDJolbfbEMR67X_5Ds2QqO7lheQfS');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      z-index: 1;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 2;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      animation: fadeInUp 1s ease-out;
-      padding: 0 1.5rem;
-    }
-
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      color: #FFFFFF;
-      text-shadow: 0 0 30px rgba(26, 75, 255, 0.6);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 4vw, 1.5rem);
-      color: #B0B0B0;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-tagline {
-      font-size: 0.95rem;
-      color: #4D7CFF;
-      margin-bottom: 2rem;
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1A4BFF;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: #808080;
-      margin-top: 0.3rem;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary, .btn-secondary {
-      padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-primary {
-      background: #1A4BFF;
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-    }
-
-    .btn-primary:hover {
-      background: #4D7CFF;
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(26, 75, 255, 0.8);
-    }
-
-    .btn-primary:active {
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #1A4BFF;
-      border: 2px solid #1A4BFF;
-    }
-
-    .btn-secondary:hover {
-      background: #1A4BFF;
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-    }
-
-    .btn-secondary:active {
-      transform: scale(0.98);
-    }
-
-    /* SECTIONS */
-    .section {
-      padding: 5rem 2rem;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      color: #FFFFFF;
-      text-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      color: #808080;
-      margin-bottom: 3rem;
-    }
-
-    /* SERVICES */
-    .services-section {
-      background: #121212;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .services-grid > :nth-child(1) { grid-column: span 3; }
-    .services-grid > :nth-child(2) { grid-column: span 3; }
-    .services-grid > :nth-child(3) { grid-column: span 2; }
-    .services-grid > :nth-child(4) { grid-column: span 2; }
-    .services-grid > :nth-child(5) { grid-column: span 2; }
-
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: #1A4BFF;
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: #1A4BFF;
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
-    }
-
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .service-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      transition: transform 0.3s;
-    }
-
-    .service-card:hover .service-image {
-      transform: scale(1.05);
-    }
-
-    .service-badge {
-      display: inline-block;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-    }
-
-    .service-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #FFFFFF;
-    }
-
-    .service-details {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      color: #B0B0B0;
-    }
-
-    .service-price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1A4BFF;
-      margin: 1rem 0;
-    }
-
-    .btn-book {
-      width: 100%;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 1rem;
-      box-shadow: 0 0 10px rgba(26, 75, 255, 0.3);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-book:hover {
-      background: #4D7CFF;
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(26, 75, 255, 0.6);
-    }
-
-    .btn-book:active {
-      transform: translateY(0);
-    }
-
-    /* SHOP SECTION */
-    #shop {
-      background: #2C2C2C;
-    }
-
-    #shop-products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
-      justify-items: center;
-    }
-
-    .product-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.3s;
-      position: relative;
-      width: 100%;
-      max-width: 240px;
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(26, 75, 255, 0.2);
-      border-color: #1A4BFF;
-    }
-
-    .product-image-container {
-      position: relative;
-      height: 200px;
-      background: #2C2C2C;
-      overflow: hidden;
-    }
-
-    .product-badge {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      z-index: 10;
-    }
-
-    .product-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s;
-    }
-
-    .product-card:hover .product-image {
-      transform: scale(1.05);
-    }
-
-    .product-content {
-      padding: 1rem;
-    }
-
-    .product-name {
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 0.4rem;
-      font-size: 0.95rem;
-      line-height: 1.3;
-    }
-
-    .product-price {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1A4BFF;
-      margin-bottom: 0.6rem;
-    }
-
-    .product-stock {
-      font-size: 0.75rem;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-    }
-
-    .product-stock.in-stock {
-      color: #4ade80;
-    }
-
-    .product-stock.out-of-stock {
-      color: #ef4444;
-    }
-
-    .product-description {
-      font-size: 0.8rem;
-      color: #B0B0B0;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-      min-height: 30px;
-      max-height: 60px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-
-    .btn-add-cart {
-      width: 100%;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-      font-size: 0.85rem;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-add-cart:hover {
-      background: #4D7CFF;
-    }
-
-    .btn-add-cart:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-
-    /* CHECKOUT SECTION */
-    .checkout-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .checkout-form {
-      background: #2C2C2C;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 2rem;
-    }
-
-    .checkout-form h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-    }
-
-    .form-label {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .form-input,
-    .form-textarea {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      padding: 0.8rem;
-      color: #FFFFFF;
-      font-size: 0.9rem;
-      font-family: inherit;
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: #1A4BFF;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .checkout-summary {
-      background: #2C2C2C;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 2rem;
-      height: fit-content;
-    }
-
-    .checkout-summary h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.9rem;
-      color: #B0B0B0;
-      margin-bottom: 0.8rem;
-    }
-
-    .summary-row.total {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding-top: 1rem;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #1A4BFF;
-    }
-
-    .summary-value {
-      font-weight: 700;
-      color: #FFFFFF;
-    }
-
-    .summary-value.total {
-      color: #1A4BFF;
-    }
-
-    /* BOOKING */
-    .booking-section {
-      background: #2C2C2C;
-      padding: 5rem 2rem;
-    }
-
-    .booking-container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: #121212;
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid #3A3A3A;
-      box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);
-    }
-
-    .booking-container iframe {
-      border-radius: 12px;
-      width: 100%;
-      height: 800px;
-    }
-
-    /* REVIEWS */
-    .reviews-section {
-      background: #2C2C2C;
-    }
-
-    .reviews-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .reviews-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .rating-display {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .rating-number {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #1A4BFF;
-    }
-
-    .stars {
-      display: flex;
-      gap: 0.3rem;
-    }
-
-    .stars svg {
-      width: 24px;
-      height: 24px;
-      fill: #1A4BFF;
-    }
-
-    .review-count {
-      font-size: 0.9rem;
-      color: #B0B0B0;
-    }
-
-    .review-slider-wrapper {
-      position: relative;
-      margin-top: 2rem;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-
-    .review-slider {
-      display: flex;
-      position: relative;
-      width: 100%;
-      max-width: 700px;
-      height: auto;
-    }
-
-    .review-slide {
-      position: absolute;
-      width: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      padding: 2rem 1.5rem;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      pointer-events: none;
-      visibility: hidden;
-      min-height: 250px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .review-slide.active {
-      opacity: 1;
-      pointer-events: auto;
-      visibility: visible;
-      position: relative;
-      left: auto;
-      transform: none;
-    }
-
-    .review-author-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 1rem;
-    }
-
-    .review-text {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #E0E0E0;
-      margin-bottom: 1.2rem;
-      max-width: 100%;
-      font-style: italic;
-    }
-
-    .review-stars {
-      display: flex;
-      gap: 0.4rem;
-      justify-content: center;
-      margin-bottom: 0;
-    }
-
-    .review-stars svg {
-      width: 18px;
-      height: 18px;
-      fill: #1A4BFF;
-    }
-
-    .review-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-top: 2rem;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-      border: none;
-      padding: 0;
-    }
-
-    .dot.active {
-      background: #1A4BFF;
-      width: 30px;
-      border-radius: 5px;
-    }
-
-    .dot:hover {
-      background: rgba(26, 75, 255, 0.7);
-    }
-
-    /* ABOUT */
-    .about-section {
-      background: #2C2C2C;
-    }
-
-    .about-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text h2 {
-      font-size: clamp(1.8rem, 6vw, 3rem);
-      font-weight: 900;
-      margin-bottom: 2rem;
-      color: #FFFFFF;
-    }
-
-    .about-text h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #1A4BFF;
-      margin-bottom: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .about-text h3:first-of-type {
-      margin-top: 0;
-    }
-
-    .about-text p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: #B0B0B0;
-      margin-bottom: 1rem;
-    }
-
-    .about-image {
-      aspect-ratio: 1;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(26, 75, 255, 0.3);
-      box-shadow: 0 0 30px rgba(26, 75, 255, 0.2);
-    }
-
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
-    }
-
-    /* CONTACT */
-    .contact-section {
-      background: #121212;
-    }
-
-    .contact-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .contact-card {
-      background: #2C2C2C;
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s;
-      text-align: center;
-    }
-
-    .contact-card:hover {
-      border-color: #1A4BFF;
-      box-shadow: 0 0 15px rgba(26, 75, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .contact-icon {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-icon svg {
-      width: 100%;
-      height: 100%;
-      stroke: #1A4BFF;
-      fill: none;
-      stroke-width: 1.5;
-    }
-
-    .contact-label {
-      font-size: 0.9rem;
-      color: #808080;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 700;
-    }
-
-    .contact-info {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: #FFFFFF;
-      word-break: break-word;
-    }
-
-    .contact-link {
-      color: #1A4BFF;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .contact-link:hover {
-      color: #4D7CFF;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #0A0A0A;
-      padding: 3rem 2rem;
-      border-top: 1px solid #2C2C2C;
-      font-size: 0.85rem;
-      color: #606060;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-      text-align: left;
-    }
-
-    .footer-section h4 {
-      color: #1A4BFF;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .footer-section p {
-      font-size: 0.85rem;
-      color: #808080;
-      line-height: 1.8;
-    }
-
-    .footer-divider {
-      border-top: 1px solid #2C2C2C;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    /* STICKY BUTTON */
-    .sticky-book {
-      display: none;
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 500;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(26, 75, 255, 0.6);
-      transition: all 0.3s;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .sticky-book:hover {
-      background: #4D7CFF;
-      transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(26, 75, 255, 0.8);
-    }
-
-    .sticky-book:active {
-      transform: scale(1.02);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header {
-        padding: 0.6rem 0.8rem;
-        height: 50px;
-      }
-
-      .logo {
-        font-size: 0.95rem;
-        letter-spacing: 1px;
-      }
-
-      .logo img {
-        width: 30px !important;
-        height: 30px !important;
-      }
-
-      #mainNav {
-        display: none;
-      }
-
-      .mobile-menu-toggle {
-        display: block;
-      }
-
-      .hero {
-        margin-top: 45px;
-        height: 60vh;
-      }
-
-      .hero-background {
-        background-attachment: scroll;
-      }
-
-      .section {
-        padding: 3rem 1.5rem;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-
-      .services-grid .service-card:nth-child(1),
-      .services-grid .service-card:nth-child(2),
-      .services-grid .service-card:nth-child(3),
-      .services-grid .service-card:nth-child(4),
-      .services-grid .service-card:nth-child(5) {
-        grid-column: span 1;
-      }
-
-      .service-image {
-        height: 120px;
-      }
-
-      #shop-products {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 1rem;
-      }
-
-      .product-card {
-        max-width: 100%;
-      }
-
-      .product-image-container {
-        height: 150px;
-      }
-
-      .checkout-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .review-slider-wrapper {
-        height: auto;
-      }
-
-      .review-slide {
-        padding: 1.5rem 1rem;
-      }
-
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .sticky-book {
-        display: block;
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.8rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .mobile-menu-drawer {
-        width: 100%;
-        left: -100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 0.5rem 0.6rem;
-        height: 45px;
-      }
-
-      .logo {
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-      }
-
-      .logo img {
-        width: 28px !important;
-        height: 28px !important;
-      }
-
-      .hero {
-        height: 55vh;
-        margin-top: 40px;
-      }
-
-      .hero-title {
-        font-size: 1.4rem;
-      }
-
-      .hero-subtitle {
-        font-size: 0.85rem;
-      }
-
-      .hero-stats {
-        gap: 0.8rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .section {
-        padding: 2rem 0.8rem;
-      }
-
-      .section-title {
-        font-size: 1.4rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .section-subtitle {
-        font-size: 0.8rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-      }
-
-      .service-card {
-        padding: 0.8rem;
-      }
-
-      .service-image {
-        height: 100px;
-        margin-bottom: 0.6rem;
-      }
-
-      .service-name {
-        font-size: 0.95rem;
-      }
-
-      .service-price {
-        font-size: 1.3rem;
-      }
-
-      #shop-products {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .product-card {
-        max-width: 100%;
-      }
-
-      .product-image-container {
-        height: 180px;
-      }
-
-      .review-slide {
-        padding: 1rem 0.8rem;
-      }
-
-      .review-author-name {
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
-      }
-
-      .review-text {
-        font-size: 0.85rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .about-text h3 {
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
-      }
-
-      .about-text p {
-        font-size: 0.85rem;
-        line-height: 1.5;
-      }
-
-      .contact-card {
-        padding: 1rem;
-      }
-
-      .sticky-book {
-        width: calc(100% - 0.8rem);
-        bottom: 0.6rem;
-        right: 0.4rem;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.75rem;
-      }
-
-      footer {
-        padding: 1.5rem 0.8rem;
-      }
-
-      .booking-container {
-        padding: 1rem;
-      }
-
-      .booking-container iframe {
-        height: 400px;
-      }
-
-      .checkout-form,
-      .checkout-summary {
-        padding: 1.5rem;
-      }
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
- </head>
- <body><!-- HEADER -->
-  <header>
-   <div class="logo"><img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo"> <span>RWCUTZZ</span>
-   </div>
-   <nav id="mainNav"><a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
-   </nav>
-   <div class="header-actions"><button id="cartButtonHeader" class="cart-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">
-     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-     </svg><span id="cartCountHeader" class="cart-badge">0</span> </button> <button class="mobile-menu-toggle" id="mobileMenuToggle">
-     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
-     </svg></button>
-   </div>
-  </header><!-- MOBILE MENU DRAWER -->
-  <div id="mobileMenuDrawer" class="mobile-menu-drawer"><button class="mobile-menu-close" id="mobileMenuClose">
-    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg></button>
-   <nav class="mobile-menu-nav"><a href="#home" class="mobile-menu-link">Home</a> <a href="#services" class="mobile-menu-link">Services</a> <a href="#shop" class="mobile-menu-link">Shop</a> <a href="#booking" class="mobile-menu-link">Boeken</a> <a href="#reviews" class="mobile-menu-link">Reviews</a> <a href="#about" class="mobile-menu-link">Over</a> <a href="#contact" class="mobile-menu-link">Contact</a>
-   </nav>
-  </div>
-  <div id="mobileMenuOverlay" class="mobile-menu-overlay"></div><!-- HERO -->
-  <section class="hero" id="home">
-   <div class="hero-background"></div>
-   <div class="hero-overlay"></div>
-   <div class="hero-content">
-    <h1 class="hero-title">Welkom bij RWCutzz</h1>
-    <p class="hero-subtitle">Gereed voor de perfecte cut?</p>
-    <p class="hero-tagline">Precision cuts. Consistent results.</p>
-    <div class="hero-stats">
-     <div class="stat">
-      <div class="stat-value">
-       €15+
-      </div>
-      <div class="stat-label">
-       Vanaf
-      </div>
-     </div>
-     <div class="stat">
-      <div class="stat-value">
-       5.0
-      </div>
-      <div class="stat-label">
-       58 reviews
-      </div>
-     </div>
-     <div class="stat">
-      <div class="stat-value">
-       Amsterdam Noord
-      </div>
-      <div class="stat-label">
-       Locatie
-      </div>
-     </div>
-    </div>
-    <div class="hero-buttons">
-     <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
-    </div>
-   </div>
-  </section><!-- SERVICES -->
-  <section class="section services-section" id="services">
-   <h2 class="section-title">Onze Services</h2>
-   <p class="section-subtitle">Alle behandelingen met perfectie</p>
-   <div class="services-grid">
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
-     <div class="service-badge">
-      POPULAIR
-     </div>
-     <h3 class="service-name">Taper / Low / Mid Fade</h3>
-     <div class="service-details">
-      <span>⏱ 40 min</span>
-     </div>
-     <div class="service-price">
-      €30
-     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
-    </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy" onerror="this.style.display='none'">
-     <h3 class="service-name">Only Hairline</h3>
-     <div class="service-details">
-      <span>⏱ 10 min</span>
-     </div>
-     <div class="service-price">
-      €15
-     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
-    </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
-     <h3 class="service-name">Kids Fade (5–15)</h3>
-     <div class="service-details">
-      <span>⏱ 40 min</span>
-     </div>
-     <div class="service-price">
-      €20
-     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
-    </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy" onerror="this.style.display='none'">
-     <h3 class="service-name">RW Cut + Beard</h3>
-     <div class="service-details">
-      <span>⏱ 45 min</span>
-     </div>
-     <div class="service-price">
-      €35
-     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
-    </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy" onerror="this.style.display='none'">
-     <h3 class="service-name">Propplekken</h3>
-     <div class="service-details">
-      <span>⏱ 45 min</span>
-     </div>
-     <div class="service-price">
-      €35
-     </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
-    </div>
-   </div>
-  </section><!-- WEBSHOP SECTION -->
-  <section class="section" id="shop">
-   <h2 class="section-title">RWCutzz Merchandise</h2>
-   <p class="section-subtitle">Gerelateerde producten &amp; accessories</p>
-   <div id="shop-products"></div>
-  </section><!-- CHECKOUT SECTION -->
-  <section class="section" id="shop-checkout" style="background: #121212; padding: 5rem 2rem;">
-   <h2 class="section-title" style="margin-bottom: 3rem;">Afrekenen</h2>
-   <div class="checkout-container">
-    <form id="shop-form" class="checkout-form">
-     <h3>Je gegevens</h3>
-     <div class="form-group"><label class="form-label">Naam *</label> <input id="shop-name" type="text" required placeholder="Voor- en achternaam" class="form-input">
-     </div>
-     <div class="form-group"><label class="form-label">E-mail *</label> <input id="shop-email" type="email" required placeholder="naam@email.nl" class="form-input">
-     </div>
-     <div class="form-group"><label class="form-label">Telefoon *</label> <input id="shop-phone" type="tel" required placeholder="+31 6 12345678" class="form-input">
-     </div>
-     <div class="form-group"><label class="form-label">Adres *</label> <textarea id="shop-address" required placeholder="Straat, huisnummer, postcode, plaats" rows="3" class="form-textarea"></textarea>
-     </div>
-     <div class="form-group"><label class="form-label">Opmerking</label> <textarea id="shop-notes" placeholder="Extra informatie voor je bestelling" rows="3" class="form-textarea"></textarea>
-     </div>
-     <div id="shop-message" style="display: none; background: rgba(26, 75, 255, 0.1); border: 1px solid #1A4BFF; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #4D7CFF;"></div><button id="shop-submit" type="submit" class="btn-primary" style="width: 100%; margin-top: 0;">Bestelling plaatsen</button>
-    </form>
-    <div class="checkout-summary">
-     <h3>Samenvatting</h3>
-     <div class="summary-row"><span>Aantal items</span> <span class="summary-value" id="shop-summary-count">0</span>
-     </div>
-     <div class="summary-row"><span>Subtotaal</span> <span class="summary-value" id="shop-summary-subtotal">€0,00</span>
-     </div>
-     <div class="summary-row total"><span>Totaal</span> <span class="summary-value total" id="shop-summary-total">€0,00</span>
-     </div>
-    </div>
-   </div>
-  </section><!-- BOOKING -->
-  <section class="booking-section" id="booking">
-   <h2 class="section-title" style="margin-bottom: 2rem;">Boek je afspraak</h2>
-   <div class="booking-container"><iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/" style="border-radius: 12px;"></iframe>
-   </div>
-  </section><!-- REVIEWS -->
-  <section class="section reviews-section" id="reviews">
-   <div class="reviews-container">
-    <div class="reviews-header">
-     <h2 class="section-title">Wat zeggen klanten?</h2>
-     <div class="rating-display">
-      <div class="rating-number">
-       5.0
-      </div>
-      <div class="stars">
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-       </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-       </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-       </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-       </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-       </svg>
-      </div>
-     </div>
-     <div class="review-count">
-      58 reviews
-     </div><a href="https://rwcutzz.setmore.com/reviews?sortBy=highestRated" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; font-size: 0.9rem; text-decoration: none;">Bekijk alle reviews</a>
-    </div>
-    <div class="review-slider-wrapper">
-     <div class="review-slider">
-      <div class="review-slide active">
-       <div class="review-author-name">
-        Marco D.
-       </div>
-       <p class="review-text">"Beste kapper in Amsterdam. RW weet wat hij doet. Altijd een strakke fade."</p>
-       <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-       </div>
-      </div>
-      <div class="review-slide">
-       <div class="review-author-name">
-        Ahmed K.
-       </div>
-       <p class="review-text">"Altijd fresh. Consistent kwaliteit. Hij luistert naar wat je wilt."</p>
-       <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-       </div>
-      </div>
-      <div class="review-slide">
-       <div class="review-author-name">
-        Simon R.
-       </div>
-       <p class="review-text">"Weet hoe hij met alle haar types moet omgaan. Echt een specialist."</p>
-       <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-       </div>
-      </div>
-      <div class="review-slide">
-       <div class="review-author-name">
-        Dirk B.
-       </div>
-       <p class="review-text">"Schoon, snel, professioneel. Alleen hier heen voor mijn cuts."</p>
-       <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
-         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
-        </svg>
-       </div>
-      </div>
-     </div>
-     <div class="review-dots">
-      <span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
-     </div>
-    </div>
-   </div>
-  </section><!-- ABOUT -->
-  <section class="section about-section" id="about">
-   <div class="about-container">
-    <div class="about-text">
-     <h2>Over RWCutzz</h2>
-     <h3>Wie is RW?</h3>
-     <p>RWCutzz staat voor precision, consistency en perfectie. Met jaren ervaring in het vak specialiseer ik me in fades, tapers en fresh cuts die je altijd tevreden achterlaten.</p>
-     <h3>Waarom RW?</h3>
-     <p>Geen compromissen op kwaliteit. Elke klant krijgt dezelfde aandacht en vakmanschap. Fades, precision, consistent resultaat — dat is RWCutzz.</p>
-    </div>
-    <div class="about-image">
-     <img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy" onerror="this.style.display='none'">
-    </div>
-   </div>
-  </section><!-- CONTACT -->
-  <section class="section contact-section" id="contact">
-   <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Contact</h2>
-   <div class="contact-container">
-    <div class="contact-card">
-     <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5" />
-      </svg>
-     </div>
-     <div class="contact-label">
-      Adres
-     </div>
-     <div class="contact-info">
-      <a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
-       1025 BW Amsterdam </a>
-     </div>
-    </div>
-    <div class="contact-card">
-     <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5-8-5V6l8 5 8-5v2z" />
-      </svg>
-     </div>
-     <div class="contact-label">
-      Email
-     </div>
-     <div class="contact-info">
-      <a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
-     </div>
-    </div>
-    <div class="contact-card">
-     <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
-      </svg>
-     </div>
-     <div class="contact-label">
-      WhatsApp
-     </div>
-     <div class="contact-info">
-      <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
-     </div>
-    </div>
-   </div>
-  </section><!-- FOOTER -->
-  <footer>
-   <div class="footer-content">
-    <div class="footer-section">
-     <h4>RWCutzz</h4>
-     <p>Fresh cuts. Precision. Consistency.</p>
-    </div>
-    <div class="footer-section">
-     <h4>Bedrijfsinfo</h4>
-     <div>
-      <p><strong>KVK:</strong> 94077991</p>
-      <p><strong>Vorm:</strong> Eenmanszaak</p>
-      <p><strong>Vestiging:</strong> 000059578688</p>
-     </div>
-    </div>
-    <div class="footer-section">
-     <h4>Openingstijden</h4>
-     <p>Dinsdag – Zaterdag<br>
-      09:00 – 18:00</p>
-    </div>
-   </div>
-   <div class="footer-divider">
-    <p>© 2024 RWCUTZZ. Alle rechten voorbehouden.</p>
-   </div>
-  </footer><!-- STICKY BUTTON --> <button class="sticky-book" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button>
-  <script>
-    // MOBILE MENU
-    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-
-    function openMobileMenu() {
-      mobileMenuDrawer.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileMenu() {
-      mobileMenuDrawer.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      document.body.style.overflow = 'auto';
-    }
-
-    mobileMenuToggle.addEventListener('click', openMobileMenu);
-    mobileMenuClose.addEventListener('click', closeMobileMenu);
-    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener('click', closeMobileMenu);
-    });
-
-    function updateMenuVisibility() {
-      if (window.innerWidth <= 768) {
-        mobileMenuToggle.style.display = 'block';
-        document.getElementById('mainNav').style.display = 'none';
-      } else {
-        mobileMenuToggle.style.display = 'none';
-        document.getElementById('mainNav').style.display = 'flex';
-        closeMobileMenu();
-      }
-    }
-
-    updateMenuVisibility();
-    window.addEventListener('resize', updateMenuVisibility);
-
-    let currentReviewIndex = 0;
-    const totalReviews = 4;
-    let autoRotateTimer;
-
-    function showReview(n) {
-      const slides = document.querySelectorAll('.review-slide');
-      const dots = document.querySelectorAll('.dot');
-      
-      currentReviewIndex = (n + totalReviews) % totalReviews;
-      
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-      
-      slides[currentReviewIndex].classList.add('active');
-      dots[currentReviewIndex].classList.add('active');
-    }
-
-    function currentReview(n) {
-      clearTimeout(autoRotateTimer);
-      currentReviewIndex = n;
-      showReview(currentReviewIndex);
-      startAutoRotate();
-    }
-
-    function nextReview() {
-      currentReviewIndex++;
-      showReview(currentReviewIndex);
-    }
-
-    function startAutoRotate() {
-      autoRotateTimer = setTimeout(() => {
-        nextReview();
-        startAutoRotate();
-      }, 5000);
-    }
-
-    window.addEventListener('scroll', () => {
-      const stickyBtn = document.querySelector('.sticky-book');
-      if (window.scrollY > 300) {
-        stickyBtn.style.display = 'block';
-      } else {
-        stickyBtn.style.display = 'none';
-      }
-    });
-
-    startAutoRotate();
-    lucide.createIcons();
-  </script>
-  <script>
-    // WEBSHOP SYSTEM
-    const SHOP_API = 'https://script.google.com/macros/s/AKfycbxj_Ierv6wIP49zPeKzHGpQkA-_lHNzOLHgEswBNC_RihHFggR-ivM3cTianA9XBLUH7A/exec';
-    const SHOP_CART_KEY = 'rwcutzz_shop_cart_v1';
-    
-    let shopState = {
-      cart: [],
-      products: [],
-      settings: {}
-    };
-
-    function shopLoadCart() {
-      try {
-        return JSON.parse(localStorage.getItem(SHOP_CART_KEY) || '[]');
-      } catch {
-        return [];
-      }
-    }
-
-    function shopSaveCart() {
-      localStorage.setItem(SHOP_CART_KEY, JSON.stringify(shopState.cart));
-    }
-
-    function shopFormatCurrency(val) {
-      return '€' + Number(val || 0).toFixed(2).replace('.', ',');
-    }
-
-    function shopAddToCart(productId) {
-      const product = shopState.products.find(p => Number(p.id) === Number(productId));
-      if (!product) return;
-      
-      const existing = shopState.cart.find(item => Number(item.product_id) === Number(productId));
-      if (existing) {
-        if (existing.quantity >= Number(product.stock)) return;
-        existing.quantity += 1;
-      } else {
-        shopState.cart.push({
-          product_id: Number(product.id),
-          product_name: product.name,
-          price: Number(product.price),
-          quantity: 1,
-          image_url: product.image_url || ''
-        });
-      }
-      shopSaveCart();
-      shopRenderCart();
-    }
-
-    function shopRenderCart() {
-      const cartCount = shopState.cart.reduce((sum, item) => sum + item.quantity, 0);
-      const subtotal = shopState.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      
-      document.getElementById('cartCountHeader').textContent = String(cartCount);
-      document.getElementById('shop-summary-count').textContent = String(cartCount);
-      document.getElementById('shop-summary-subtotal').textContent = shopFormatCurrency(subtotal);
-      document.getElementById('shop-summary-total').textContent = shopFormatCurrency(subtotal);
-    }
-
-    async function shopLoadProducts() {
-      try {
-        const resp = await fetch(`${SHOP_API}?action=products`);
-        const data = await resp.json();
-        if (data.success && Array.isArray(data.data)) {
-          shopState.products = data.data;
-          shopRenderProducts();
-        }
-      } catch (err) {
-        console.error('Shop products error:', err);
-      }
-    }
-
-    function shopRenderProducts() {
-      const grid = document.getElementById('shop-products');
-      grid.innerHTML = '';
-      
-      shopState.products.forEach((product, index) => {
-        const card = document.createElement('div');
-        const inStock = Number(product.stock) > 0;
-        const isPopular = index === 0;
-        
-        card.className = 'product-card';
-        
-        card.innerHTML = `
-          <div class="product-image-container">
-            ${isPopular ? '<div class="product-badge">⭐ POPULAIR</div>' : ''}
-            <img src="${product.image_url || 'https://via.placeholder.com/240x200?text=' + encodeURIComponent(product.name)}" 
-                 alt="${product.name}" 
-                 class="product-image"
-                 loading="lazy"
-                 onerror="this.src='https://via.placeholder.com/240x200?text=' + encodeURIComponent('${product.name}'); this.style.background='#2C2C2C';">
-          </div>
-          
-          <div class="product-content">
-            <h4 class="product-name">✂️ ${product.name}</h4>
-            
-            <div class="product-price">
-              ${shopFormatCurrency(product.price)}
-            </div>
-            
-            <div class="product-stock ${inStock ? 'in-stock' : 'out-of-stock'}">
-              ${inStock ? '🟢 Op voorraad (' + product.stock + ')' : '🔴 Uitverkocht'}
-            </div>
-            
-            <p class="product-description">
-              ${product.description || 'Premium product'}
-            </p>
-            
-            <button onclick="shopAddToCart(${product.id})" 
-                    class="btn-add-cart" 
-                    ${!inStock ? 'disabled' : ''}>
-              ${inStock ? 'Toevoegen' : 'Uitverkocht'}
-            </button>
-          </div>
-        `;
-        
-        grid.appendChild(card);
-      });
-    }
-
-    document.getElementById('shop-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      if (shopState.cart.length === 0) {
-        alert('Je winkelwagen is leeg.');
-        return;
-      }
-
-      const name = document.getElementById('shop-name').value.trim();
-      const email = document.getElementById('shop-email').value.trim();
-      const phone = document.getElementById('shop-phone').value.trim();
-      const address = document.getElementById('shop-address').value.trim();
-      const notes = document.getElementById('shop-notes').value.trim();
-
-      if (!name || !email || !phone || !address) {
-        alert('Vul alle verplichte velden in.');
-        return;
-      }
-
-      const msgBox = document.getElementById('shop-message');
-      const submitBtn = document.getElementById('shop-submit');
-      
-      msgBox.style.display = 'none';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Bestelling wordt geplaatst...';
-
-      try {
-        const payload = {
-          action: 'createOrder',
-          customer_name: name,
-          email: email,
-          phone: phone,
-          address: address,
-          delivery_type: 'verzenden',
-          pickup_time: '',
-          notes: notes,
-          items: shopState.cart.map(item => ({
-            product_id: Number(item.product_id),
-            quantity: Number(item.quantity)
-          }))
-        };
-
-        const resp = await fetch(SHOP_API, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await resp.json();
-
-        if (result.success) {
-          shopState.cart = [];
-          shopSaveCart();
-          shopRenderCart();
-          document.getElementById('shop-form').reset();
-          
-          msgBox.style.cssText = 'display: block; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981;';
-          msgBox.innerHTML = `Bestelling geplaatst! Ordernummer: <strong>${result.data?.order_id || 'N/A'}</strong>`;
-          
-          setTimeout(() => window.location.hash = '#shop', 2000);
-        } else {
-          throw new Error(result.error?.message || 'Bestelling mislukt');
-        }
-      } catch (err) {
-        msgBox.style.cssText = 'display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444;';
-        msgBox.textContent = err.message || 'Er ging iets fout.';
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Bestelling plaatsen';
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      shopState.cart = shopLoadCart();
-      shopLoadProducts();
-      shopRenderCart();
-    });
-  </script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    html {
-      height: 100%;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      height: 100%;
-      font-family: 'Roboto', sans-serif;
-      background: #121212;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-
-    /* HEADER */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(18, 18, 18, 0.99);
-      backdrop-filter: blur(12px);
-      padding: 0.8rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      height: 60px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .logo {
-      font-size: 1.2rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-      transition: all 0.3s;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .logo img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    nav a {
-      font-size: 0.8rem;
-      text-decoration: none;
-      color: #B0B0B0;
-      transition: all 0.3s;
-      font-weight: 500;
-      position: relative;
-      white-space: nowrap;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #1A4BFF;
-      transition: width 0.3s;
-    }
-
-    nav a:hover::after,
-    nav a:hover {
-      width: 100%;
-      color: #4D7CFF;
-    }
-
-    .cart-button {
-      background: none;
-      border: none;
-      color: #1A4BFF;
-      cursor: pointer;
-      padding: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      -webkit-tap-highlight-color: transparent;
-      position: relative;
-    }
-
-    .cart-button:hover {
-      color: #4D7CFF;
-      transform: scale(1.1);
-    }
-
-    .cart-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      animation: cartPop 0.4s ease-out;
-    }
-
-    @keyframes cartPop {
-      0% {
-        transform: scale(0.8);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
-
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #FFFFFF;
-      cursor: pointer;
-      padding: 0.5rem;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .mobile-menu-toggle:active {
-      transform: scale(0.95);
-    }
-
-    /* MOBILE MENU DRAWER */
-    .mobile-menu-drawer {
-      position: fixed;
-      left: -100%;
-      top: 60px;
-      width: 100%;
-      height: calc(100% - 60px);
-      background: #121212;
-      z-index: 999;
-      transition: left 0.3s ease;
-      overflow-y: auto;
-      display: none;
-    }
-
-    .mobile-menu-drawer.active {
-      left: 0;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-menu-drawer {
-        display: block;
-        width: 80%;
-        left: -80%;
-        top: 60px;
-        height: calc(100% - 60px);
-      }
-    }
-
-    .mobile-menu-close {
-      background: none;
-      border: none;
-      color: #FFFFFF;
-      cursor: pointer;
-      padding: 1rem;
-      font-size: 1.5rem;
-      -webkit-tap-highlight-color: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .mobile-menu-drawer.active { left: 0; }
 
     .mobile-menu-nav {
       display: flex;
@@ -2228,15 +149,14 @@
     .mobile-menu-link {
       padding: 1rem;
       text-decoration: none;
-      color: #B0B0B0;
+      color: #b0b0b0;
       font-weight: 500;
-      font-size: 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: all 0.3s;
     }
 
     .mobile-menu-link:hover {
-      color: #1A4BFF;
+      color: #1a4bff;
       padding-left: 1.5rem;
     }
 
@@ -2272,7 +192,7 @@
     .hero-background {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #2C2C2C 0%, #121212 100%);
+      background: linear-gradient(135deg, #2c2c2c 0%, #121212 100%);
       background-image: url('https://drive.google.com/uc?export=view&id=1yldYDJolbfbEMR67X_5Ds2QqO7lheQfS');
       background-size: cover;
       background-position: center;
@@ -2292,25 +212,26 @@
       z-index: 3;
       text-align: center;
       animation: fadeInUp 1s ease-out;
+      padding: 0 1.5rem;
     }
 
     .hero-title {
       font-size: clamp(2.5rem, 8vw, 4.5rem);
       font-weight: 900;
       margin-bottom: 1rem;
-      color: #FFFFFF;
+      color: #fff;
       text-shadow: 0 0 30px rgba(26, 75, 255, 0.6);
     }
 
     .hero-subtitle {
       font-size: clamp(1rem, 4vw, 1.5rem);
-      color: #B0B0B0;
+      color: #b0b0b0;
       margin-bottom: 0.5rem;
     }
 
     .hero-tagline {
       font-size: 0.95rem;
-      color: #4D7CFF;
+      color: #4d7cff;
       margin-bottom: 2rem;
     }
 
@@ -2322,14 +243,10 @@
       flex-wrap: wrap;
     }
 
-    .stat {
-      text-align: center;
-    }
-
     .stat-value {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #1A4BFF;
+      color: #1a4bff;
     }
 
     .stat-label {
@@ -2345,8 +262,7 @@
       flex-wrap: wrap;
     }
 
-    .btn-primary,
-    .btn-secondary {
+    .btn-primary, .btn-secondary {
       padding: 1rem 2.5rem;
       border: none;
       border-radius: 8px;
@@ -2357,26 +273,26 @@
     }
 
     .btn-primary {
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
     }
 
     .btn-primary:hover {
-      background: #4D7CFF;
+      background: #4d7cff;
       transform: translateY(-3px);
       box-shadow: 0 0 30px rgba(26, 75, 255, 0.8);
     }
 
     .btn-secondary {
       background: transparent;
-      color: #1A4BFF;
-      border: 2px solid #1A4BFF;
+      color: #1a4bff;
+      border: 2px solid #1a4bff;
     }
 
     .btn-secondary:hover {
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
     }
 
@@ -2390,7 +306,7 @@
       font-size: clamp(2rem, 6vw, 3.5rem);
       font-weight: 900;
       margin-bottom: 0.5rem;
-      color: #FFFFFF;
+      color: #fff;
       text-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
     }
 
@@ -2401,9 +317,7 @@
     }
 
     /* SERVICES */
-    .services-section {
-      background: #121212;
-    }
+    .services-section { background: #121212; }
 
     .services-grid {
       display: grid;
@@ -2438,21 +352,19 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: #1A4BFF;
+      background: #1a4bff;
       transform: scaleX(0);
       transition: transform 0.3s;
     }
 
     .service-card:hover {
       background: rgba(255, 255, 255, 0.08);
-      border-color: #1A4BFF;
+      border-color: #1a4bff;
       transform: translateY(-5px);
       box-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
     }
 
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
+    .service-card:hover::before { transform: scaleX(1); }
 
     .service-image {
       width: 100%;
@@ -2463,14 +375,12 @@
       transition: transform 0.3s;
     }
 
-    .service-card:hover .service-image {
-      transform: scale(1.05);
-    }
+    .service-card:hover .service-image { transform: scale(1.05); }
 
     .service-badge {
       display: inline-block;
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       font-size: 0.7rem;
       font-weight: 700;
       padding: 0.4rem 0.8rem;
@@ -2482,7 +392,7 @@
       font-size: 1.1rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
-      color: #FFFFFF;
+      color: #fff;
     }
 
     .service-details {
@@ -2491,20 +401,20 @@
       gap: 1rem;
       margin: 1rem 0;
       font-size: 0.9rem;
-      color: #B0B0B0;
+      color: #b0b0b0;
     }
 
     .service-price {
       font-size: 1.8rem;
       font-weight: 700;
-      color: #1A4BFF;
+      color: #1a4bff;
       margin: 1rem 0;
     }
 
     .btn-book {
       width: 100%;
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       padding: 0.8rem;
       border: none;
       border-radius: 8px;
@@ -2516,14 +426,188 @@
     }
 
     .btn-book:hover {
-      background: #4D7CFF;
+      background: #4d7cff;
       transform: translateY(-2px);
       box-shadow: 0 0 15px rgba(26, 75, 255, 0.6);
     }
 
+    /* SHOP */
+    #shop { background: #2c2c2c; }
+
+    #shop-products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(26, 75, 255, 0.2);
+      border-color: #1a4bff;
+    }
+
+    .product-image-container {
+      position: relative;
+      height: 180px;
+      background: #2c2c2c;
+      overflow: hidden;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #1a4bff;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      z-index: 10;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .product-card:hover .product-image { transform: scale(1.05); }
+
+    .product-content { padding: 1rem; }
+
+    .product-name {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #1a4bff;
+      margin-bottom: 0.6rem;
+    }
+
+    .product-stock {
+      font-size: 0.75rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .product-stock.in-stock { color: #4ade80; }
+    .product-stock.out-of-stock { color: #ef4444; }
+
+    .product-description {
+      font-size: 0.8rem;
+      color: #b0b0b0;
+      margin-bottom: 1rem;
+    }
+
+    .btn-add-cart {
+      width: 100%;
+      background: #1a4bff;
+      color: #fff;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-add-cart:hover { background: #4d7cff; }
+    .btn-add-cart:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* CHECKOUT */
+    #shop-checkout { background: #121212; }
+
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .checkout-form, .checkout-summary {
+      background: #2c2c2c;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .checkout-form h3, .checkout-summary h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input, .form-textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.8rem;
+      color: #fff;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      outline: none;
+      border-color: #1a4bff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .checkout-summary { height: fit-content; }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: #b0b0b0;
+      margin-bottom: 0.8rem;
+    }
+
+    .summary-row.total {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1a4bff;
+    }
+
+    .summary-value { font-weight: 700; color: #fff; }
+
     /* BOOKING */
     .booking-section {
-      background: #2C2C2C;
+      background: #2c2c2c;
       padding: 5rem 2rem;
     }
 
@@ -2533,7 +617,7 @@
       background: #121212;
       border-radius: 16px;
       padding: 2rem;
-      border: 1px solid #3A3A3A;
+      border: 1px solid #3a3a3a;
       box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);
     }
 
@@ -2544,14 +628,9 @@
     }
 
     /* REVIEWS */
-    .reviews-section {
-      background: #2C2C2C;
-    }
+    .reviews-section { background: #2c2c2c; }
 
-    .reviews-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    .reviews-container { max-width: 900px; margin: 0 auto; }
 
     .reviews-header {
       text-align: center;
@@ -2569,7 +648,7 @@
     .rating-number {
       font-size: 2.5rem;
       font-weight: 900;
-      color: #1A4BFF;
+      color: #1a4bff;
     }
 
     .stars {
@@ -2580,18 +659,14 @@
     .stars svg {
       width: 24px;
       height: 24px;
-      fill: #1A4BFF;
+      fill: #1a4bff;
     }
 
-    .review-count {
-      font-size: 0.9rem;
-      color: #B0B0B0;
-    }
+    .review-count { font-size: 0.9rem; color: #b0b0b0; }
 
     .review-slider-wrapper {
       position: relative;
       margin-top: 2rem;
-      height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2603,7 +678,6 @@
       position: relative;
       width: 100%;
       max-width: 700px;
-      height: auto;
     }
 
     .review-slide {
@@ -2615,18 +689,15 @@
       padding: 2rem 1.5rem;
       opacity: 0;
       transition: opacity 0.8s ease;
-      pointer-events: none;
       visibility: hidden;
       min-height: 250px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
     }
 
     .review-slide.active {
       opacity: 1;
-      pointer-events: auto;
       visibility: visible;
       position: relative;
       left: auto;
@@ -2636,16 +707,15 @@
     .review-author-name {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #FFFFFF;
+      color: #fff;
       margin-bottom: 1rem;
     }
 
     .review-text {
       font-size: 0.95rem;
       line-height: 1.6;
-      color: #E0E0E0;
+      color: #e0e0e0;
       margin-bottom: 1.2rem;
-      max-width: 100%;
       font-style: italic;
     }
 
@@ -2653,13 +723,12 @@
       display: flex;
       gap: 0.4rem;
       justify-content: center;
-      margin-bottom: 0;
     }
 
     .review-stars svg {
       width: 18px;
       height: 18px;
-      fill: #1A4BFF;
+      fill: #1a4bff;
     }
 
     .review-dots {
@@ -2677,150 +746,16 @@
       cursor: pointer;
       transition: all 0.3s;
       border: none;
-      padding: 0;
     }
 
     .dot.active {
-      background: #1A4BFF;
+      background: #1a4bff;
       width: 30px;
       border-radius: 5px;
-    }
-
-    .dot:hover {
-      background: rgba(26, 75, 255, 0.7);
-    }
-
-    /* GALLERY */
-    .gallery-section {
-      background: #121212;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .gallery-slider-container {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .gallery-slides {
-      display: flex;
-      overflow: hidden;
-      border-radius: 16px;
-      position: relative;
-    }
-
-    .gallery-slide {
-      min-width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #2C2C2C;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: transform 0.5s ease;
-    }
-
-    .gallery-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .gallery-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(26, 75, 255, 0.8);
-      border: none;
-      color: #FFFFFF;
-      padding: 1rem;
-      cursor: pointer;
-      font-size: 1.5rem;
-      border-radius: 4px;
-      transition: all 0.3s;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-    }
-
-    .gallery-nav:hover {
-      background: #1A4BFF;
-      transform: translateY(-50%) scale(1.05);
-    }
-
-    .gallery-nav.prev {
-      left: 1rem;
-    }
-
-    .gallery-nav.next {
-      right: 1rem;
-    }
-
-    .gallery-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      margin-top: 1.5rem;
-    }
-
-    .gallery-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      cursor: pointer;
-      transition: all 0.3s;
-      border: none;
-      padding: 0;
-    }
-
-    .gallery-dot.active {
-      background: #1A4BFF;
-      width: 30px;
-      border-radius: 5px;
-    }
-
-    .gallery-dot:hover {
-      background: rgba(26, 75, 255, 0.7);
-    }
-
-    .gallery-item {
-      aspect-ratio: 1;
-      background: #2C2C2C;
-      border-radius: 16px;
-      overflow: hidden;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.08);
     }
 
     /* ABOUT */
-    .about-section {
-      background: #2C2C2C;
-    }
+    .about-section { background: #2c2c2c; }
 
     .about-container {
       max-width: 1000px;
@@ -2835,25 +770,21 @@
       font-size: clamp(1.8rem, 6vw, 3rem);
       font-weight: 900;
       margin-bottom: 2rem;
-      color: #FFFFFF;
+      color: #fff;
     }
 
     .about-text h3 {
       font-size: 1.2rem;
       font-weight: 700;
-      color: #1A4BFF;
+      color: #1a4bff;
       margin-bottom: 1rem;
       margin-top: 1.5rem;
-    }
-
-    .about-text h3:first-of-type {
-      margin-top: 0;
     }
 
     .about-text p {
       font-size: 0.95rem;
       line-height: 1.8;
-      color: #B0B0B0;
+      color: #b0b0b0;
       margin-bottom: 1rem;
     }
 
@@ -2869,13 +800,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 14px;
     }
 
     /* CONTACT */
-    .contact-section {
-      background: #121212;
-    }
+    .contact-section { background: #121212; }
 
     .contact-container {
       max-width: 900px;
@@ -2886,7 +814,7 @@
     }
 
     .contact-card {
-      background: #2C2C2C;
+      background: #2c2c2c;
       padding: 2rem;
       border-radius: 16px;
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -2895,27 +823,12 @@
     }
 
     .contact-card:hover {
-      border-color: #1A4BFF;
+      border-color: #1a4bff;
       box-shadow: 0 0 15px rgba(26, 75, 255, 0.2);
       transform: translateY(-2px);
     }
 
-    .contact-icon {
-      width: 50px;
-      height: 50px;
-      margin: 0 auto 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-icon svg {
-      width: 100%;
-      height: 100%;
-      stroke: #1A4BFF;
-      fill: none;
-      stroke-width: 1.5;
-    }
+    .contact-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 
     .contact-label {
       font-size: 0.9rem;
@@ -2923,31 +836,28 @@
       margin-bottom: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-weight: 700;
     }
 
     .contact-info {
       font-size: 1.1rem;
       font-weight: 600;
-      color: #FFFFFF;
+      color: #fff;
       word-break: break-word;
     }
 
     .contact-link {
-      color: #1A4BFF;
+      color: #1a4bff;
       text-decoration: none;
       transition: color 0.3s;
     }
 
-    .contact-link:hover {
-      color: #4D7CFF;
-    }
+    .contact-link:hover { color: #4d7cff; }
 
     /* FOOTER */
     footer {
-      background: #0A0A0A;
+      background: #0a0a0a;
       padding: 3rem 2rem;
-      border-top: 1px solid #2C2C2C;
+      border-top: 1px solid #2c2c2c;
       font-size: 0.85rem;
       color: #606060;
     }
@@ -2963,7 +873,7 @@
     }
 
     .footer-section h4 {
-      color: #1A4BFF;
+      color: #1a4bff;
       font-size: 0.95rem;
       margin-bottom: 1rem;
       text-transform: uppercase;
@@ -2977,9 +887,8 @@
     }
 
     .footer-divider {
-      border-top: 1px solid #2C2C2C;
+      border-top: 1px solid #2c2c2c;
       padding-top: 2rem;
-      margin-top: 2rem;
       text-align: center;
     }
 
@@ -2990,8 +899,8 @@
       bottom: 2rem;
       right: 2rem;
       z-index: 500;
-      background: #1A4BFF;
-      color: #FFFFFF;
+      background: #1a4bff;
+      color: #fff;
       padding: 1rem 2rem;
       border: none;
       border-radius: 50px;
@@ -3002,294 +911,85 @@
     }
 
     .sticky-book:hover {
-      background: #4D7CFF;
+      background: #4d7cff;
       transform: scale(1.05);
       box-shadow: 0 0 35px rgba(26, 75, 255, 0.8);
     }
 
-    /* ANIMATIONS */
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* RESPONSIVE */
+    /* MOBILE */
     @media (max-width: 768px) {
-      header {
-        padding: 0.6rem 0.8rem;
-        height: 50px;
-      }
+      header { padding: 0.6rem 0.8rem; height: 50px; }
+      .logo { font-size: 0.95rem; }
+      .logo img { width: 30px !important; height: 30px !important; }
+      #mainNav { display: none; }
+      .mobile-menu-toggle { display: block; }
 
-      .logo {
-        font-size: 0.95rem;
-        letter-spacing: 1px;
-      }
+      .hero { margin-top: 45px; height: 60vh; }
+      .hero-background { background-attachment: scroll; }
 
-      .logo img {
-        width: 30px !important;
-        height: 30px !important;
-      }
+      .section { padding: 3rem 1.5rem; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .services-grid > :nth-child(1),
+      .services-grid > :nth-child(2),
+      .services-grid > :nth-child(3),
+      .services-grid > :nth-child(4),
+      .services-grid > :nth-child(5) { grid-column: span 1; }
 
-      nav {
-        display: none;
-      }
+      #shop-products { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .checkout-container { grid-template-columns: 1fr; gap: 2rem; }
 
-      .mobile-menu-toggle {
-        display: block;
-      }
+      .about-container { grid-template-columns: 1fr; gap: 1.5rem; }
+      .sticky-book { display: block; bottom: 1rem; right: 1rem; padding: 0.6rem 1.2rem; font-size: 0.8rem; }
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
 
-      .cta-button {
-        display: none;
-      }
-
-      .hero {
-        margin-top: 45px;
-        height: 60vh;
-      }
-
-      .hero-background {
-        background-attachment: scroll;
-      }
-
-      .section {
-        padding: 3rem 1.5rem;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-
-      .services-grid .service-card:nth-child(1),
-      .services-grid .service-card:nth-child(2),
-      .services-grid .service-card:nth-child(3),
-      .services-grid .service-card:nth-child(4),
-      .services-grid .service-card:nth-child(5) {
-        grid-column: span 1;
-      }
-
-      .service-image {
-        height: 120px;
-      }
-
-      .review-slider-wrapper {
-        height: auto;
-      }
-
-      .review-slide {
-        padding: 1.5rem 1rem;
-      }
-
-      .gallery-nav {
-        width: 40px;
-        height: 40px;
-        padding: 0.7rem;
-        font-size: 1.2rem;
-      }
-
-      .gallery-nav.prev {
-        left: 0.5rem;
-      }
-
-      .gallery-nav.next {
-        right: 0.5rem;
-      }
-
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .sticky-book {
-        display: block;
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 0.8rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
+      .booking-container iframe { height: 400px; }
     }
 
     @media (max-width: 480px) {
-      header {
-        padding: 0.5rem 0.6rem;
-        height: 45px;
-      }
+      header { padding: 0.5rem 0.6rem; height: 45px; }
+      .logo { font-size: 0.85rem; }
+      .logo img { width: 28px !important; height: 28px !important; }
 
-      .logo {
-        font-size: 0.85rem;
-        letter-spacing: 1px;
-      }
+      .hero { height: 55vh; margin-top: 40px; }
+      .hero-title { font-size: 1.4rem; }
+      .hero-subtitle { font-size: 0.85rem; }
+      .hero-stats { gap: 0.8rem; margin-bottom: 1.2rem; }
 
-      .logo img {
-        width: 28px !important;
-        height: 28px !important;
-      }
+      .section { padding: 2rem 0.8rem; }
+      .section-title { font-size: 1.4rem; }
 
-      .mobile-menu-toggle {
-        font-size: 1.3rem;
-      }
+      .services-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+      #shop-products { grid-template-columns: 1fr; }
 
-      .hero {
-        height: 55vh;
-        margin-top: 40px;
-      }
+      .sticky-book { width: calc(100% - 0.8rem); bottom: 0.6rem; right: 0.4rem; padding: 0.5rem 0.8rem; font-size: 0.75rem; }
 
-      .hero-title {
-        font-size: 1.4rem;
-      }
-
-      .hero-subtitle {
-        font-size: 0.85rem;
-      }
-
-      .hero-stats {
-        gap: 0.8rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .stat-value {
-        font-size: 0.95rem;
-      }
-
-      .stat-label {
-        font-size: 0.65rem;
-      }
-
-      .section {
-        padding: 2rem 0.8rem;
-      }
-
-      .section-title {
-        font-size: 1.4rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .section-subtitle {
-        font-size: 0.8rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-      }
-
-      .service-card {
-        padding: 0.8rem;
-      }
-
-      .service-image {
-        height: 100px;
-        margin-bottom: 0.6rem;
-      }
-
-      .service-name {
-        font-size: 0.95rem;
-      }
-
-      .service-price {
-        font-size: 1.3rem;
-      }
-
-      .review-slide {
-        padding: 1rem 0.8rem;
-      }
-
-      .review-author-name {
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
-      }
-
-      .review-text {
-        font-size: 0.85rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .gallery-slide {
-        aspect-ratio: 4 / 3;
-      }
-
-      .gallery-nav {
-        width: 36px;
-        height: 36px;
-        padding: 0.5rem;
-        font-size: 1rem;
-      }
-
-      .gallery-nav.prev {
-        left: 0.3rem;
-      }
-
-      .gallery-nav.next {
-        right: 0.3rem;
-      }
-
-      .about-text h3 {
-        font-size: 1rem;
-        margin-bottom: 0.6rem;
-      }
-
-      .about-text p {
-        font-size: 0.85rem;
-        line-height: 1.5;
-      }
-
-      .contact-card {
-        padding: 1rem;
-      }
-
-      .sticky-book {
-        width: calc(100% - 0.8rem);
-        bottom: 0.6rem;
-        right: 0.4rem;
-        padding: 0.5rem 0.8rem;
-        font-size: 0.75rem;
-      }
-
-      footer {
-        padding: 1.5rem 0.8rem;
-      }
-
-      .booking-container {
-        padding: 1rem;
-      }
-
-      .booking-container iframe {
-        height: 400px;
-      }
+      footer { padding: 1.5rem 0.8rem; }
+      .booking-container { padding: 1rem; }
+      .booking-container iframe { height: 300px; }
     }
   </style>
   <style>body { box-sizing: border-box; }</style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script> <!-- HEADER -->
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+ </head>
+ <body><!-- HEADER -->
   <header>
    <div class="logo"><img src="https://avatar.setmore.com/files/img/fK5tX9jK2OVS/profilepic.png?w=576&amp;h=576" alt="RWCutzz Logo"> <span>RWCUTZZ</span>
    </div>
    <nav id="mainNav"><a href="#home">Home</a> <a href="#services">Services</a> <a href="#shop">Shop</a> <a href="#booking">Boeken</a> <a href="#reviews">Reviews</a> <a href="#about">Over</a> <a href="#contact">Contact</a>
    </nav>
-   <div style="display: flex; align-items: center; gap: 1rem;"><button id="cartButtonHeader" class="cart-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">
-     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-     </svg><span id="cartCountHeader" class="cart-badge">0</span> </button> <button class="mobile-menu-toggle" id="mobileMenuToggle" style="display: none; -webkit-tap-highlight-color: transparent;">
-     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+   <div class="header-actions"><button id="cartButtonHeader" class="cart-button" onclick="document.getElementById('shop-checkout').scrollIntoView({ behavior: 'smooth' })">
+     <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle> <circle cx="20" cy="21" r="1"></circle> <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+     </svg><span id="cartCountHeader" class="cart-badge">0</span> </button> <button class="mobile-menu-toggle" id="mobileMenuToggle">
+     <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line> <line x1="3" y1="12" x2="21" y2="12"></line> <line x1="3" y1="18" x2="21" y2="18"></line>
      </svg></button>
    </div>
   </header><!-- MOBILE MENU DRAWER -->
-  <div id="mobileMenuDrawer" class="mobile-menu-drawer"><button class="mobile-menu-close" id="mobileMenuClose">
-    <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-     <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
-    </svg></button>
+  <div id="mobileMenuDrawer" class="mobile-menu-drawer">
    <nav class="mobile-menu-nav"><a href="#home" class="mobile-menu-link">Home</a> <a href="#services" class="mobile-menu-link">Services</a> <a href="#shop" class="mobile-menu-link">Shop</a> <a href="#booking" class="mobile-menu-link">Boeken</a> <a href="#reviews" class="mobile-menu-link">Reviews</a> <a href="#about" class="mobile-menu-link">Over</a> <a href="#contact" class="mobile-menu-link">Contact</a>
    </nav>
   </div>
@@ -3327,17 +1027,15 @@
       </div>
      </div>
     </div>
-    <div class="hero-buttons">
-     <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
+    <div class="hero-buttons"><button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button> <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' })">Bekijk services</button>
     </div>
    </div>
   </section><!-- SERVICES -->
-  <section class="services" id="services">
+  <section class="section services-section" id="services">
    <h2 class="section-title">Onze Services</h2>
    <p class="section-subtitle">Alle behandelingen met perfectie</p>
    <div class="services-grid">
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/84/c8/31/84c831c44de1c6f4fae86f703cdee851.jpg" alt="Taper Fade" class="service-image" loading="lazy">
      <div class="service-badge">
       POPULAIR
      </div>
@@ -3349,8 +1047,7 @@
       €30
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/a1/08/96/a10896fbe0e4038f8aed9e4c8d18bd26.jpg" alt="Only Hairline" class="service-image" loading="lazy">
      <h3 class="service-name">Only Hairline</h3>
      <div class="service-details">
       <span>⏱ 10 min</span>
@@ -3359,8 +1056,7 @@
       €15
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/1200x/b8/0e/43/b80e43b0cfe99344e2d53dabd0e400f1.jpg" alt="Kids Fade" class="service-image" loading="lazy">
      <h3 class="service-name">Kids Fade (5–15)</h3>
      <div class="service-details">
       <span>⏱ 40 min</span>
@@ -3369,8 +1065,7 @@
       €20
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/736x/4e/68/9b/4e689b787fd256b4595519a236d03b0a.jpg" alt="RW Cut Beard" class="service-image" loading="lazy">
      <h3 class="service-name">RW Cut + Beard</h3>
      <div class="service-details">
       <span>⏱ 45 min</span>
@@ -3379,8 +1074,7 @@
       €35
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
-    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">
-     <img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy" onerror="this.style.display='none'">
+    <div class="service-card" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })"><img src="https://i.pinimg.com/1200x/c9/89/18/c989184e31fb2ed74fedd5d9d4a4dffe.jpg" alt="Propplekken" class="service-image" loading="lazy">
      <h3 class="service-name">Propplekken</h3>
      <div class="service-details">
       <span>⏱ 45 min</span>
@@ -3390,52 +1084,46 @@
      </div><button class="btn-book" onclick="event.stopPropagation(); document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek afspraak</button>
     </div>
    </div>
-  </section><!-- WEBSHOP SECTION -->
-  <section class="section" id="shop" style="background: #2C2C2C; padding: 5rem 2rem;">
-   <h2 class="section-title" style="margin-bottom: 0.5rem;">RWCutzz Merchandise</h2>
-   <p class="section-subtitle" style="margin-bottom: 3rem;">Gerelateerde producten &amp; accessories</p>
-   <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; max-width: 1400px; margin: 0 auto;">
-    <div>
-     <div id="shop-products" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; width: 100%; justify-items: center;">
-      <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 1.5rem; text-align: center; color: #B0B0B0;">
-       <p>Producten laden...</p>
-      </div>
-     </div>
-    </div>
-   </div>
-  </section><!-- CHECKOUT SECTION -->
+  </section><!-- SHOP -->
+  <section class="section" id="shop" style="background: #2c2c2c;">
+   <h2 class="section-title">RWCutzz Merchandise</h2>
+   <p class="section-subtitle">Gerelateerde producten &amp; accessories</p>
+   <div id="shop-products"></div>
+  </section><!-- CHECKOUT -->
   <section class="section" id="shop-checkout" style="background: #121212; padding: 5rem 2rem;">
    <h2 class="section-title" style="margin-bottom: 3rem;">Afrekenen</h2>
-   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; align-items: start;">
-    <form id="shop-form" style="background: #2C2C2C; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem;">
-     <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">Je gegevens</h3><label style="display: block; margin-bottom: 1rem;"> <span style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Naam *</span> <input id="shop-name" type="text" required placeholder="Voor- en achternaam" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.8rem; color: #FFFFFF; font-size: 0.9rem;"> </label> <label style="display: block; margin-bottom: 1rem;"> <span style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">E-mail *</span> <input id="shop-email" type="email" required placeholder="naam@email.nl" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.8rem; color: #FFFFFF; font-size: 0.9rem;"> </label> <label style="display: block; margin-bottom: 1rem;"> <span style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Telefoon *</span> <input id="shop-phone" type="tel" required placeholder="+31 6 12345678" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.8rem; color: #FFFFFF; font-size: 0.9rem;"> </label> <label style="display: block; margin-bottom: 1rem;"> <span style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Adres *</span> <textarea id="shop-address" required placeholder="Straat, huisnummer, postcode, plaats" rows="3" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.8rem; color: #FFFFFF; font-size: 0.9rem; font-family: inherit;"></textarea> </label> <label style="display: block; margin-bottom: 1rem;"> <span style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Opmerking</span> <textarea id="shop-notes" placeholder="Extra informatie voor je bestelling" rows="3" style="width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 0.8rem; color: #FFFFFF; font-size: 0.9rem; font-family: inherit;"></textarea> </label>
-     <div id="shop-message" style="display: none; background: rgba(26, 75, 255, 0.1); border: 1px solid #1A4BFF; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #4D7CFF;"></div><button id="shop-submit" type="submit" style="width: 100%; background: #1A4BFF; color: #FFFFFF; padding: 1rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(26, 75, 255, 0.3);">Bestelling plaatsen</button>
+   <div class="checkout-container">
+    <form id="shop-form" class="checkout-form">
+     <h3>Je gegevens</h3>
+     <div class="form-group"><label class="form-label">Naam *</label> <input id="shop-name" type="text" required placeholder="Voor- en achternaam" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">E-mail *</label> <input id="shop-email" type="email" required placeholder="naam@email.nl" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">Telefoon *</label> <input id="shop-phone" type="tel" required placeholder="+31 6 12345678" class="form-input">
+     </div>
+     <div class="form-group"><label class="form-label">Adres *</label> <textarea id="shop-address" required placeholder="Straat, huisnummer, postcode, plaats" rows="3" class="form-textarea"></textarea>
+     </div>
+     <div class="form-group"><label class="form-label">Opmerking</label> <textarea id="shop-notes" placeholder="Extra informatie voor je bestelling" rows="3" class="form-textarea"></textarea>
+     </div>
+     <div id="shop-message" style="display: none; background: rgba(26, 75, 255, 0.1); border: 1px solid #1a4bff; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: #4d7cff;"></div><button id="shop-submit" type="submit" class="btn-primary" style="width: 100%;">Bestelling plaatsen</button>
     </form>
-    <div style="background: #2C2C2C; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; height: fit-content;">
-     <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem;">Samenvat</h3>
-     <div style="space: 1rem;">
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 0.8rem;">
-       <span>Aantal items</span> <span id="shop-summary-count" style="font-weight: 700; color: #FFFFFF;">0</span>
-      </div>
-      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #B0B0B0; margin-bottom: 1rem;">
-       <span>Subtotaal</span> <span id="shop-summary-subtotal" style="font-weight: 700; color: #FFFFFF;">EUR 0.00</span>
-      </div>
-      <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
-       <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700;">
-        <span>Totaal</span> <span id="shop-summary-total" style="color: #1A4BFF;">EUR 0.00</span>
-       </div>
-      </div>
+    <div class="checkout-summary">
+     <h3>Samenvatting</h3>
+     <div class="summary-row"><span>Aantal items</span> <span class="summary-value" id="shop-summary-count">0</span>
+     </div>
+     <div class="summary-row"><span>Subtotaal</span> <span class="summary-value" id="shop-summary-subtotal">€0,00</span>
+     </div>
+     <div class="summary-row total"><span>Totaal</span> <span class="summary-value" id="shop-summary-total">€0,00</span>
      </div>
     </div>
    </div>
-  </section>
-  <section class="services" id="booking" style="background: #2C2C2C; padding: 5rem 2rem;">
+  </section><!-- BOOKING -->
+  <section class="booking-section" id="booking">
    <h2 class="section-title" style="margin-bottom: 2rem;">Boek je afspraak</h2>
-   <div style="max-width: 900px; margin: 0 auto; background: #121212; border-radius: 16px; padding: 2rem; border: 1px solid #3A3A3A; box-shadow: 0 0 30px rgba(26, 75, 255, 0.15);">
-    <iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/" style="border-radius: 12px;"></iframe>
+   <div class="booking-container"><iframe width="100%" height="800" frameborder="0" src="https://rwcutzz.setmore.com/"></iframe>
    </div>
   </section><!-- REVIEWS -->
-  <section class="reviews" id="reviews">
+  <section class="section reviews-section" id="reviews">
    <div class="reviews-container">
     <div class="reviews-header">
      <h2 class="section-title">Wat zeggen klanten?</h2>
@@ -3444,19 +1132,19 @@
        5.0
       </div>
       <div class="stars">
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+       <svg viewbox="0 0 24 24" fill="currentColor">
         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+       <svg viewbox="0 0 24 24" fill="currentColor">
         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+       <svg viewbox="0 0 24 24" fill="currentColor">
         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+       <svg viewbox="0 0 24 24" fill="currentColor">
         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
-       <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+       <svg viewbox="0 0 24 24" fill="currentColor">
         <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
        </svg>
       </div>
@@ -3465,7 +1153,7 @@
       58 reviews
      </div><a href="https://rwcutzz.setmore.com/reviews?sortBy=highestRated" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-block; margin-top: 1rem; padding: 0.8rem 1.5rem; font-size: 0.9rem; text-decoration: none;">Bekijk alle reviews</a>
     </div>
-    <div class="review-slider-container">
+    <div class="review-slider-wrapper">
      <div class="review-slider">
       <div class="review-slide active">
        <div class="review-author-name">
@@ -3473,19 +1161,19 @@
        </div>
        <p class="review-text">"Beste kapper in Amsterdam. RW weet wat hij doet. Altijd een strakke fade."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
@@ -3496,19 +1184,19 @@
        </div>
        <p class="review-text">"Altijd fresh. Consistent kwaliteit. Hij luistert naar wat je wilt."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
@@ -3519,19 +1207,19 @@
        </div>
        <p class="review-text">"Weet hoe hij met alle haar types moet omgaan. Echt een specialist."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
@@ -3542,85 +1230,74 @@
        </div>
        <p class="review-text">"Schoon, snel, professioneel. Alleen hier heen voor mijn cuts."</p>
        <div class="review-stars">
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
-        <svg width="16" height="16" viewbox="0 0 24 24" fill="currentColor">
+        <svg viewbox="0 0 24 24" fill="currentColor">
          <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 19.91 24 12 18.35 4.09 24 6.23 16.01 0 10.35 8.91 10.26" />
         </svg>
        </div>
       </div>
      </div>
-     <div class="review-dots">
-      <span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
+     <div class="review-dots"><span class="dot active" onclick="currentReview(0)"></span> <span class="dot" onclick="currentReview(1)"></span> <span class="dot" onclick="currentReview(2)"></span> <span class="dot" onclick="currentReview(3)"></span>
      </div>
     </div>
    </div>
   </section><!-- ABOUT -->
-  <section class="about">
+  <section class="section about-section" id="about">
    <div class="about-container">
     <div class="about-text">
      <h2>Over RWCutzz</h2>
      <h3>Wie is RW?</h3>
-     <p>RWCutzz staat voor precision, consistency en perfectie. Met jaren ervaring in het vak specialiseer ik me in fades, tapers en fresh cuts die je altijd tevreden achterlaten.</p>
+     <p>RWCutzz staat voor precision, consistency en perfectie. Met jaren ervaring in het vak specialiseer ik me in fades, tapers en fresh cuts.</p>
      <h3>Waarom RW?</h3>
-     <p>Geen compromissen op kwaliteit. Elke klant krijgt dezelfde aandacht en vakmanschap. Fades, precision, consistent resultaat — dat is RWCutzz.</p>
+     <p>Geen compromissen op kwaliteit. Elke klant krijgt dezelfde aandacht. Fades, precision, consistent resultaat — dat is RWCutzz.</p>
     </div>
-    <div class="about-image">
-     <img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy" onerror="this.style.display='none'">
+    <div class="about-image"><img src="https://images.setmore.com/files/img/flPbumuMXKyT/img-5479.png" alt="RW Cutzz Barber" loading="lazy">
     </div>
    </div>
   </section><!-- CONTACT -->
-  <section class="contact" id="contact">
-   <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">Contact</h2>
+  <section class="section contact-section" id="contact">
+   <h2 class="section-title">Contact</h2>
    <div class="contact-container">
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5m-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11m3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5" />
-      </svg>
+      📍
      </div>
      <div class="contact-label">
       Adres
      </div>
-     <div class="contact-info">
-      <a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
-        1025 BW Amsterdam </a>
+     <div class="contact-info"><a href="https://maps.google.com/?q=Mariëndaal+94,+1025BW+Amsterdam" target="_blank" rel="noopener noreferrer" class="contact-link"> Mariëndaal 94<br>
+       1025 BW Amsterdam </a>
      </div>
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5-8-5V6l8 5 8-5v2z" />
-      </svg>
+      ✉️
      </div>
      <div class="contact-label">
       Email
      </div>
-     <div class="contact-info">
-      <a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
+     <div class="contact-info"><a href="mailto:chanoroch@outlook.com" class="contact-link">chanoroch@outlook.com</a>
      </div>
     </div>
     <div class="contact-card">
      <div class="contact-icon">
-      <svg viewbox="0 0 24 24">
-       <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z" />
-      </svg>
+      💬
      </div>
      <div class="contact-label">
       WhatsApp
      </div>
-     <div class="contact-info">
-      <a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
+     <div class="contact-info"><a href="https://wa.me/31612345678" target="_blank" rel="noopener noreferrer" class="contact-link">Stuur bericht</a>
      </div>
     </div>
    </div>
@@ -3633,1479 +1310,192 @@
     </div>
     <div class="footer-section">
      <h4>Bedrijfsinfo</h4>
-     <div class="footer-company-info">
-      <p><strong>KVK:</strong> 94077991</p>
-      <p><strong>Vorm:</strong> Eenmanszaak</p>
-      <p><strong>Vestiging:</strong> 000059578688</p>
-     </div>
+     <p><strong>KVK:</strong> 94077991</p>
+     <p><strong>Vorm:</strong> Eenmanszaak</p>
     </div>
     <div class="footer-section">
      <h4>Openingstijden</h4>
      <p>Dinsdag – Zaterdag<br>
-       09:00 – 18:00</p>
+      09:00 – 18:00</p>
     </div>
    </div>
    <div class="footer-divider">
     <p>© 2024 RWCUTZZ. Alle rechten voorbehouden.</p>
    </div>
   </footer><!-- STICKY BUTTON --> <button class="sticky-book" onclick="document.getElementById('booking').scrollIntoView({ behavior: 'smooth' })">Boek nu</button>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
   <script>
+    // MOBILE MENU
+    const toggle = document.getElementById('mobileMenuToggle');
+    const drawer = document.getElementById('mobileMenuDrawer');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    
+    toggle.addEventListener('click', () => {
+      drawer.classList.add('active');
+      overlay.classList.add('active');
+    });
+
+    [...document.querySelectorAll('.mobile-menu-link'), overlay].forEach(el => {
+      el.addEventListener('click', () => {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+      });
+    });
+
+    // REVIEW SLIDER
     let currentReviewIndex = 0;
     const totalReviews = 4;
     let autoRotateTimer;
-    
-    let currentGalleryIndex = 0;
-    const totalGallerySlides = 4;
 
     function showReview(n) {
       const slides = document.querySelectorAll('.review-slide');
       const dots = document.querySelectorAll('.dot');
-      
       currentReviewIndex = (n + totalReviews) % totalReviews;
-      
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-      
+      slides.forEach(s => s.classList.remove('active'));
+      dots.forEach(d => d.classList.remove('active'));
       slides[currentReviewIndex].classList.add('active');
       dots[currentReviewIndex].classList.add('active');
     }
 
     function currentReview(n) {
       clearTimeout(autoRotateTimer);
-      currentReviewIndex = n;
-      showReview(currentReviewIndex);
+      showReview(n);
       startAutoRotate();
-    }
-
-    function nextReview() {
-      currentReviewIndex++;
-      showReview(currentReviewIndex);
     }
 
     function startAutoRotate() {
       autoRotateTimer = setTimeout(() => {
-        nextReview();
+        currentReviewIndex = (currentReviewIndex + 1) % totalReviews;
+        showReview(currentReviewIndex);
         startAutoRotate();
       }, 5000);
     }
 
-    // GALLERY SLIDER
-    function initGalleryDots() {
-      const dotsContainer = document.getElementById('galleryDots');
-      dotsContainer.innerHTML = '';
-      for (let i = 0; i < totalGallerySlides; i++) {
-        const dot = document.createElement('button');
-        dot.className = `gallery-dot ${i === 0 ? 'active' : ''}`;
-        dot.onclick = () => gallerySlide(i - currentGalleryIndex);
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function gallerySlide(n) {
-      const slides = document.querySelectorAll('.gallery-slide');
-      currentGalleryIndex = (currentGalleryIndex + n + totalGallerySlides) % totalGallerySlides;
-      
-      slides.forEach((slide, index) => {
-        slide.style.transform = `translateX(${(index - currentGalleryIndex) * 100}%)`;
-      });
-
-      document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentGalleryIndex);
-      });
-    }
-
-    window.addEventListener('scroll', () => {
-      const stickyBtn = document.querySelector('.sticky-book');
-      if (window.scrollY > 300) {
-        stickyBtn.style.display = 'block';
-      } else {
-        stickyBtn.style.display = 'none';
-      }
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      initGalleryDots();
-      shopState.cart = shopLoadCart();
-      shopLoadProducts();
-      shopRenderCart();
-    });
-
     startAutoRotate();
-  </script>
-  <script>
-    // WEBSHOP SYSTEM
+
+    // STICKY BUTTON
+    window.addEventListener('scroll', () => {
+      document.querySelector('.sticky-book').style.display = window.scrollY > 300 ? 'block' : 'none';
+    });
+
+    lucide.createIcons();
+
+    // WEBSHOP
     const SHOP_API = 'https://script.google.com/macros/s/AKfycbxj_Ierv6wIP49zPeKzHGpQkA-_lHNzOLHgEswBNC_RihHFggR-ivM3cTianA9XBLUH7A/exec';
-    const SHOP_CART_KEY = 'rwcutzz_shop_cart_v1';
-    
     let shopState = {
-      cart: [],
-      products: [],
-      settings: {}
+      cart: JSON.parse(localStorage.getItem('rwcutzz_cart_v1') || '[]'),
+      products: []
     };
 
-    function shopLoadCart() {
+    async function loadProducts() {
       try {
-        return JSON.parse(localStorage.getItem(SHOP_CART_KEY) || '[]');
-      } catch {
-        return [];
-      }
-    }
-
-    function shopSaveCart() {
-      localStorage.setItem(SHOP_CART_KEY, JSON.stringify(shopState.cart));
-    }
-
-    function shopFormatCurrency(val) {
-      return '€' + Number(val || 0).toFixed(2).replace('.', ',');
-    }
-
-    function shopAddToCart(productId) {
-      const product = shopState.products.find(p => Number(p.id) === Number(productId));
-      if (!product) return;
-      
-      const existing = shopState.cart.find(item => Number(item.product_id) === Number(productId));
-      if (existing) {
-        if (existing.quantity >= Number(product.stock)) return;
-        existing.quantity += 1;
-      } else {
-        shopState.cart.push({
-          product_id: Number(product.id),
-          product_name: product.name,
-          price: Number(product.price),
-          quantity: 1,
-          image_url: product.image_url || ''
-        });
-      }
-      shopSaveCart();
-      shopRenderCart();
-    }
-
-    function shopUpdateCart(productId, qty) {
-      const item = shopState.cart.find(i => Number(i.product_id) === Number(productId));
-      if (!item) return;
-      
-      if (qty <= 0) {
-        shopState.cart = shopState.cart.filter(i => Number(i.product_id) !== Number(productId));
-      } else {
-        item.quantity = qty;
-      }
-      shopSaveCart();
-      shopRenderCart();
-    }
-
-    function shopRenderCart() {
-      const container = document.getElementById('shop-cart-items');
-      const emptyMsg = document.getElementById('shop-cart-empty');
-      const cartCount = shopState.cart.reduce((sum, item) => sum + item.quantity, 0);
-      const subtotal = shopState.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      
-      document.getElementById('cartCountHeader').textContent = String(cartCount);
-      document.getElementById('cartPriceHeader').textContent = shopFormatCurrency(subtotal);
-      container.innerHTML = '';
-      
-      if (shopState.cart.length === 0) {
-        emptyMsg.style.display = 'block';
-      } else {
-        emptyMsg.style.display = 'none';
-        shopState.cart.forEach(item => {
-          const row = document.createElement('div');
-          row.style.cssText = 'background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem; margin-bottom: 0.8rem; display: flex; justify-content: space-between; align-items: center;';
-          
-          row.innerHTML = `
-            <div style="flex: 1;">
-              <div style="font-weight: 600; color: #FFFFFF;">${item.product_name}</div>
-              <div style="font-size: 0.85rem; color: #B0B0B0; margin-top: 0.3rem;">${shopFormatCurrency(item.price)} × ${item.quantity}</div>
-            </div>
-            <div style="display: flex; gap: 0.5rem; align-items: center;">
-              <button onclick="shopUpdateCart(${item.product_id}, ${item.quantity - 1})" style="background: rgba(26,75,255,0.2); border: none; color: #1A4BFF; padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; font-weight: 700;">−</button>
-              <button onclick="shopUpdateCart(${item.product_id}, ${item.quantity + 1})" style="background: rgba(26,75,255,0.2); border: none; color: #1A4BFF; padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; font-weight: 700;">+</button>
-              <button onclick="shopUpdateCart(${item.product_id}, 0)" style="background: rgba(255,255,255,0.05); border: none; color: #B0B0B0; padding: 0.4rem 0.6rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">✕</button>
-            </div>
-          `;
-          container.appendChild(row);
-        });
-      }
-
-      document.getElementById('shop-subtotal').textContent = shopFormatCurrency(subtotal);
-      document.getElementById('shop-total').textContent = shopFormatCurrency(subtotal);
-      
-      document.getElementById('shop-summary-count').textContent = String(cartCount);
-      document.getElementById('shop-summary-subtotal').textContent = shopFormatCurrency(subtotal);
-      document.getElementById('shop-summary-total').textContent = shopFormatCurrency(subtotal);
-    }
-
-    async function shopLoadProducts() {
-      try {
-        const resp = await fetch(`${SHOP_API}?action=products`);
-        const data = await resp.json();
+        const res = await fetch(`${SHOP_API}?action=products`);
+        const data = await res.json();
         if (data.success && Array.isArray(data.data)) {
           shopState.products = data.data;
-          shopRenderProducts();
+          renderProducts();
         }
-      } catch (err) {
-        console.error('Shop products error:', err);
-      }
+      } catch (e) { console.error('Shop error:', e); }
     }
 
-    function shopRenderProducts() {
+    function renderProducts() {
       const grid = document.getElementById('shop-products');
       grid.innerHTML = '';
-      
-      shopState.products.forEach((product, index) => {
+      shopState.products.forEach((p, i) => {
         const card = document.createElement('div');
-        const inStock = Number(product.stock) > 0;
-        const isPopular = index === 0;
-        
-        card.style.cssText = 'background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; transition: all 0.3s; position: relative;';
-        
+        card.className = 'product-card';
         card.innerHTML = `
-          <div style="position: relative; height: 220px; background: #2C2C2C; overflow: hidden;">
-            ${isPopular ? '<div style="position: absolute; top: 12px; left: 12px; background: #1A4BFF; color: #FFFFFF; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; z-index: 10;">⭐ POPULAIR</div>' : ''}
-            <img src="${product.image_url || 'https://via.placeholder.com/280x220?text=' + encodeURIComponent(product.name)}" 
-                 alt="${product.name}" 
-                 style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s;"
-                 loading="lazy"
-                 onerror="this.src='https://via.placeholder.com/280x220?text=' + encodeURIComponent('${product.name}'); this.style.background='#2C2C2C';">
+          <div class="product-image-container">
+            ${i === 0 ? '<div class="product-badge">⭐ POPULAIR</div>' : ''}
+            <img src="${p.image_url}" alt="${p.name}" class="product-image" loading="lazy">
           </div>
-          
-          <div style="padding: 1.5rem;">
-            <h4 style="font-weight: 700; color: #FFFFFF; margin-bottom: 0.5rem; font-size: 1.05rem;">✂️ ${product.name}</h4>
-            
-            <div style="font-size: 1.5rem; font-weight: 700; color: #1A4BFF; margin-bottom: 0.8rem;">
-              ${shopFormatCurrency(product.price)}
-            </div>
-            
-            <div style="font-size: 0.8rem; color: ${inStock ? '#4ade80' : '#ef4444'}; margin-bottom: 1rem; font-weight: 600;">
-              ${inStock ? '🟢 Op voorraad (' + product.stock + ')' : '🔴 Uitverkocht'}
-            </div>
-            
-            <p style="font-size: 0.85rem; color: #B0B0B0; margin-bottom: 1.2rem; line-height: 1.4; min-height: 40px;">
-              ${product.description || 'Premium product'}
-            </p>
-            
-            <button onclick="shopAddToCart(${product.id})" 
-                    style="width: 100%; background: #1A4BFF; color: #FFFFFF; padding: 0.9rem; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 0.9rem;" 
-                    ${!inStock ? 'disabled style="opacity: 0.5; cursor: not-allowed;"' : ''}>
-              ${inStock ? 'Toevoegen' : 'Uitverkocht'}
-            </button>
+          <div class="product-content">
+            <h4 class="product-name">✂️ ${p.name}</h4>
+            <div class="product-price">${formatCurrency(p.price)}</div>
+            <div class="product-stock ${p.stock > 0 ? 'in-stock' : 'out-of-stock'}">${p.stock > 0 ? '🟢 Op voorraad (' + p.stock + ')' : '🔴 Uitverkocht'}</div>
+            <p class="product-description">${p.description}</p>
+            <button onclick="addToCart(${p.id})" class="btn-add-cart" ${p.stock <= 0 ? 'disabled' : ''}>${p.stock > 0 ? 'Toevoegen' : 'Uitverkocht'}</button>
           </div>
         `;
-        
-        // Hover effect
-        card.addEventListener('mouseenter', () => {
-          card.style.transform = 'translateY(-4px)';
-          card.style.boxShadow = '0 8px 24px rgba(26, 75, 255, 0.2)';
-          card.style.borderColor = '#1A4BFF';
-          const img = card.querySelector('img');
-          if (img) img.style.transform = 'scale(1.05)';
-        });
-        
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'translateY(0)';
-          card.style.boxShadow = 'none';
-          card.style.borderColor = 'rgba(255,255,255,0.08)';
-          const img = card.querySelector('img');
-          if (img) img.style.transform = 'scale(1)';
-        });
-        
         grid.appendChild(card);
       });
     }
 
+    function formatCurrency(v) { return '€' + Number(v).toFixed(2).replace('.', ','); }
+
+    function addToCart(id) {
+      const p = shopState.products.find(x => x.id == id);
+      if (!p) return;
+      const existing = shopState.cart.find(x => x.product_id == id);
+      if (existing && existing.quantity < p.stock) existing.quantity++;
+      else if (!existing) shopState.cart.push({ product_id: id, product_name: p.name, price: p.price, quantity: 1 });
+      saveCart();
+      renderCart();
+    }
+
+    function saveCart() { localStorage.setItem('rwcutzz_cart_v1', JSON.stringify(shopState.cart)); }
+
+    function renderCart() {
+      const count = shopState.cart.reduce((s, i) => s + i.quantity, 0);
+      const total = shopState.cart.reduce((s, i) => s + i.price * i.quantity, 0);
+      document.getElementById('cartCountHeader').textContent = count;
+      document.getElementById('shop-summary-count').textContent = count;
+      document.getElementById('shop-summary-subtotal').textContent = formatCurrency(total);
+      document.getElementById('shop-summary-total').textContent = formatCurrency(total);
+    }
+
     document.getElementById('shop-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      if (!shopState.cart.length) { alert('Winkelwagen is leeg'); return; }
       
-      if (shopState.cart.length === 0) {
-        showToast('Je winkelwagen is leeg.', 'error');
-        return;
-      }
-
-      const name = document.getElementById('shop-name').value.trim();
-      const email = document.getElementById('shop-email').value.trim();
-      const phone = document.getElementById('shop-phone').value.trim();
-      const address = document.getElementById('shop-address').value.trim();
-      const notes = document.getElementById('shop-notes').value.trim();
-
-      if (!name || !email || !phone || !address) {
-        showToast('Vul alle verplichte velden in.', 'error');
-        return;
-      }
-
-      const msgBox = document.getElementById('shop-message');
-      const submitBtn = document.getElementById('shop-submit');
-      
-      msgBox.style.display = 'none';
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Bestelling wordt geplaatst...';
+      const btn = document.getElementById('shop-submit');
+      const msg = document.getElementById('shop-message');
+      btn.disabled = true;
+      btn.textContent = 'Bezig...';
 
       try {
-        const payload = {
-          action: 'createOrder',
-          customer_name: name,
-          email: email,
-          phone: phone,
-          address: address,
-          delivery_type: 'verzenden',
-          pickup_time: '',
-          notes: notes,
-          items: shopState.cart.map(item => ({
-            product_id: Number(item.product_id),
-            quantity: Number(item.quantity)
-          }))
-        };
-
-        const resp = await fetch(SHOP_API, {
+        const res = await fetch(SHOP_API, {
           method: 'POST',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(payload)
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({
+            action: 'createOrder',
+            customer_name: document.getElementById('shop-name').value,
+            email: document.getElementById('shop-email').value,
+            phone: document.getElementById('shop-phone').value,
+            address: document.getElementById('shop-address').value,
+            notes: document.getElementById('shop-notes').value,
+            items: shopState.cart
+          })
         });
-
-        const result = await resp.json();
-
-        if (result.success) {
+        const data = await res.json();
+        if (data.success) {
           shopState.cart = [];
-          shopSaveCart();
-          shopRenderCart();
+          saveCart();
+          renderCart();
+          msg.style.background = 'rgba(16,185,129,0.1)';
+          msg.style.borderColor = '#10b981';
+          msg.style.color = '#10b981';
+          msg.style.display = 'block';
+          msg.textContent = 'Bestelling geplaatst! Ordernummer: ' + (data.data?.order_id || 'N/A');
           document.getElementById('shop-form').reset();
-          
-          msgBox.style.cssText = 'display: block; background: rgba(16, 185, 129, 0.1); border: 1px solid #10b981; color: #10b981;';
-          msgBox.innerHTML = `Bestelling geplaatst! Ordernummer: <strong>${result.data?.order_id || 'N/A'}</strong>`;
-          
-          showToast('Bestelling succesvol geplaatst!', 'success');
-          setTimeout(() => window.location.hash = '#shop', 2000);
-        } else {
-          throw new Error(result.error?.message || 'Bestelling mislukt');
-        }
-      } catch (err) {
-        msgBox.style.cssText = 'display: block; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; color: #ef4444;';
-        msgBox.textContent = err.message || 'Er ging iets fout.';
-        showToast(msgBox.textContent, 'error');
+        } else throw new Error(data.error?.message || 'Mislukt');
+      } catch (e) {
+        msg.style.background = 'rgba(239,68,68,0.1)';
+        msg.style.borderColor = '#ef4444';
+        msg.style.color = '#ef4444';
+        msg.style.display = 'block';
+        msg.textContent = e.message;
       } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Bestelling plaatsen';
+        btn.disabled = false;
+        btn.textContent = 'Bestelling plaatsen';
       }
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-      shopState.cart = shopLoadCart();
-      shopLoadProducts();
-      shopRenderCart();
+      loadProducts();
+      renderCart();
     });
   </script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    html { 
-      height: 100%; 
-      touch-action: manipulation;
-      scroll-behavior: smooth;
-    }
-
-    body { 
-      height: 100%; 
-      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #121212;
-      color: #ffffff;
-      overflow-x: hidden;
-      touch-action: manipulation;
-    }
-
-    /* HEADER / NAV */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(18, 18, 18, 0.98);
-      backdrop-filter: blur(10px);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-      transition: all 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: scale(1.02);
-    }
-
-    .logo-symbol {
-      font-size: 1.5rem;
-    }
-
-    nav {
-      display: flex;
-      gap: 1.2rem;
-      align-items: center;
-    }
-
-    nav a {
-      font-size: 0.75rem;
-      text-decoration: none;
-      color: #B0B0B0;
-      transition: all 0.3s;
-      font-weight: 500;
-      position: relative;
-      white-space: nowrap;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #1A4BFF;
-      transition: width 0.3s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    nav a:hover {
-      color: #4D7CFF;
-    }
-
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #FFFFFF;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .mobile-menu-toggle:active {
-      transform: scale(0.95);
-    }
-
-    .cta-button {
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 0.5rem 0.9rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 0.75rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 15px rgba(26, 75, 255, 0.4);
-      -webkit-tap-highlight-color: transparent;
-      white-space: nowrap;
-    }
-
-    .cta-button:hover {
-      background: #4D7CFF;
-      transform: translateY(-2px);
-      box-shadow: 0 0 25px rgba(26, 75, 255, 0.7);
-    }
-
-    .cta-button:active {
-      transform: translateY(0);
-    }
-
-    /* HERO SECTION */
-    .hero {
-      position: relative;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 60px;
-      overflow: hidden;
-      background: #121212;
-    }
-
-    .hero-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, #2C2C2C 0%, #121212 100%);
-      background-image: url('https://drive.google.com/uc?export=view&id=1yldYDJolbfbEMR67X_5Ds2QqO7lheQfS');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      z-index: 1;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: 2;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    .hero-title {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 900;
-      margin-bottom: 1rem;
-      letter-spacing: -1px;
-      text-shadow: 0 0 30px rgba(26, 75, 255, 0.6);
-      color: #FFFFFF;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 4vw, 1.5rem);
-      color: #B0B0B0;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-tagline {
-      font-size: 0.95rem;
-      color: #4D7CFF;
-      margin-bottom: 2rem;
-      font-weight: 400;
-    }
-
-    .hero-stats {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: #1A4BFF;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: #808080;
-      margin-top: 0.3rem;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 1rem 2.5rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-primary:hover {
-      background: #4D7CFF;
-      transform: translateY(-3px);
-      box-shadow: 0 0 30px rgba(26, 75, 255, 0.8);
-    }
-
-    .btn-primary:active {
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #1A4BFF;
-      padding: 1rem 2.5rem;
-      border: 2px solid #1A4BFF;
-      border-radius: 4px;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-secondary:hover {
-      background: #1A4BFF;
-      color: #FFFFFF;
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.5);
-    }
-
-    .btn-secondary:active {
-      transform: scale(0.98);
-    }
-
-    /* SERVICES SECTION */
-    .services {
-      padding: 5rem 2rem;
-      background: #121212;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: 900;
-      margin-bottom: 0.5rem;
-      letter-spacing: -1px;
-      color: #FFFFFF;
-      text-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
-    }
-
-    .section-subtitle {
-      font-size: 1rem;
-      color: #808080;
-      margin-bottom: 3rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .services-grid .service-card:nth-child(1) {
-      grid-column: 1;
-    }
-
-    .services-grid .service-card:nth-child(2) {
-      grid-column: 2;
-    }
-
-    .services-grid .service-card:nth-child(3) {
-      grid-column: 1 / -1;
-    }
-
-    .services-grid .service-card:nth-child(n+3) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .services-grid {
-      grid-template-columns: repeat(6, 1fr);
-    }
-
-    .services-grid .service-card:nth-child(1) {
-      grid-column: span 3;
-    }
-
-    .services-grid .service-card:nth-child(2) {
-      grid-column: span 3;
-    }
-
-    .services-grid .service-card:nth-child(3) {
-      grid-column: span 2;
-    }
-
-    .services-grid .service-card:nth-child(4) {
-      grid-column: span 2;
-    }
-
-    .services-grid .service-card:nth-child(5) {
-      grid-column: span 2;
-    }
-
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(10px);
-      padding: 1.5rem;
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: #1A4BFF;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
-    }
-
-    .service-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-      transition: transform 0.3s ease;
-    }
-
-    .service-card:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: #1A4BFF;
-      transform: translateY(-5px);
-      box-shadow: 0 0 20px rgba(26, 75, 255, 0.3);
-    }
-
-    .service-card:hover .service-image {
-      transform: scale(1.05);
-    }
-
-    .service-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    .service-card:active {
-      transform: translateY(-2px);
-    }
-
-    .service-badge {
-      display: inline-block;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 0.4rem 0.8rem;
-      border-radius: 2px;
-      margin-bottom: 1rem;
-    }
-
-    .service-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #FFFFFF;
-    }
-
-    .service-details {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1rem 0;
-      font-size: 0.9rem;
-      color: #B0B0B0;
-    }
-
-    .service-price {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #1A4BFF;
-      margin: 1rem 0;
-    }
-
-    .btn-book {
-      width: 100%;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 0.8rem;
-      border: none;
-      border-radius: 4px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 1rem;
-      box-shadow: 0 0 10px rgba(26, 75, 255, 0.3);
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .btn-book:hover {
-      background: #4D7CFF;
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px rgba(26, 75, 255, 0.6);
-    }
-
-    .btn-book:active {
-      transform: translateY(0);
-    }
-
-    /* REVIEWS SECTION */
-    .reviews {
-      padding: 5rem 2rem;
-      background: #2C2C2C;
-    }
-
-    .reviews-container {
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .reviews-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .rating-display {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .rating-number {
-      font-size: 2.5rem;
-      font-weight: 900;
-      color: #1A4BFF;
-    }
-
-    .stars {
-      font-size: 1.5rem;
-      color: #1A4BFF;
-    }
-
-    .review-count {
-      font-size: 0.9rem;
-      color: #B0B0B0;
-    }
-
-    .reviews-slider {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .review-card {
-      background: #121212;
-      padding: 1.5rem;
-      border-radius: 16px;
-      border-left: 3px solid #1A4BFF;
-      animation: slideIn 0.5s ease-out;
-    }
-
-    .review-stars {
-      color: #1A4BFF;
-      margin-bottom: 0.8rem;
-      font-size: 0.95rem;
-    }
-
-    .review-text {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: #E0E0E0;
-      margin-bottom: 0.8rem;
-    }
-
-    .review-author {
-      font-size: 0.85rem;
-      color: #B0B0B0;
-      font-weight: 600;
-    }
-
-    /* GALLERY SECTION */
-    .gallery {
-      padding: 5rem 2rem;
-      background: #121212;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .gallery-item {
-      aspect-ratio: 1;
-      background: #2C2C2C;
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-    }
-
-    .gallery-item-image {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #2C2C2C, #1A1A1A);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      transition: transform 0.3s ease;
-      color: #1A4BFF;
-      border-radius: 12px;
-    }
-
-    .gallery-item:hover .gallery-item-image {
-      transform: scale(1.05);
-    }
-
-    .gallery-item:active {
-      transform: scale(0.98);
-    }
-
-    /* ABOUT SECTION */
-    .about {
-      padding: 5rem 2rem;
-      background: #2C2C2C;
-    }
-
-    .about-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #1A4BFF;
-      margin-bottom: 1rem;
-    }
-
-    .about-text p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      color: #B0B0B0;
-      margin-bottom: 1rem;
-    }
-
-    .about-image {
-      aspect-ratio: 1;
-      background: linear-gradient(135deg, #1A4BFF, #121212);
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      border: 2px solid #1A4BFF;
-    }
-
-    /* CONTACT SECTION */
-    .contact {
-      padding: 5rem 2rem;
-      background: #121212;
-    }
-
-    .contact-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-    }
-
-    .contact-card {
-      background: #2C2C2C;
-      padding: 2rem;
-      border-radius: 16px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-    }
-
-    .contact-card:hover {
-      border-color: #1A4BFF;
-      box-shadow: 0 0 15px rgba(26, 75, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .contact-card:active {
-      transform: translateY(0);
-    }
-
-    .contact-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .contact-label {
-      font-size: 0.9rem;
-      color: #808080;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .contact-info {
-      font-size: 1.1rem;
-      font-weight: 600;
-      word-break: break-word;
-      color: #FFFFFF;
-    }
-
-    .contact-link {
-      color: #1A4BFF;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .contact-link:hover {
-      color: #4D7CFF;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #0A0A0A;
-      padding: 3rem 2rem;
-      border-top: 1px solid #2C2C2C;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #606060;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      text-align: left;
-      margin-bottom: 2rem;
-    }
-
-    .footer-section h4 {
-      color: #1A4BFF;
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .footer-section p {
-      font-size: 0.85rem;
-      color: #808080;
-      line-height: 1.8;
-    }
-
-    .footer-divider {
-      border-top: 1px solid #2C2C2C;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      text-align: center;
-    }
-
-    .footer-company-info {
-      font-size: 0.8rem;
-      color: #606060;
-      line-height: 1.8;
-    }
-
-    /* STICKY BUTTON */
-    .sticky-book {
-      display: none;
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      z-index: 500;
-      background: #1A4BFF;
-      color: #FFFFFF;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 50px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(26, 75, 255, 0.6);
-      transition: all 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .sticky-book:hover {
-      background: #4D7CFF;
-      transform: scale(1.05);
-      box-shadow: 0 0 35px rgba(26, 75, 255, 0.8);
-    }
-
-    .sticky-book:active {
-      transform: scale(1.02);
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header {
-        padding: 0.8rem 1rem;
-      }
-
-      .logo {
-        font-size: 1.1rem;
-      }
-
-      .logo img {
-        width: 35px !important;
-        height: 35px !important;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .mobile-menu-toggle {
-        display: block;
-      }
-
-      .cta-button {
-        display: none;
-      }
-
-      .hero {
-        margin-top: 50px;
-        height: 70vh;
-      }
-
-      .hero-background {
-        background-attachment: scroll;
-      }
-
-      .hero-title {
-        font-size: 1.8rem;
-      }
-
-      .hero-subtitle {
-        font-size: 1rem;
-      }
-
-      .hero-stats {
-        gap: 1rem;
-        flex-direction: column;
-        margin: 1.5rem 0;
-      }
-
-      .stat-value {
-        font-size: 1.1rem;
-      }
-
-      .stat-label {
-        font-size: 0.75rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 1rem;
-      }
-
-      .btn-primary, .btn-secondary {
-        width: 100%;
-        padding: 0.9rem 1.5rem;
-        font-size: 0.95rem;
-      }
-
-      .services {
-        padding: 2.5rem 1rem;
-      }
-
-      .section-title {
-        font-size: 1.8rem;
-      }
-
-      .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-      }
-
-      .services-grid .service-card:nth-child(1) {
-        grid-column: span 1;
-      }
-
-      .services-grid .service-card:nth-child(2) {
-        grid-column: span 1;
-      }
-
-      .services-grid .service-card:nth-child(3) {
-        grid-column: span 1;
-      }
-
-      .services-grid .service-card:nth-child(4) {
-        grid-column: span 1;
-        margin-left: auto;
-      }
-
-      .services-grid .service-card:nth-child(5) {
-        grid-column: span 1;
-      }
-
-      .service-image {
-        height: 150px;
-      }
-
-      .reviews {
-        padding: 2.5rem 1rem;
-      }
-
-      .reviews-slider {
-        grid-template-columns: 1fr;
-      }
-
-      .review-card {
-        padding: 1.2rem;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .about-image {
-        font-size: 3rem;
-      }
-
-      .sticky-book {
-        display: block;
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.7rem 1.2rem;
-        font-size: 0.85rem;
-      }
-
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-card {
-        padding: 1.5rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 1.5rem;
-      }
-
-      .footer-section {
-        text-align: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 0.6rem 0.8rem;
-      }
-
-      .logo {
-        font-size: 1rem;
-        letter-spacing: 1px;
-      }
-
-      .logo img {
-        width: 32px !important;
-        height: 32px !important;
-      }
-
-      .hero {
-        height: 60vh;
-        margin-top: 45px;
-      }
-
-      .hero-title {
-        font-size: 1.5rem;
-      }
-
-      .hero-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
-      }
-
-      .hero-tagline {
-        font-size: 0.85rem;
-        margin-bottom: 1.2rem;
-      }
-
-      .hero-stats {
-        gap: 0.8rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .stat-value {
-        font-size: 1rem;
-      }
-
-      .stat-label {
-        font-size: 0.7rem;
-      }
-
-      .hero-buttons {
-        gap: 0.5rem;
-        padding: 0 0.8rem;
-      }
-
-      .btn-primary, .btn-secondary {
-        padding: 0.8rem 1.2rem;
-        font-size: 0.9rem;
-      }
-
-      .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-      }
-
-      .section-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .services {
-        padding: 2rem 0.8rem;
-      }
-
-      .services-grid {
-        gap: 1rem;
-      }
-
-      .service-card {
-        padding: 1rem;
-      }
-
-      .service-image {
-        height: 120px;
-        margin-bottom: 0.8rem;
-      }
-
-      .service-name {
-        font-size: 1rem;
-      }
-
-      .service-price {
-        font-size: 1.5rem;
-      }
-
-      .btn-book {
-        padding: 0.7rem;
-        font-size: 0.9rem;
-      }
-
-      .reviews {
-        padding: 2rem 0.8rem;
-      }
-
-      .rating-number {
-        font-size: 2rem;
-      }
-
-      .review-text {
-        font-size: 0.9rem;
-      }
-
-      .gallery {
-        padding: 2rem 0.8rem;
-      }
-
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.8rem;
-      }
-
-      .about {
-        padding: 2rem 0.8rem;
-      }
-
-      .about-text h3 {
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .about-text p {
-        font-size: 0.9rem;
-        line-height: 1.6;
-        margin-bottom: 0.8rem;
-      }
-
-      .contact {
-        padding: 2rem 0.8rem;
-      }
-
-      .contact-card {
-        padding: 1.2rem;
-      }
-
-      .contact-icon {
-        font-size: 2rem;
-      }
-
-      .sticky-book {
-        width: calc(100% - 1rem);
-        bottom: 0.8rem;
-        right: 0.5rem;
-        padding: 0.6rem 1rem;
-        font-size: 0.8rem;
-      }
-
-      footer {
-        padding: 2rem 0.8rem;
-      }
-
-      .footer-content {
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-
-      .footer-section h4 {
-        font-size: 0.9rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .footer-company-info {
-        font-size: 0.75rem;
-      }
-    }
-  </style>
-  <script src="/_sdk/data_sdk.js"></script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ea8f677c3718477',t:'MTc3NTg5OTcyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html><!-- HEADER -->
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb2ab7b00166715',t:'MTc3NjAwMTUwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
