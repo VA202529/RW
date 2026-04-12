@@ -182,7 +182,7 @@
          </div>
          <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">Te Laat</h3>
          <p class="text-sm opacity-60 leading-relaxed">5 min → +€5<br>
-          10 min → +€10</p>
+           10 min → +€10</p>
         </div>
         <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.1s;">
          <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);"><i data-lucide="x-circle" style="width:24px;height:24px;color:#d4af37;"></i>
@@ -313,7 +313,7 @@
         <div class="lg:col-span-1 fade-up" style="animation-delay: 0.1s;">
          <div class="rounded-2xl p-6 md:p-8 sticky top-24" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
           <h3 class="text-lg font-semibold mb-4 gold-text">Besteloverzicht</h3>
-          <div id="checkout-items" class="space-y-3 mb-4 max-h-64 overflow-y-auto"></div>
+          <div id="checkout-items" class="space-y-3 mb-4 max-h-96 overflow-y-auto"></div>
           <div class="space-y-3 rounded-xl p-4 mb-4" style="background:rgba(212,175,55,0.05);">
            <div class="flex justify-between text-sm opacity-70"><span>Subtotaal</span> <span id="checkout-subtotal">€0.00</span>
            </div>
@@ -401,9 +401,9 @@
           <div>
            <p class="text-sm opacity-50 mb-2">📍 ADRES</p>
            <p class="text-lg font-semibold">Mariendaal 94<br>
-            (Tijdelijk)<br>
-            1025 BW Amsterdam<br>
-            Netherlands</p><a href="https://maps.google.com/?q=Mariendaal+94+Amsterdam" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 text-sm font-semibold hover:opacity-70 transition gold-text"> <i data-lucide="map-pin" style="width:16px;height:16px;"></i> Bekijk op Google Maps </a>
+             (Tijdelijk)<br>
+             1025 BW Amsterdam<br>
+             Netherlands</p><a href="https://maps.google.com/?q=Mariendaal+94+Amsterdam" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 text-sm font-semibold hover:opacity-70 transition gold-text"> <i data-lucide="map-pin" style="width:16px;height:16px;"></i> Bekijk op Google Maps </a>
           </div>
           <div>
            <p class="text-sm opacity-50 mb-2">📧 EMAIL</p><a href="mailto:info@rwcutzz.com" class="text-lg font-semibold hover:opacity-70 transition gold-text">info@rwcutzz.com</a>
@@ -731,7 +731,6 @@
       }
     }
 
-    // EVENT LISTENERS
     document.getElementById('logo-btn').addEventListener('click', () => showPage('home'));
     document.getElementById('nav-home').addEventListener('click', () => showPage('home'));
     document.getElementById('nav-shop').addEventListener('click', () => showPage('shop'));
@@ -755,6 +754,12 @@
     document.getElementById('mobile-menu-close').addEventListener('click', closeMobileMenu);
     document.getElementById('mobile-menu-overlay').addEventListener('click', closeMobileMenu);
     document.querySelectorAll('.nav-link').forEach(link => { link.addEventListener('click', () => showPage(link.getAttribute('data-page'))); });
+
+    // SERVICE BUTTONS
+    document.getElementById('service-taper')?.addEventListener('click', () => { window.open(appState.config.booking_url, '_blank', 'noopener,noreferrer'); });
+    document.getElementById('service-hairline')?.addEventListener('click', () => { window.open(appState.config.booking_url, '_blank', 'noopener,noreferrer'); });
+    document.getElementById('service-kids')?.addEventListener('click', () => { window.open(appState.config.booking_url, '_blank', 'noopener,noreferrer'); });
+    document.getElementById('service-custom')?.addEventListener('click', () => { window.open(appState.config.booking_url, '_blank', 'noopener,noreferrer'); });
 
     let searchTimeout;
     document.getElementById('shop-search').addEventListener('input', () => { clearTimeout(searchTimeout); searchTimeout = setTimeout(renderShopGrid, 150); });
@@ -785,5 +790,5 @@
     loadProducts();
     lucide.createIcons();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb61767376b6715',t:'MTc3NjAzNzM4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb61d6902426715',t:'MTc3NjAzNzYzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
