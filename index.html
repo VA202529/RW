@@ -15,9 +15,16 @@
     body { font-family: 'DM Sans', sans-serif; background: #0a0a0a; color: #e8e0d0; overflow-x: hidden; }
     h1, h2, h3, .font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.05em; }
     
-    :root { --primary: #4a9fd9; }
-    .gold-gradient { background: linear-gradient(135deg, var(--primary), #6bb3e5, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .gold-text { color: var(--primary); }
+    :root { 
+      --neon-blue: #2E5BFF; 
+      --electric-blue: #0022FF; 
+      --glow-blue: #4D79FF;
+    }
+    .gradient-neon { background: linear-gradient(135deg, #0022FF, #2E5BFF, #4D79FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .neon-text { color: #2E5BFF; }
+    .glow-shadow { box-shadow: 0 0 20px rgba(46, 91, 255, 0.3), 0 0 40px rgba(0, 34, 255, 0.1); }
+    .glow-shadow-hover { transition: all 0.3s ease; }
+    .glow-shadow-hover:hover { box-shadow: 0 0 30px rgba(46, 91, 255, 0.5), 0 0 60px rgba(77, 121, 255, 0.2); }
     
     .card-hover { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease; }
     .card-hover:active { transform: translateY(-2px); }
@@ -31,140 +38,122 @@
     
     .input-focus:focus { border-color: #d4af37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1); }
     
-    #mobile-menu { position: fixed; left: 0; top: 0; width: 80%; max-width: 300px; height: 100%; background: #0a0a0a; z-index: 40; transform: translateX(-100%); transition: transform 0.3s ease; border-right: 1px solid rgba(74,159,217,0.1); }
+    #mobile-menu { position: fixed; left: 0; top: 0; width: 80%; max-width: 300px; height: 100%; background: #0a0a0a; z-index: 40; transform: translateX(-100%); transition: transform 0.3s ease; border-right: 1px solid rgba(46,91,255,0.2); }
     #mobile-menu.active { transform: translateX(0); }
-    #mobile-menu-overlay { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #mobile-menu-overlay { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 30; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
     #mobile-menu-overlay.active { opacity: 1; pointer-events: auto; }
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full w-full">
-  <div id="app" class="h-full w-full overflow-auto">
-   <!-- NAV -->
-   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300" style="background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(74,159,217,0.1);">
-    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between">
-     <button id="logo-btn" type="button" class="flex items-center gap-2 min-w-0 hover:opacity-80 transition"> <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ" class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover border-2 flex-shrink-0" style="border-color: var(--primary);" loading="lazy" onerror="this.style.background='var(--primary)';this.alt='Logo';"> <span class="font-display text-xl md:text-2xl tracking-wider gold-text truncate">RWCUTZZ</span> </button>
-     <div class="hidden sm:flex items-center gap-4 md:gap-8 text-xs md:text-sm font-medium tracking-wide">
-      <button id="nav-home" type="button" class="hover:opacity-100 opacity-70 transition">Home</button> <button id="nav-shop" type="button" class="hover:opacity-100 opacity-70 transition">Shop</button> <button id="nav-services" type="button" class="hover:opacity-100 opacity-70 transition">Diensten</button> <button id="nav-contact" type="button" class="hover:opacity-100 opacity-70 transition">Contact</button>
+  <div id="app" class="h-full w-full overflow-auto"><!-- NAV -->
+   <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glow-shadow-hover" style="background: rgba(10,10,10,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(46,91,255,0.2);">
+    <div class="w-full px-4 md:px-6 py-3 flex items-center justify-between"><button id="logo-btn" type="button" class="flex items-center gap-2 min-w-0 hover:opacity-80 transition"> <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ" class="w-9 h-9 md:w-10 md:h-10 rounded-full object-cover border-2 flex-shrink-0 glow-shadow" style="border-color: #2E5BFF;" loading="lazy" onerror="this.style.background='#2E5BFF';this.alt='Logo';"> <span class="font-display text-xl md:text-2xl tracking-wider neon-text truncate">RWCUTZZ</span> </button>
+     <div class="hidden sm:flex items-center gap-4 md:gap-8 text-xs md:text-sm font-medium tracking-wide"><button id="nav-home" type="button" class="hover:opacity-100 opacity-70 transition">Home</button> <button id="nav-shop" type="button" class="hover:opacity-100 opacity-70 transition">Shop</button> <button id="nav-services" type="button" class="hover:opacity-100 opacity-70 transition">Diensten</button> <button id="nav-contact" type="button" class="hover:opacity-100 opacity-70 transition">Contact</button>
      </div>
-     <div class="flex items-center gap-2 md:gap-3">
-      <button id="nav-cart" type="button" class="relative p-2 rounded-full hover:bg-white/5 transition"> <i data-lucide="shopping-bag" style="width:20px;height:20px;color:var(--primary);"></i> <span id="cart-badge" class="absolute top-1 right-1 w-4 h-4 rounded-full text-xs font-bold flex items-center justify-center" style="background:var(--primary);color:#0a0a0a;display:none;">0</span> </button> <a id="nav-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="px-3 md:px-5 py-2 rounded-full text-xs md:text-sm font-bold tracking-wide transition active:scale-95 hidden sm:inline-block flex-shrink-0" style="background: var(--primary); color: #0a0a0a;">Diensten</a> <button id="mobile-menu-toggle" type="button" class="sm:hidden p-2 rounded-lg hover:bg-white/10 transition"> <i data-lucide="menu" style="width:20px;height:20px;color:var(--primary);"></i> </button>
+     <div class="flex items-center gap-2 md:gap-3"><button id="nav-cart" type="button" class="relative p-2 rounded-full hover:bg-white/5 transition"> <i data-lucide="shopping-bag" style="width:20px;height:20px;color:#2E5BFF;"></i> <span id="cart-badge" class="absolute top-1 right-1 w-4 h-4 rounded-full text-xs font-bold flex items-center justify-center glow-shadow" style="background: linear-gradient(135deg, #0022FF, #2E5BFF); color:#0a0a0a;display:none;">0</span> </button> <a id="nav-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="px-3 md:px-5 py-2 rounded-full text-xs md:text-sm font-bold tracking-wide transition active:scale-95 hidden sm:inline-block flex-shrink-0 glow-shadow-hover" style="background: linear-gradient(135deg, #0022FF, #2E5BFF); color: #ffffff;">Diensten</a> <button id="mobile-menu-toggle" type="button" class="sm:hidden p-2 rounded-lg hover:bg-white/10 transition"> <i data-lucide="menu" style="width:20px;height:20px;color:#2E5BFF;"></i> </button>
      </div>
     </div>
    </nav><!-- MOBILE MENU -->
    <div id="mobile-menu">
     <div class="flex flex-col h-full">
-     <div class="flex items-center justify-between p-4 border-b border-white/10">
-      <span class="font-display text-xl tracking-wider gold-text">Menu</span> <button id="mobile-menu-close" type="button" class="p-2 hover:bg-white/10 rounded-lg transition"> <i data-lucide="x" style="width:20px;height:20px;"></i> </button>
+     <div class="flex items-center justify-between p-4 border-b border-white/10"><span class="font-display text-xl tracking-wider neon-text">Menu</span> <button id="mobile-menu-close" type="button" class="p-2 hover:bg-white/10 rounded-lg transition"> <i data-lucide="x" style="width:20px;height:20px;"></i> </button>
      </div>
-     <nav class="flex flex-col gap-1 p-4 overflow-y-auto flex-1">
-      <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="home">🏠 Home</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="shop">🛍️ Shop</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="diensten">✂️ Diensten</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="contact">✉️ Contact</button>
+     <nav class="flex flex-col gap-1 p-4 overflow-y-auto flex-1"><button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="home">🏠 Home</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="shop">🛍️ Shop</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="diensten">✂️ Diensten</button> <button class="nav-link text-left px-4 py-3 rounded-lg hover:bg-white/10 transition text-sm font-medium" data-page="contact">✉️ Contact</button>
      </nav>
-     <div class="p-4 border-t border-white/10 space-y-2">
-      <a id="mobile-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="block w-full px-4 py-3 rounded-lg text-center font-bold tracking-wide transition active:scale-95" style="background: var(--primary); color: #0a0a0a;">Boek Nu</a>
+     <div class="p-4 border-t border-white/10 space-y-2"><button id="mobile-book-btn" type="button" onclick="showPage('diensten')" class="block w-full px-4 py-3 rounded-lg text-center font-bold tracking-wide transition active:scale-95 glow-shadow-hover" style="background: linear-gradient(135deg, #0022FF, #2E5BFF); color: #ffffff;">Boek Nu</button>
      </div>
     </div>
    </div>
    <div id="mobile-menu-overlay"></div><!-- PAGE CONTAINER -->
-   <div id="page-container" class="w-full">
-    <!-- HOME PAGE -->
-    <div id="page-home" class="w-full">
-     <!-- Hero -->
-     <header class="relative w-full flex items-center justify-center text-center pt-20 md:pt-24 pb-8" style="min-height: 85%; background: radial-gradient(ellipse at 50% 30%, rgba(74,159,217,0.08) 0%, transparent 70%);">
+   <div id="page-container" class="w-full"><!-- HOME PAGE -->
+    <div id="page-home" class="w-full"><!-- Hero -->
+     <header class="relative w-full flex items-center justify-center text-center pt-20 md:pt-24 pb-8" style="min-height: 85%; background: radial-gradient(ellipse at 50% 30%, rgba(46,91,255,0.08) 0%, transparent 70%);">
       <div class="relative z-10 px-4 sm:px-6 py-16 md:py-20 max-w-4xl mx-auto w-full">
-       <div class="mb-6 md:mb-8 fade-up">
-        <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-20 h-20 md:w-28 md:h-28 rounded-full mx-auto object-cover border-4 shadow-2xl" style="border-color: var(--primary); box-shadow: 0 0 60px rgba(74,159,217,0.2);" loading="lazy" onerror="this.style.background='var(--primary)';this.alt='Logo';">
+       <div class="mb-6 md:mb-8 fade-up"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-20 h-20 md:w-28 md:h-28 rounded-full mx-auto object-cover border-4 shadow-2xl glow-shadow" style="border-color: #2E5BFF;" loading="lazy" onerror="this.style.background='#2E5BFF';this.alt='Logo';">
        </div>
-       <h1 id="hero-title" class="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider gold-gradient mb-3 md:mb-4 fade-up" style="animation-delay: 0.1s;">RWCUTZZ</h1>
+       <h1 id="hero-title" class="font-display text-5xl md:text-7xl lg:text-8xl tracking-wider gradient-neon mb-3 md:mb-4 fade-up" style="animation-delay: 0.1s;">RWCUTZZ</h1>
        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-50 fade-up" style="animation-delay: 0.2s;">Kapper – Amsterdam Noord</p>
        <p id="hero-subtitle" class="text-lg md:text-2xl font-light mb-4 md:mb-6 opacity-80 fade-up" style="animation-delay: 0.3s; color: #e8e0d0;">Ready for a clean cut? ✅</p>
        <div class="flex items-center justify-center gap-2 md:gap-3 mt-6 mb-8 md:mb-10 fade-up" style="animation-delay: 0.4s;">
-        <div class="flex gap-0.5 text-lg md:text-2xl"><span style="color:#d4af37;">★★★★★</span>
-        </div><span class="font-bold text-lg" style="color:#d4af37;">5.0</span> <span class="opacity-50 text-sm md:text-base">–</span> <a href="https://rwcutzz.setmore.com/#reviews" target="_blank" rel="noopener noreferrer" class="underline opacity-60 hover:opacity-100 transition text-sm md:text-base">58 beoordelingen</a>
+        <div class="flex gap-0.5 text-lg md:text-2xl">
+         <span style="color:#2E5BFF;">★★★★★</span>
+        </div><span class="font-bold text-lg neon-text">5.0</span> <span class="opacity-50 text-sm md:text-base">–</span> <a href="https://rwcutzz.setmore.com/#reviews" target="_blank" rel="noopener noreferrer" class="underline opacity-60 hover:opacity-100 transition text-sm md:text-base">58 beoordelingen</a>
        </div>
-       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 fade-up" style="animation-delay: 0.5s;">
-        <a id="hero-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95" style="background: var(--primary); color: #0a0a0a;"> <i data-lucide="scissors" style="width:20px;height:20px;"></i> <span>Maak een Afspraak</span> </a> <button id="hero-shop-btn" type="button" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95 border-2 gold-text" style="border-color:var(--primary);"> <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i> <span>Naar Shop</span> </button>
+       <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 fade-up" style="animation-delay: 0.5s;"><a id="hero-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95 glow-shadow-hover" style="background: linear-gradient(135deg, #0022FF, #2E5BFF); color: #ffffff;"> <i data-lucide="scissors" style="width:20px;height:20px;"></i> <span>Maak een Afspraak</span> </a> <button id="hero-shop-btn" type="button" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95 border-2 neon-text" style="border-color:#2E5BFF;"> <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i> <span>Naar Shop</span> </button>
        </div>
       </div>
      </header><!-- Uitgelichte Producten (4 only) -->
      <section class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div class="max-w-6xl mx-auto">
        <div class="text-center mb-12 md:mb-16 fade-up">
-        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Handpicked</p>
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 neon-text">Handpicked</p>
         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Uitgelichte Producten</h2>
        </div>
        <div id="featured-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-12"></div>
-       <div class="mt-12 md:mt-16 text-center fade-up">
-        <button id="featured-view-all" type="button" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base font-bold tracking-wide transition active:scale-95 border-2 gold-text" style="border-color:var(--primary);"> Bekijk Alles <i data-lucide="arrow-right" style="width:18px;height:18px;"></i> </button>
+       <div class="mt-12 md:mt-16 text-center fade-up"><button id="featured-view-all" type="button" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base font-bold tracking-wide transition active:scale-95 border-2 neon-text glow-shadow-hover" style="border-color:#2E5BFF;"> Bekijk Alles <i data-lucide="arrow-right" style="width:18px;height:18px;"></i> </button>
        </div>
       </div>
      </section><!-- Diensten -->
      <section class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div class="max-w-6xl mx-auto">
        <div class="text-center mb-12 md:mb-16 fade-up">
-        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Wat we bieden</p>
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 neon-text">Wat we bieden</p>
         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Diensten</h2>
        </div>
-       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6"><button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition" style="background: #111111; border: 1px solid rgba(74,159,217,0.15);">
-         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, var(--primary), transparent);"></div>
+       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2);">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #2E5BFF, transparent);"></div>
          <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
-          <div class="min-w-0">
-           <span class="text-xs tracking-widest uppercase opacity-40">RW Service</span>
-           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Taper / Low / Midfade</h3>
-          </div><i data-lucide="scissors" style="width:24px;height:24px;color:var(--primary);opacity:0.3;flex-shrink:0;"></i>
+          <div class="min-w-0"><span class="text-xs tracking-widest uppercase opacity-40">RW Service</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 neon-text">Taper / Low / Midfade</h3>
+          </div><i data-lucide="scissors" style="width:24px;height:24px;color:#2E5BFF;opacity:0.3;flex-shrink:0;"></i>
          </div>
          <div class="flex items-center gap-4 md:gap-6 mt-4">
-          <div class="flex items-center gap-2 opacity-60 text-sm">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
+          <div class="flex items-center gap-2 opacity-60 text-sm"><i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
           </div>
-          <div class="font-display text-3xl md:text-4xl gold-text">
+          <div class="font-display text-3xl md:text-4xl neon-text">
            €30
           </div>
-         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition" style="background: #111111; border: 1px solid rgba(74,159,217,0.15); animation-delay: 0.1s;">
-         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, var(--primary), transparent);"></div>
+         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2); animation-delay: 0.1s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #2E5BFF, transparent);"></div>
          <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
-          <div class="min-w-0">
-           <span class="text-xs tracking-widest uppercase opacity-40">Quick</span>
-           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Only Hairline</h3>
-          </div><i data-lucide="zap" style="width:24px;height:24px;color:var(--primary);opacity:0.3;flex-shrink:0;"></i>
+          <div class="min-w-0"><span class="text-xs tracking-widest uppercase opacity-40">Quick</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 neon-text">Only Hairline</h3>
+          </div><i data-lucide="zap" style="width:24px;height:24px;color:#2E5BFF;opacity:0.3;flex-shrink:0;"></i>
          </div>
          <div class="flex items-center gap-4 md:gap-6 mt-4">
-          <div class="flex items-center gap-2 opacity-60 text-sm">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>10 min</span>
+          <div class="flex items-center gap-2 opacity-60 text-sm"><i data-lucide="clock" style="width:16px;height:16px;"></i> <span>10 min</span>
           </div>
-          <div class="font-display text-3xl md:text-4xl gold-text">
+          <div class="font-display text-3xl md:text-4xl neon-text">
            €15
           </div>
-         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition" style="background: #111111; border: 1px solid rgba(74,159,217,0.15); animation-delay: 0.2s;">
-         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, var(--primary), transparent);"></div>
+         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2); animation-delay: 0.2s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #2E5BFF, transparent);"></div>
          <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
-          <div class="min-w-0">
-           <span class="text-xs tracking-widest uppercase opacity-40">Young Cuts</span>
-           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Kids Fade</h3>
+          <div class="min-w-0"><span class="text-xs tracking-widest uppercase opacity-40">Young Cuts</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 neon-text">Kids Fade</h3>
            <p class="text-xs md:text-sm opacity-50 mt-1">5 t/m 15 jaar</p>
-          </div><i data-lucide="smile" style="width:24px;height:24px;color:var(--primary);opacity:0.3;flex-shrink:0;"></i>
+          </div><i data-lucide="smile" style="width:24px;height:24px;color:#2E5BFF;opacity:0.3;flex-shrink:0;"></i>
          </div>
          <div class="flex items-center gap-4 md:gap-6 mt-4">
-          <div class="flex items-center gap-2 opacity-60 text-sm">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
+          <div class="flex items-center gap-2 opacity-60 text-sm"><i data-lucide="clock" style="width:16px;height:16px;"></i> <span>40 min</span>
           </div>
-          <div class="font-display text-3xl md:text-4xl gold-text">
+          <div class="font-display text-3xl md:text-4xl neon-text">
            €20
           </div>
-         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition" style="background: #111111; border: 1px solid rgba(74,159,217,0.15); animation-delay: 0.3s;">
-         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, var(--primary), transparent);"></div>
+         </div></button> <button type="button" onclick="showPage('diensten')" class="fade-up card-hover rounded-2xl p-5 md:p-8 relative overflow-hidden text-left w-full transition glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2); animation-delay: 0.3s;">
+         <div class="absolute top-0 right-0 w-24 h-24 opacity-5" style="background: radial-gradient(circle, #2E5BFF, transparent);"></div>
          <div class="flex items-start justify-between mb-4 md:mb-6 gap-3">
-          <div class="min-w-0">
-           <span class="text-xs tracking-widest uppercase opacity-40">Custom</span>
-           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 gold-text">Overige Diensten</h3>
-          </div><i data-lucide="star" style="width:24px;height:24px;color:var(--primary);opacity:0.3;flex-shrink:0;"></i>
+          <div class="min-w-0"><span class="text-xs tracking-widest uppercase opacity-40">Custom</span>
+           <h3 class="font-display text-2xl md:text-3xl tracking-wide mt-1 neon-text">Overige Diensten</h3>
+          </div><i data-lucide="star" style="width:24px;height:24px;color:#2E5BFF;opacity:0.3;flex-shrink:0;"></i>
          </div>
          <div class="flex items-center gap-4 md:gap-6 mt-4">
-          <div class="flex items-center gap-2 opacity-60 text-sm">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> <span>45 min</span>
+          <div class="flex items-center gap-2 opacity-60 text-sm"><i data-lucide="clock" style="width:16px;height:16px;"></i> <span>45 min</span>
           </div>
-          <div class="font-display text-2xl md:text-3xl opacity-70 gold-text">
+          <div class="font-display text-2xl md:text-3xl opacity-70 neon-text">
            Op aanvraag
           </div>
          </div></button>
@@ -174,10 +163,10 @@
      <section class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8" style="background: #080808;">
       <div class="max-w-3xl mx-auto">
        <div class="text-center mb-12 md:mb-16 fade-up">
-        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Wanneer</p>
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 neon-text">Wanneer</p>
         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Openingstijden</h2>
        </div>
-       <div class="fade-up rounded-2xl overflow-hidden" style="background: #111111; border: 1px solid rgba(74,159,217,0.15);">
+       <div class="fade-up rounded-2xl overflow-hidden glow-shadow" style="background: #111111; border: 1px solid rgba(46,91,255,0.2);">
         <div id="schedule-list"></div>
        </div>
       </div>
@@ -185,30 +174,27 @@
      <section class="w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8">
       <div class="max-w-5xl mx-auto">
        <div class="text-center mb-12 md:mb-16 fade-up">
-        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 gold-text">Goed om te weten</p>
+        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-2 md:mb-3 neon-text">Goed om te weten</p>
         <h2 class="font-display text-3xl md:text-5xl lg:text-6xl tracking-wider">Huisregels</h2>
        </div>
        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15);">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
-          <i data-lucide="clock" style="width:24px;height:24px;color:#d4af37;"></i>
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2);">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(46,91,255,0.1);"><i data-lucide="clock" style="width:24px;height:24px;color:#2E5BFF;"></i>
          </div>
-         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">Te Laat</h3>
+         <h3 class="font-display text-2xl tracking-wide mb-3 neon-text">Te Laat</h3>
          <p class="text-sm opacity-60 leading-relaxed">5 min → +€5<br>
            10 min → +€10</p>
         </div>
-        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.1s;">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
-          <i data-lucide="x-circle" style="width:24px;height:24px;color:#d4af37;"></i>
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2); animation-delay: 0.1s;">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(46,91,255,0.1);"><i data-lucide="x-circle" style="width:24px;height:24px;color:#2E5BFF;"></i>
          </div>
-         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">No Show</h3>
+         <h3 class="font-display text-2xl tracking-wide mb-3 neon-text">No Show</h3>
          <p class="text-sm opacity-60 leading-relaxed">Tikkie van 50% van bedrag</p>
         </div>
-        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.2s;">
-         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(212,175,55,0.1);">
-          <i data-lucide="calendar" style="width:24px;height:24px;color:#d4af37;"></i>
+        <div class="fade-up card-hover rounded-2xl p-6 md:p-8 text-center glow-shadow-hover" style="background: #111111; border: 1px solid rgba(46,91,255,0.2); animation-delay: 0.2s;">
+         <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(46,91,255,0.1);"><i data-lucide="calendar" style="width:24px;height:24px;color:#2E5BFF;"></i>
          </div>
-         <h3 class="font-display text-2xl tracking-wide mb-3 gold-text">Annulering</h3>
+         <h3 class="font-display text-2xl tracking-wide mb-3 neon-text">Annulering</h3>
          <p class="text-sm opacity-60 leading-relaxed">Tot 2 uur van tevoren</p>
         </div>
        </div>
@@ -217,27 +203,38 @@
      <footer class="w-full py-16 md:py-20 px-4 sm:px-6 lg:px-8" style="background: #080808; border-top: 1px solid rgba(212,175,55,0.1);">
       <div class="max-w-4xl mx-auto text-center">
        <div class="fade-up">
-        <img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-14 h-14 md:w-16 md:h-16 rounded-full mx-auto object-cover border-2 mb-4 md:mb-6" style="border-color: #d4af37;" loading="lazy" onerror="this.style.background='#d4af37';this.alt='Logo';">
-        <h2 class="font-display text-3xl md:text-4xl tracking-wider mb-2 gold-text">RWCUTZZ</h2>
+        <footer class="w-full py-16 md:py-20 px-4 sm:px-6 lg:px-8 glow-shadow-hover" style="background: #080808; border-top: 1px solid rgba(46,91,255,0.2);">
+         <div class="max-w-4xl mx-auto text-center">
+          <div class="fade-up"><img src="https://i.postimg.cc/zBdmVdRT/profilepic.jpg" alt="RWCUTZZ Logo" class="w-14 h-14 md:w-16 md:h-16 rounded-full mx-auto object-cover border-2 mb-4 md:mb-6 glow-shadow" style="border-color: #2E5BFF;" loading="lazy" onerror="this.style.background='#2E5BFF';this.alt='Logo';">
+           <h2 class="font-display text-3xl md:text-4xl tracking-wider mb-2 neon-text">RWCUTZZ</h2>
+           <p class="opacity-50 text-xs md:text-sm mb-6 md:mb-8">Kapper – Amsterdam Noord</p>
+           <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10 text-xs md:text-sm">
+            <div class="flex items-center gap-2 opacity-60"><i data-lucide="map-pin" style="width:16px;height:16px;color:#2E5BFF;flex-shrink:0;"></i> <span>Mariëndaal 94, 1025BW Amsterdam</span>
+            </div>
+            <div class="flex items-center gap-2 opacity-60"><i data-lucide="briefcase" style="width:16px;height:16px;color:#2E5BFF;flex-shrink:0;"></i> <span>KVK: 94077991</span>
+            </div>
+           </div>
+           <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10"><a id="footer-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 w-full sm:w-auto glow-shadow-hover" style="background: linear-gradient(135deg, #0022FF, #2E5BFF); color: #ffffff;"> <i data-lucide="scissors" style="width:18px;height:18px;"></i> Boek een Afspraak </a> <a id="instagram-btn" href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 border-2 neon-text w-full sm:w-auto" style="border-color: #2E5BFF;"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> Instagram </a>
+           </div>
+           <p class="text-xs opacity-30">© 2025 RWCUTZZ. Alle rechten voorbehouden.</p>
+          </div>
+         </div>
+        </footer>
         <p class="opacity-50 text-xs md:text-sm mb-6 md:mb-8">Kapper – Amsterdam Noord</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10 text-xs md:text-sm">
-         <div class="flex items-center gap-2 opacity-60">
-          <i data-lucide="map-pin" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i> <span>Mariëndaal 94, 1025BW Amsterdam</span>
+         <div class="flex items-center gap-2 opacity-60"><i data-lucide="map-pin" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i> <span>Mariëndaal 94, 1025BW Amsterdam</span>
          </div>
-         <div class="flex items-center gap-2 opacity-60">
-          <i data-lucide="briefcase" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i> <span>KVK: 94077991</span>
+         <div class="flex items-center gap-2 opacity-60"><i data-lucide="briefcase" style="width:16px;height:16px;color:var(--primary);flex-shrink:0;"></i> <span>KVK: 94077991</span>
          </div>
         </div>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10">
-         <a id="footer-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 w-full sm:w-auto" style="background: var(--primary); color: #0a0a0a;"> <i data-lucide="scissors" style="width:18px;height:18px;"></i> Boek een Afspraak </a> <a id="instagram-btn" href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 border-2 gold-text w-full sm:w-auto" style="border-color: var(--primary);"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> Instagram </a>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 mb-8 md:mb-10"><a id="footer-book-btn" href="#" type="button" onclick="showPage('diensten'); return false;" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 w-full sm:w-auto" style="background: var(--primary); color: #0a0a0a;"> <i data-lucide="scissors" style="width:18px;height:18px;"></i> Boek een Afspraak </a> <a id="instagram-btn" href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 rounded-full font-bold tracking-wide transition active:scale-95 border-2 gold-text w-full sm:w-auto" style="border-color: var(--primary);"> <i data-lucide="instagram" style="width:18px;height:18px;"></i> Instagram </a>
         </div>
         <p class="text-xs opacity-30">© 2025 RWCUTZZ. Alle rechten voorbehouden.</p>
        </div>
       </div>
      </footer>
     </div><!-- SHOP PAGE -->
-    <div id="page-shop" class="w-full hidden">
-     <!-- Shop Hero -->
+    <div id="page-shop" class="w-full hidden"><!-- Shop Hero -->
      <header class="relative w-full flex items-center justify-center text-center pt-24 md:pt-28 pb-12 md:pb-16 px-4 sm:px-6 lg:px-8" style="background: radial-gradient(ellipse at 50% 20%, rgba(74,159,217,0.06) 0%, transparent 60%);">
       <div class="relative z-10 max-w-3xl mx-auto w-full">
        <p class="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 gold-text fade-up">Premium Collectie</p>
@@ -248,17 +245,13 @@
      <section class="w-full px-4 sm:px-6 lg:px-8 pb-8 md:pb-12">
       <div class="max-w-6xl mx-auto">
        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div class="md:col-span-2 fade-up">
-         <label class="block text-sm font-semibold mb-2 opacity-70">Zoeken</label>
-         <div class="relative">
-          <input id="shop-search" type="text" placeholder="Zoek producten..." class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <i data-lucide="search" style="width:16px;height:16px;position:absolute;right:12px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none;"></i>
+        <div class="md:col-span-2 fade-up"><label class="block text-sm font-semibold mb-2 opacity-70">Zoeken</label>
+         <div class="relative"><input id="shop-search" type="text" placeholder="Zoek producten..." class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <i data-lucide="search" style="width:16px;height:16px;position:absolute;right:12px;top:50%;transform:translateY(-50%);opacity:0.4;pointer-events:none;"></i>
          </div>
         </div>
-        <div class="fade-up" style="animation-delay: 0.1s;">
-         <label class="block text-sm font-semibold mb-2 opacity-70">Sorteren</label> <select id="shop-sort" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="newest">Nieuwste</option> <option value="naam-az">Naam: A → Z</option> <option value="naam-za">Naam: Z → A</option> <option value="prijs-laag">Prijs: Laag → Hoog</option> <option value="prijs-hoog">Prijs: Hoog → Laag</option> </select>
+        <div class="fade-up" style="animation-delay: 0.1s;"><label class="block text-sm font-semibold mb-2 opacity-70">Sorteren</label> <select id="shop-sort" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="newest">Nieuwste</option> <option value="naam-az">Naam: A → Z</option> <option value="naam-za">Naam: Z → A</option> <option value="prijs-laag">Prijs: Laag → Hoog</option> <option value="prijs-hoog">Prijs: Hoog → Laag</option> </select>
         </div>
-        <div class="fade-up" style="animation-delay: 0.2s;">
-         <label class="block text-sm font-semibold mb-2 opacity-70">Voorraad</label> <select id="shop-stock" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="alle">Alle producten</option> <option value="voorraad">Op voorraad</option> <option value="uitverkocht">Uitverkocht</option> </select>
+        <div class="fade-up" style="animation-delay: 0.2s;"><label class="block text-sm font-semibold mb-2 opacity-70">Voorraad</label> <select id="shop-stock" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white text-sm focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="alle">Alle producten</option> <option value="voorraad">Op voorraad</option> <option value="uitverkocht">Uitverkocht</option> </select>
         </div>
        </div>
       </div>
@@ -280,12 +273,10 @@
     </div><!-- PRODUCT DETAIL PAGE -->
     <div id="page-product" class="w-full hidden">
      <div class="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 pt-24">
-      <div class="max-w-5xl mx-auto">
-       <button id="product-back" type="button" class="inline-flex items-center gap-2 mb-6 md:mb-8 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug naar shop </button>
+      <div class="max-w-5xl mx-auto"><button id="product-back" type="button" class="inline-flex items-center gap-2 mb-6 md:mb-8 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug naar shop </button>
        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
         <div class="fade-up">
-         <div class="rounded-2xl overflow-hidden bg-white/5" style="aspect-ratio:1;">
-          <img id="product-image" src="" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='#d4af37';this.alt='Afbeelding niet beschikbaar';">
+         <div class="rounded-2xl overflow-hidden bg-white/5" style="aspect-ratio:1;"><img id="product-image" src="" alt="" class="w-full h-full object-cover" loading="lazy" onerror="this.style.background='#d4af37';this.alt='Afbeelding niet beschikbaar';">
          </div>
         </div>
         <div class="fade-up" style="animation-delay: 0.1s;">
@@ -295,22 +286,18 @@
           <p id="product-desc" class="text-base md:text-lg leading-relaxed opacity-70 mb-4">Laden...</p>
          </div>
          <div class="space-y-4 mb-8">
-          <div class="flex items-baseline gap-3">
-           <span id="product-price" class="font-display text-4xl md:text-5xl gold-text">€0</span> <span id="product-stock-status" class="text-sm font-semibold" style="color:#10b981;">Op voorraad</span>
+          <div class="flex items-baseline gap-3"><span id="product-price" class="font-display text-4xl md:text-5xl gold-text">€0</span> <span id="product-stock-status" class="text-sm font-semibold" style="color:#10b981;">Op voorraad</span>
           </div>
           <div id="product-stock-bar" class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
            <div id="product-stock-fill" class="h-full bg-gradient-to-r from-yellow-400 to-yellow-600" style="width:100%;"></div>
           </div>
           <p id="product-stock-info" class="text-xs opacity-50">Nog ... stuks beschikbaar</p>
          </div>
-         <div class="mb-8">
-          <label class="block text-sm font-semibold mb-3 opacity-70">Aantal</label>
-          <div class="flex items-center gap-3">
-           <button id="product-qty-dec" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:var(--primary);">−</button> <input id="product-qty" type="number" value="1" min="1" class="w-16 h-10 rounded-lg bg-white/5 border border-white/10 text-center text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <button id="product-qty-inc" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:var(--primary);">+</button>
+         <div class="mb-8"><label class="block text-sm font-semibold mb-3 opacity-70">Aantal</label>
+          <div class="flex items-center gap-3"><button id="product-qty-dec" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:var(--primary);">−</button> <input id="product-qty" type="number" value="1" min="1" class="w-16 h-10 rounded-lg bg-white/5 border border-white/10 text-center text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <button id="product-qty-inc" type="button" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition flex items-center justify-center text-lg font-bold" style="color:var(--primary);">+</button>
           </div>
          </div>
-         <div class="flex flex-col sm:flex-row gap-3 md:gap-4">
-          <button id="product-add-cart" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide transition active:scale-95" style="background:#d4af37;color:#0a0a0a;"> <i data-lucide="shopping-bag" style="width:18px;height:18px;display:inline;margin-right:8px;vertical-align:middle;"></i> Direct bestellen </button> <button id="product-continue" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide border-2 gold-text transition active:scale-95" style="border-color:#d4af37;"> Verder winkelen </button>
+         <div class="flex flex-col sm:flex-row gap-3 md:gap-4"><button id="product-add-cart" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide transition active:scale-95" style="background:#d4af37;color:#0a0a0a;"> <i data-lucide="shopping-bag" style="width:18px;height:18px;display:inline;margin-right:8px;vertical-align:middle;"></i> Direct bestellen </button> <button id="product-continue" type="button" class="flex-1 px-6 py-4 rounded-lg text-base font-bold tracking-wide border-2 gold-text transition active:scale-95" style="border-color:#d4af37;"> Verder winkelen </button>
          </div>
         </div>
        </div>
@@ -320,8 +307,7 @@
     <div id="page-checkout" class="w-full hidden">
      <div class="w-full px-4 sm:px-6 lg:px-8 py-8 md:py-12 pt-24">
       <div class="max-w-6xl mx-auto">
-       <div class="mb-8 md:mb-12 fade-up">
-        <button id="checkout-back" type="button" class="inline-flex items-center gap-2 mb-4 md:mb-6 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
+       <div class="mb-8 md:mb-12 fade-up"><button id="checkout-back" type="button" class="inline-flex items-center gap-2 mb-4 md:mb-6 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
         <p class="text-xs tracking-widest uppercase mb-2 opacity-50 gold-text">Afrekenen</p>
         <h1 class="font-display text-4xl md:text-5xl tracking-wider gold-text">Je Bestelling</h1>
        </div>
@@ -330,11 +316,9 @@
          <form id="checkout-form" class="space-y-6">
           <div class="rounded-2xl p-6 md:p-8" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
            <h2 class="text-lg md:text-xl font-semibold mb-4 gold-text">Jouw gegevens</h2>
-           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Voornaam</span> <input id="checkout-name" type="text" required placeholder="Jan" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">E-mail</span> <input id="checkout-email" type="email" required placeholder="jan@example.com" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label>
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"><label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Voornaam</span> <input id="checkout-name" type="text" required placeholder="Jan" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">E-mail</span> <input id="checkout-email" type="email" required placeholder="jan@example.com" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label>
            </div>
-           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-            <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Telefoon</span> <input id="checkout-phone" type="tel" required placeholder="+31 6 12345678" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Levering</span> <select id="checkout-delivery" required class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="">Kies optie...</option> <option value="verzenden">📦 Verzenden</option> <option value="ophalen">🏪 Ophalen</option> </select> </label>
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4"><label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Telefoon</span> <input id="checkout-phone" type="tel" required placeholder="+31 6 12345678" class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-white/40 focus:outline-none input-focus" style="color:#e8e0d0;"> </label> <label class="block"> <span class="text-sm font-semibold mb-2 block opacity-70">Levering</span> <select id="checkout-delivery" required class="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white focus:outline-none input-focus" style="color:#e8e0d0;"> <option value="">Kies optie...</option> <option value="verzenden">📦 Verzenden</option> <option value="ophalen">🏪 Ophalen</option> </select> </label>
            </div>
           </div>
           <div class="rounded-2xl p-6 md:p-8" style="background:#111111;border:1px solid rgba(212,175,55,0.15);">
@@ -348,14 +332,11 @@
           <h3 class="text-lg font-semibold mb-4 gold-text">Besteloverzicht</h3>
           <div id="checkout-items" class="space-y-3 mb-4 max-h-96 overflow-y-auto"></div>
           <div class="space-y-3 rounded-xl p-4 mb-4" style="background:rgba(212,175,55,0.05);">
-           <div class="flex justify-between text-sm opacity-70">
-            <span>Subtotaal</span> <span id="checkout-subtotal">€0.00</span>
+           <div class="flex justify-between text-sm opacity-70"><span>Subtotaal</span> <span id="checkout-subtotal">€0.00</span>
            </div>
-           <div class="flex justify-between text-sm opacity-70">
-            <span>Verzending</span> <span id="checkout-shipping">€0.00</span>
+           <div class="flex justify-between text-sm opacity-70"><span>Verzending</span> <span id="checkout-shipping">€0.00</span>
            </div>
-           <div class="border-t border-white/10 pt-3 flex justify-between text-lg font-bold gold-text">
-            <span>Totaal</span> <span id="checkout-total">€0.00</span>
+           <div class="border-t border-white/10 pt-3 flex justify-between text-lg font-bold gold-text"><span>Totaal</span> <span id="checkout-total">€0.00</span>
            </div>
           </div><button id="checkout-edit-cart" type="button" class="w-full px-4 py-2 rounded-lg text-sm border border-white/20 hover:bg-white/5 transition"> ← Winkelwagen aanpassen </button>
          </div>
@@ -366,76 +347,20 @@
     </div><!-- DIENSTEN PAGE -->
     <div id="page-diensten" class="w-full hidden">
      <div class="w-full pt-24 md:pt-28 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-5xl mx-auto">
-       <button id="diensten-back" type="button" class="inline-flex items-center gap-2 mb-8 md:mb-12 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
+      <div class="max-w-5xl mx-auto"><button id="diensten-back" type="button" class="inline-flex items-center gap-2 mb-8 md:mb-12 text-sm font-semibold hover:opacity-70 transition neon-text"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
        <div class="mb-12 md:mb-16 fade-up">
-        <p class="text-xs tracking-widest uppercase mb-2 opacity-50 gold-text">Diensten</p>
-        <h1 class="font-display text-4xl md:text-5xl tracking-wider gold-text mb-4">Barbershop Services</h1>
+        <p class="text-xs tracking-widest uppercase mb-2 opacity-50 neon-text">Diensten</p>
+        <h1 class="font-display text-4xl md:text-5xl tracking-wider neon-text mb-4">Boek je Afspraak</h1>
+        <p class="text-base opacity-70">Kies je favoriete service en boek eenvoudig online</p>
        </div>
-       <div class="space-y-6">
-        <div class="card-hover rounded-2xl p-6 md:p-8 fade-up" style="background: #111111; border: 1px solid rgba(212,175,55,0.15);">
-         <div class="flex items-start justify-between mb-4 gap-4">
-          <div>
-           <h3 class="font-display text-2xl md:text-3xl gold-text mb-2">RW Service – Taper / Low / Midfade</h3>
-           <p class="text-sm opacity-60">Premium haircut service</p>
-          </div><span class="font-display text-3xl md:text-4xl gold-text whitespace-nowrap">€30</span>
-         </div>
-         <div class="flex items-center gap-6 text-sm opacity-70">
-          <div class="flex items-center gap-2">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> 40 min
-          </div>
-         </div>
-        </div>
-        <div class="card-hover rounded-2xl p-6 md:p-8 fade-up" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.1s;">
-         <div class="flex items-start justify-between mb-4 gap-4">
-          <div>
-           <h3 class="font-display text-2xl md:text-3xl gold-text mb-2">Quick – Only Hairline</h3>
-           <p class="text-sm opacity-60">Hairline shape-up</p>
-          </div><span class="font-display text-3xl md:text-4xl gold-text whitespace-nowrap">€15</span>
-         </div>
-         <div class="flex items-center gap-6 text-sm opacity-70">
-          <div class="flex items-center gap-2">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> 10 min
-          </div>
-         </div>
-        </div>
-        <div class="card-hover rounded-2xl p-6 md:p-8 fade-up" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.2s;">
-         <div class="flex items-start justify-between mb-4 gap-4">
-          <div>
-           <h3 class="font-display text-2xl md:text-3xl gold-text mb-2">Young Cuts – Kids Fade</h3>
-           <p class="text-sm opacity-60">Ages 5-15 years</p>
-          </div><span class="font-display text-3xl md:text-4xl gold-text whitespace-nowrap">€20</span>
-         </div>
-         <div class="flex items-center gap-6 text-sm opacity-70">
-          <div class="flex items-center gap-2">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> 40 min
-          </div>
-         </div>
-        </div>
-        <div class="card-hover rounded-2xl p-6 md:p-8 fade-up" style="background: #111111; border: 1px solid rgba(212,175,55,0.15); animation-delay: 0.3s;">
-         <div class="flex items-start justify-between mb-4 gap-4">
-          <div>
-           <h3 class="font-display text-2xl md:text-3xl gold-text mb-2">Custom – Overige Diensten</h3>
-           <p class="text-sm opacity-60">Personalized services</p>
-          </div><span class="font-display text-2xl md:text-3xl opacity-70 gold-text">Op aanvraag</span>
-         </div>
-         <div class="flex items-center gap-6 text-sm opacity-70">
-          <div class="flex items-center gap-2">
-           <i data-lucide="clock" style="width:16px;height:16px;"></i> 45 min
-          </div>
-         </div>
-        </div>
-       </div>
-       <div class="mt-12 md:mt-16 text-center fade-up">
-        <a id="diensten-book-btn" href="https://rwcutzz.setmore.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-6 md:px-8 py-3 md:py-4 rounded-full text-base md:text-lg font-bold tracking-wide transition active:scale-95" style="background: #d4af37; color: #0a0a0a;"> <i data-lucide="scissors" style="width:20px;height:20px;"></i> Maak een Afspraak </a>
+       <div class="rounded-2xl overflow-hidden glow-shadow fade-up" style="background: #111111; border: 1px solid rgba(46,91,255,0.2);"><iframe src="https://rwcutzz.setmore.com" width="100%" height="800" style="border: none; display: block; background: #111111;" allow="camera; microphone; geolocation"></iframe>
        </div>
       </div>
      </div>
     </div><!-- CONTACT PAGE -->
     <div id="page-contact" class="w-full hidden">
      <div class="w-full pt-24 md:pt-28 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-5xl mx-auto">
-       <button id="contact-back" type="button" class="inline-flex items-center gap-2 mb-8 md:mb-12 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
+      <div class="max-w-5xl mx-auto"><button id="contact-back" type="button" class="inline-flex items-center gap-2 mb-8 md:mb-12 text-sm font-semibold hover:opacity-70 transition" style="color:#d4af37;"> <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Terug </button>
        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 mb-12">
         <div class="fade-up">
          <p class="text-xs tracking-widest uppercase mb-2 opacity-50 gold-text">Contact</p>
@@ -453,8 +378,7 @@
           </div>
           <div>
            <p class="text-sm opacity-50 mb-3">🔗 VOLG ONS</p>
-           <div class="flex gap-3">
-            <a href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-white/10 transition" title="Instagram"> <i data-lucide="instagram" style="width:20px;height:20px;color:#d4af37;"></i> </a> <a href="https://www.tiktok.com/@rwcutzzz" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-white/10 transition" title="TikTok"> <i data-lucide="music" style="width:20px;height:20px;color:#d4af37;"></i> </a>
+           <div class="flex gap-3"><a href="https://www.instagram.com/rwcutzzz" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-white/10 transition" title="Instagram"> <i data-lucide="instagram" style="width:20px;height:20px;color:#d4af37;"></i> </a> <a href="https://www.tiktok.com/@rwcutzzz" target="_blank" rel="noopener noreferrer" class="p-3 rounded-lg hover:bg-white/10 transition" title="TikTok"> <i data-lucide="music" style="width:20px;height:20px;color:#d4af37;"></i> </a>
            </div>
           </div>
          </div>
@@ -834,5 +758,5 @@
     loadProducts();
     lucide.createIcons();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb6254955f76715',t:'MTc3NjAzNzk1Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9eb62ff1b186b234',t:'MTc3NjAzODM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
