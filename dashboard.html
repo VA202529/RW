@@ -1,479 +1,175 @@
 <!doctype html>
-<html lang="nl" class="h-full">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RW Cutzz Admin Dashboard</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+  <title>Admin Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    body{box-sizing:border-box}
-    .glass{background:rgba(255,255,255,.82);backdrop-filter:blur(18px);border:1px solid rgba(148,163,184,.16);box-shadow:0 18px 50px rgba(15,23,42,.08)}
-    .hero-gradient{background:radial-gradient(circle at top left,rgba(56,189,248,.18),transparent 28%),radial-gradient(circle at bottom right,rgba(245,158,11,.18),transparent 30%),linear-gradient(135deg,#0f172a 0%,#13233f 45%,#1d4d8f 100%)}
-    .lux-card{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,252,.9));border:1px solid rgba(148,163,184,.15);box-shadow:0 20px 40px rgba(15,23,42,.08)}
-    .code-panel{max-height:0;overflow:hidden;transition:max-height .35s ease}
-    .code-panel.open{max-height:560px}
-    .json-box{background:#0f172a;color:#dbeafe;font-family:Consolas,monospace;white-space:pre-wrap;word-break:break-word}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-    .fade-in{animation:fadeIn .28s ease}
-    @media (max-width:768px){
-      #sidebar{position:fixed;left:0;top:0;height:100%;z-index:50;transform:translateX(-100%);transition:transform .3s}
-      #sidebar.active{transform:translateX(0)}
-      .sidebar-overlay{position:fixed;inset:0;z-index:40;background:rgba(15,23,42,.5);display:none}
-      .sidebar-overlay.active{display:block}
-    }
+    :root{--line:rgba(148,163,184,.18)}
+    body{font-family:Manrope,sans-serif;background:radial-gradient(circle at top right,rgba(249,115,22,.18),transparent 28%),radial-gradient(circle at bottom left,rgba(56,189,248,.12),transparent 32%),linear-gradient(180deg,#08101d 0%,#0f172a 100%);color:#e2e8f0}
+    .font-display{font-family:"Space Grotesk",sans-serif}.panel{background:rgba(15,23,42,.86);backdrop-filter:blur(16px)}
+    .toast-in{animation:toastIn .22s ease}.fade-up{animation:fadeUp .28s ease}
+    @keyframes toastIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   </style>
 </head>
-<body class="h-full bg-slate-100 text-slate-900">
-  <div id="app" class="w-full h-full flex flex-col sm:flex-row">
-    <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar(false)"></div>
-    <aside id="sidebar" class="w-72 bg-slate-950 text-white transition-all duration-300 flex flex-col z-40">
-      <div class="p-5 border-b border-slate-800 flex items-center justify-between gap-3">
-        <div class="flex items-center gap-3 min-w-0">
-          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-700 flex items-center justify-center shadow-lg"><i data-lucide="scissors" class="text-white" style="width:22px;height:22px;"></i></div>
-          <div><p class="font-bold tracking-wide truncate" id="sidebarTitle">RW Cutzz</p><p class="text-xs text-slate-400">Luxury Control Room</p></div>
+<body class="min-h-screen">
+  <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <header class="panel mb-6 rounded-[32px] border border-[color:var(--line)] p-6 shadow-[0_24px_80px_rgba(0,0,0,.35)]">
+      <div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[.28em] text-orange-300">Admin Dashboard</p>
+          <h1 class="font-display mt-2 text-4xl font-bold">Orders, payments & fulfillment</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 text-slate-400">Bekijk alle orders, filter slim, open details en voer alle beheeracties direct uit vanuit één dashboard.</p>
         </div>
-        <button onclick="toggleSidebar()" class="p-2 hover:bg-slate-800 rounded-xl transition"><i data-lucide="panel-left-close" style="width:18px;height:18px;"></i></button>
+        <div class="flex flex-wrap gap-3">
+          <div class="rounded-2xl border border-[color:var(--line)] bg-black/15 px-4 py-3"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">API</div><div id="apiStatus" class="mt-1 text-sm font-semibold text-emerald-300">Verbinden...</div></div>
+          <div class="rounded-2xl border border-[color:var(--line)] bg-black/15 px-4 py-3"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">Store</div><div id="storeStatus" class="mt-1 text-sm font-semibold">Laden...</div></div>
+        </div>
       </div>
-      <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
-        <button class="nav-item w-full px-4 py-3 rounded-2xl flex items-center gap-3 bg-slate-800/80 hover:bg-slate-800 transition text-left" onclick="navigateTo('dashboard', this)"><i data-lucide="layout-dashboard" style="width:20px;height:20px;"></i><span>Dashboard</span></button>
-        <button class="nav-item w-full px-4 py-3 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition text-left" onclick="navigateTo('orders', this)"><i data-lucide="shopping-cart" style="width:20px;height:20px;"></i><span>Orders</span></button>
-        <button class="nav-item w-full px-4 py-3 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition text-left" onclick="navigateTo('products', this)"><i data-lucide="package-2" style="width:20px;height:20px;"></i><span>Producten</span></button>
-        <button class="nav-item w-full px-4 py-3 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition text-left" onclick="navigateTo('history', this)"><i data-lucide="archive" style="width:20px;height:20px;"></i><span>Geschiedenis</span></button>
-        <button class="nav-item w-full px-4 py-3 rounded-2xl flex items-center gap-3 hover:bg-slate-800 transition text-left" onclick="navigateTo('settings', this)"><i data-lucide="settings-2" style="width:20px;height:20px;"></i><span>Instellingen</span></button>
-      </nav>
-    </aside>
-    <div class="flex-1 flex flex-col overflow-hidden">
-      <header class="glass sticky top-0 z-30 border-b border-white/40">
-        <div class="px-4 sm:px-8 py-4 flex items-center justify-between gap-4">
-          <div><h1 class="text-2xl sm:text-3xl font-black tracking-tight" id="pageTitle">Dashboard</h1><p class="text-slate-500 text-sm mt-1">Overzicht, bewerken en testen vanuit dezelfde Apps Script koppeling.</p></div>
-          <div class="flex items-center gap-2 sm:gap-3">
-            <button onclick="loadAllData()" class="px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 text-sm font-semibold">Vernieuwen</button>
-            <button onclick="toggleJsonPanel()" class="px-4 py-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 text-sm font-semibold flex items-center gap-2"><i data-lucide="code-2" style="width:16px;height:16px;"></i><span>Live JSON</span></button>
-            <button onclick="toggleSidebar()" class="sm:hidden p-2 hover:bg-slate-100 rounded-xl transition"><i data-lucide="menu" style="width:20px;height:20px;"></i></button>
+      <div class="mt-5 grid gap-3 md:grid-cols-[1fr_220px_180px]">
+        <input id="apiBaseInput" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white" value="https://script.google.com/macros/s/AKfycbxyiHmxMFiDfvMKopLdrcshSW7LwepvmMbMrz2ssqMZjTPzxuFJp8rgd8f2zSL3b3P1/exec">
+        <input id="apiKeyInput" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white" value="12345" placeholder="API key">
+        <button id="connectButton" class="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-bold text-slate-950">Verbinden</button>
+      </div>
+    </header>
+
+    <div id="warningBox" class="mb-6 hidden rounded-[28px] border border-amber-400/30 bg-amber-500/10 px-5 py-4 text-sm text-amber-100"></div>
+
+    <section class="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <article class="panel rounded-[28px] border border-[color:var(--line)] p-5"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">Totaal orders</div><div id="metricOrders" class="mt-2 text-3xl font-bold">0</div></article>
+      <article class="panel rounded-[28px] border border-[color:var(--line)] p-5"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">Omzet</div><div id="metricRevenue" class="mt-2 text-3xl font-bold">€0,00</div></article>
+      <article class="panel rounded-[28px] border border-[color:var(--line)] p-5"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">Open orders</div><div id="metricOpen" class="mt-2 text-3xl font-bold">0</div></article>
+      <article class="panel rounded-[28px] border border-[color:var(--line)] p-5"><div class="text-xs font-bold uppercase tracking-[.2em] text-slate-400">Unpaid</div><div id="metricUnpaid" class="mt-2 text-3xl font-bold">0</div></article>
+    </section>
+
+    <section class="panel rounded-[32px] border border-[color:var(--line)] p-5 shadow-[0_24px_80px_rgba(0,0,0,.32)]">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div><p class="text-xs font-bold uppercase tracking-[.22em] text-orange-300">Orders</p><h2 class="font-display mt-2 text-2xl font-bold">Overzicht</h2></div>
+        <div class="flex flex-wrap gap-3">
+          <button id="refreshButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">Vernieuwen</button>
+          <button id="exportButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">CSV export</button>
+        </div>
+      </div>
+
+      <div class="mt-5 grid gap-3 xl:grid-cols-[1.45fr_repeat(4,.8fr)]">
+        <input id="searchInput" class="w-full rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white" placeholder="Zoek op naam, email of order ID">
+        <select id="statusFilter" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white"><option value="all">Alle statussen</option><option value="nieuw">nieuw</option><option value="geaccepteerd">geaccepteerd</option><option value="wacht_op_betaling">wacht_op_betaling</option><option value="betaald">betaald</option><option value="in_behandeling">in_behandeling</option><option value="verzonden">verzonden</option><option value="klaar_voor_ophalen">klaar_voor_ophalen</option><option value="afgerond">afgerond</option><option value="geannuleerd">geannuleerd</option></select>
+        <select id="paidFilter" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white"><option value="all">Alles</option><option value="true">Betaald</option><option value="false">Onbetaald</option></select>
+        <select id="deliveryFilter" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white"><option value="all">Alles</option><option value="verzenden">verzenden</option><option value="afhalen">afhalen</option></select>
+        <select id="sortSelect" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white"><option value="created_desc">Nieuwste eerst</option><option value="created_asc">Oudste eerst</option><option value="price_desc">Hoogste bedrag</option><option value="price_asc">Laagste bedrag</option><option value="status_priority">Status prioriteit</option></select>
+      </div>
+
+      <div class="mt-3 grid gap-3 md:grid-cols-2">
+        <input id="dateFrom" type="date" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white">
+        <input id="dateTo" type="date" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white">
+      </div>
+
+      <div class="mt-4 flex items-center justify-between gap-3 text-sm text-slate-400">
+        <div><span id="resultCount">0</span> resultaten</div>
+        <button id="clearFiltersButton" class="font-bold text-white">Reset filters</button>
+      </div>
+
+      <div class="mt-5 overflow-x-auto rounded-[28px] border border-[color:var(--line)]">
+        <table class="min-w-full divide-y divide-[color:var(--line)] text-sm">
+          <thead class="bg-white/5 text-left text-xs font-bold uppercase tracking-[.16em] text-slate-400">
+            <tr>
+              <th class="px-4 py-4">Status</th>
+              <th class="px-4 py-4">Order ID</th>
+              <th class="px-4 py-4"><button data-sort="created">Created at</button></th>
+              <th class="px-4 py-4">Klant</th>
+              <th class="px-4 py-4">Email</th>
+              <th class="px-4 py-4">Phone</th>
+              <th class="px-4 py-4">Delivery</th>
+              <th class="px-4 py-4"><button data-sort="price">Totaal</button></th>
+              <th class="px-4 py-4">Paid</th>
+              <th class="px-4 py-4">Acties</th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody" class="divide-y divide-[color:var(--line)] bg-slate-950/20"></tbody>
+        </table>
+      </div>
+
+      <div id="emptyState" class="mt-5 hidden rounded-2xl border border-dashed border-[color:var(--line)] bg-black/10 px-4 py-8 text-center text-sm text-slate-400">Geen orders gevonden.</div>
+      <div class="mt-5 flex items-center justify-between gap-3"><div class="text-sm text-slate-400">Pagina <span id="pageIndicator">1 / 1</span></div><div class="flex gap-3"><button id="prevPageButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">Vorige</button><button id="nextPageButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">Volgende</button></div></div>
+    </section>
+
+    <section class="panel mt-6 rounded-[32px] border border-[color:var(--line)] p-5">
+      <div class="flex items-start justify-between gap-4"><div><p class="text-xs font-bold uppercase tracking-[.22em] text-orange-300">API log</p><h2 class="font-display mt-2 text-2xl font-bold">Acties & responses</h2></div><button id="clearLogButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">Leegmaken</button></div>
+      <div id="logContainer" class="mt-5 space-y-3"><div class="rounded-2xl border border-dashed border-[color:var(--line)] bg-black/10 px-4 py-6 text-sm text-slate-400">Nog geen acties uitgevoerd.</div></div>
+    </section>
+  </div>
+
+  <div id="modal" class="fixed inset-0 z-40 hidden items-end justify-center bg-slate-950/70 p-4 backdrop-blur sm:items-center">
+    <div class="panel max-h-[92vh] w-full max-w-4xl overflow-auto rounded-[32px] border border-[color:var(--line)] p-6 shadow-[0_30px_100px_rgba(0,0,0,.45)]">
+      <div class="flex flex-col gap-4 border-b border-[color:var(--line)] pb-5 sm:flex-row sm:items-start sm:justify-between">
+        <div><p class="text-xs font-bold uppercase tracking-[.22em] text-orange-300">Order detail</p><h3 id="modalOrderId" class="font-display mt-2 text-3xl font-bold">ORD-...</h3><p id="modalCreatedAt" class="mt-2 text-sm text-slate-400"></p></div>
+        <button id="closeModalButton" class="rounded-full border border-[color:var(--line)] bg-white/5 px-4 py-2 text-sm font-bold">Sluiten</button>
+      </div>
+      <div class="mt-6 grid gap-6 lg:grid-cols-2">
+        <div class="space-y-4">
+          <div class="rounded-2xl border border-[color:var(--line)] bg-black/10 p-4"><div class="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Klant</div><div id="modalCustomer" class="mt-3 space-y-2 text-sm"></div></div>
+          <div class="rounded-2xl border border-[color:var(--line)] bg-black/10 p-4"><div class="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Items</div><div id="modalItems" class="mt-3 space-y-2 text-sm"></div></div>
+          <div class="rounded-2xl border border-[color:var(--line)] bg-black/10 p-4"><div class="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Links & notes</div><div id="modalLinks" class="mt-3 space-y-3 text-sm"></div></div>
+        </div>
+        <div class="rounded-2xl border border-[color:var(--line)] bg-black/10 p-4">
+          <div class="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Acties</div>
+          <div class="mt-4 grid gap-4">
+            <select id="modalStatus" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white"><option value="nieuw">nieuw</option><option value="geaccepteerd">geaccepteerd</option><option value="wacht_op_betaling">wacht_op_betaling</option><option value="betaald">betaald</option><option value="in_behandeling">in_behandeling</option><option value="verzonden">verzonden</option><option value="klaar_voor_ophalen">klaar_voor_ophalen</option><option value="afgerond">afgerond</option><option value="geannuleerd">geannuleerd</option></select>
+            <button id="saveStatusButton" class="rounded-2xl bg-sky-500 px-4 py-3 text-sm font-bold text-slate-950">Status opslaan</button>
+            <label class="flex items-center justify-between rounded-2xl border border-[color:var(--line)] bg-slate-950/45 px-4 py-3"><span class="text-sm font-semibold">Paid</span><input id="modalPaid" type="checkbox" class="h-5 w-5"></label>
+            <button id="savePaidButton" class="rounded-2xl bg-emerald-500 px-4 py-3 text-sm font-bold text-slate-950">Betaald markeren</button>
+            <input id="modalPaymentLink" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white" placeholder="Payment link">
+            <div class="grid gap-3 sm:grid-cols-2"><button id="savePaymentLinkButton" class="rounded-2xl bg-amber-300 px-4 py-3 text-sm font-bold text-slate-950">Opslaan</button><button id="sendPaymentLinkButton" class="rounded-2xl bg-orange-500 px-4 py-3 text-sm font-bold text-slate-950">Opslaan + mailen</button></div>
+            <input id="modalTrackTrace" class="rounded-2xl border border-[color:var(--line)] bg-slate-950/60 px-4 py-3 text-sm text-white" placeholder="Track & trace">
+            <button id="sendTrackingButton" class="rounded-2xl bg-fuchsia-400 px-4 py-3 text-sm font-bold text-slate-950">Tracking opslaan + mailen</button>
           </div>
+          <div id="modalMessage" class="mt-4 hidden rounded-2xl px-4 py-3 text-sm font-semibold"></div>
         </div>
-      </header>
-      <main class="flex-1 overflow-auto">
-        <div id="loadingOverlay" class="fixed inset-0 bg-slate-950/30 z-50 flex items-center justify-center"><div class="glass rounded-3xl p-8 text-center min-w-[280px]"><i data-lucide="loader" class="mx-auto animate-spin text-blue-600" style="width:34px;height:34px;"></i><p class="mt-4 font-semibold">Dashboard laden...</p></div></div>
-
-        <div id="dashboardView" class="p-4 sm:p-8 space-y-6">
-          <section class="hero-gradient rounded-[28px] p-6 sm:p-8 text-white shadow-xl overflow-hidden relative">
-            <div class="grid lg:grid-cols-[1.4fr_0.8fr] gap-6 items-start">
-              <div>
-                <span class="inline-flex px-3 py-1 rounded-full bg-white/10 border border-white/10 text-xs font-semibold uppercase tracking-[0.18em]">RW Cutzz admin</span>
-                <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Luxe dashboard met live sheet beheer</h2>
-                <p class="mt-4 text-slate-200 max-w-2xl">Je kunt hier orders en producten lezen, wijzigen en toevoegen via dezelfde Apps Script web app. De live JSON preview is inklapbaar zodat de pagina compact blijft.</p>
-                <div class="mt-5 flex flex-wrap gap-3">
-                  <button onclick="openNewOrderModal()" class="px-4 py-2 rounded-xl bg-white text-slate-900 font-semibold hover:bg-slate-100">Nieuwe order</button>
-                  <button onclick="openNewProductModal()" class="px-4 py-2 rounded-xl bg-sky-500/20 border border-sky-300/30 text-white font-semibold hover:bg-sky-500/30">Nieuw product</button>
-                </div>
-              </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="rounded-2xl bg-white/10 border border-white/10 p-4"><p class="text-xs uppercase tracking-[0.18em] text-slate-300">Omzet</p><p class="mt-3 text-3xl font-black" id="kpiRevenue">EUR 0,00</p></div>
-                <div class="rounded-2xl bg-white/10 border border-white/10 p-4"><p class="text-xs uppercase tracking-[0.18em] text-slate-300">Orders</p><p class="mt-3 text-3xl font-black" id="kpiOrders">0</p></div>
-                <div class="rounded-2xl bg-white/10 border border-white/10 p-4"><p class="text-xs uppercase tracking-[0.18em] text-slate-300">Openstaand</p><p class="mt-3 text-3xl font-black" id="kpiPending">0</p></div>
-                <div class="rounded-2xl bg-white/10 border border-white/10 p-4"><p class="text-xs uppercase tracking-[0.18em] text-slate-300">Gem. order</p><p class="mt-3 text-3xl font-black" id="kpiAvgOrder">EUR 0,00</p></div>
-              </div>
-            </div>
-          </section>
-          <section class="glass rounded-[24px] overflow-hidden">
-            <div class="px-5 sm:px-6 py-4 border-b border-slate-200 flex items-center justify-between gap-3">
-              <div><h3 class="font-bold text-slate-900">Live JSON uit sheet</h3><p class="text-sm text-slate-500">In- en uitklappen om de pagina kort te houden.</p></div>
-              <button id="jsonToggleLabel" onclick="toggleJsonPanel()" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold">Open JSON</button>
-            </div>
-            <div id="jsonPanel" class="code-panel"><div class="p-5"><pre id="liveJsonBox" class="json-box rounded-2xl p-4 text-xs sm:text-sm overflow-auto min-h-[180px]">{}</pre></div></div>
-          </section>
-          <section class="grid grid-cols-1 xl:grid-cols-[1.2fr_0.8fr] gap-6">
-            <div class="lux-card rounded-[24px] p-5 sm:p-6"><div class="mb-5"><h3 class="text-lg font-bold">Omzet trend</h3><p class="text-sm text-slate-500">Laatste 7 datapunten op basis van de orders in je sheet.</p></div><div class="h-72"><canvas id="revenueChart"></canvas></div></div>
-            <div class="lux-card rounded-[24px] p-5 sm:p-6"><div class="flex items-center justify-between gap-4 mb-4"><div><h3 class="text-lg font-bold">Recente orders</h3><p class="text-sm text-slate-500">Nieuwste bestellingen direct zichtbaar.</p></div><button onclick="navigateTo('orders')" class="text-sm font-semibold text-blue-700 hover:text-blue-800">Alles</button></div><div id="recentOrdersList" class="space-y-3"></div></div>
-          </section>
-        </div>
-        <div id="ordersView" class="hidden p-4 sm:p-8 space-y-6">
-          <section class="lux-card rounded-[24px] p-5 sm:p-6">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
-              <div><h2 class="text-2xl font-black tracking-tight">Orders beheren</h2><p class="text-slate-500 text-sm mt-1">Volledig bewerken en terugschrijven naar de Orders-sheet.</p></div>
-              <div class="flex flex-wrap gap-2 w-full lg:w-auto">
-                <input id="ordersSearch" placeholder="Zoek order, klant of email" class="px-4 py-2.5 rounded-xl border border-slate-300 min-w-[220px]">
-                <select id="ordersStatusFilter" class="px-4 py-2.5 rounded-xl border border-slate-300"><option value="">Alle statussen</option><option value="Nieuw">Nieuw</option><option value="Geaccepteerd">Geaccepteerd</option><option value="Betaald">Betaald</option><option value="Verzonden">Verzonden</option><option value="Geannuleerd">Geannuleerd</option></select>
-                <button onclick="openNewOrderModal()" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">+ Nieuwe order</button>
-              </div>
-            </div>
-            <div class="overflow-x-auto table-shell"><table class="w-full min-w-[1020px]"><thead class="bg-slate-50 border-y border-slate-200"><tr><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">ID</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Datum</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Klant</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Email</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Totaal</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Status</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Acties</th></tr></thead><tbody id="ordersTableBody"></tbody></table></div>
-          </section>
-        </div>
-        <div id="productsView" class="hidden p-4 sm:p-8 space-y-6">
-          <section class="lux-card rounded-[24px] p-5 sm:p-6">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
-              <div><h2 class="text-2xl font-black tracking-tight">Producten beheren</h2><p class="text-slate-500 text-sm mt-1">Prijs, voorraad, zichtbaarheid en afbeeldingen direct aanpassen.</p></div>
-              <div class="flex flex-wrap gap-2 w-full lg:w-auto"><input id="productsSearch" placeholder="Zoek product" class="px-4 py-2.5 rounded-xl border border-slate-300 min-w-[220px]"><button onclick="openNewProductModal()" class="px-4 py-2.5 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">+ Nieuw product</button></div>
-            </div>
-            <div class="overflow-x-auto table-shell"><table class="w-full min-w-[1020px]"><thead class="bg-slate-50 border-y border-slate-200"><tr><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Product</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Beschrijving</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Prijs</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Voorraad</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Status</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Acties</th></tr></thead><tbody id="productsTableBody"></tbody></table></div>
-          </section>
-        </div>
-        <div id="historyView" class="hidden p-4 sm:p-8 space-y-6">
-          <section class="lux-card rounded-[24px] p-5 sm:p-6">
-            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-5">
-              <div><h2 class="text-2xl font-black tracking-tight">Ordergeschiedenis</h2><p class="text-slate-500 text-sm mt-1">Verzonden of afgeronde bestellingen.</p></div>
-              <div class="flex flex-wrap gap-2 w-full lg:w-auto"><input id="historySearch" placeholder="Zoeken..." class="px-4 py-2.5 rounded-xl border border-slate-300 min-w-[220px]"><select id="historySortFilter" class="px-4 py-2.5 rounded-xl border border-slate-300"><option value="datum-desc">Nieuwste eerst</option><option value="datum-asc">Oudste eerst</option><option value="totaal-desc">Duurste eerst</option><option value="totaal-asc">Goedkoopste eerst</option><option value="klant-asc">Klant A-Z</option></select></div>
-            </div>
-            <div class="overflow-x-auto table-shell"><table class="w-full min-w-[980px]"><thead class="bg-slate-50 border-y border-slate-200"><tr><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">ID</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Datum</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Klant</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Totaal</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Track & Trace</th><th class="px-4 py-3 text-left text-xs uppercase tracking-[0.18em] text-slate-500">Acties</th></tr></thead><tbody id="historyTableBody"></tbody></table></div>
-          </section>
-        </div>
-        <div id="settingsView" class="hidden p-4 sm:p-8 space-y-6">
-          <section class="lux-card rounded-[24px] p-5 sm:p-6">
-            <div class="max-w-2xl space-y-5"><div><h2 class="text-2xl font-black tracking-tight">Instellingen</h2><p class="text-slate-500 text-sm mt-1">Pas de web app URL en refresh-interval aan.</p></div><div><label class="block text-sm font-semibold mb-2">Apps Script web app URL</label><input id="apiEndpointInput" class="w-full px-4 py-3 rounded-xl border border-slate-300" type="url"></div><div><label class="block text-sm font-semibold mb-2">Auto refresh interval (seconden)</label><input id="refreshInterval" value="30" min="10" max="300" class="w-full px-4 py-3 rounded-xl border border-slate-300" type="number"></div><div class="flex flex-wrap gap-3"><button onclick="saveSettings()" class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">Instellingen opslaan</button><button onclick="loadAllData()" class="px-5 py-3 rounded-xl border border-slate-300 bg-white font-semibold hover:bg-slate-50">Nu verversen</button></div></div>
-          </section>
-        </div>
-      </main>
+      </div>
     </div>
   </div>
 
-  <div id="orderModal" class="fixed inset-0 bg-slate-950/60 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[28px] max-w-5xl w-full max-h-[92vh] overflow-y-auto fade-in shadow-2xl">
-      <div class="px-5 sm:px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white z-10"><div><h2 class="text-xl font-black tracking-tight" id="orderModalTitle">Order bewerken</h2><p class="text-sm text-slate-500">Alle ordervelden die in de sheet staan kun je hier wijzigen.</p></div><button onclick="closeOrderModal()" class="p-2 hover:bg-slate-100 rounded-xl"><i data-lucide="x" style="width:20px;height:20px;"></i></button></div>
-      <form id="orderForm" class="p-5 sm:p-6 space-y-5" onsubmit="saveOrder(event)">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-sm font-semibold mb-2">Naam</label><input id="orderNaam" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Email</label><input id="orderEmail" type="email" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Adres</label><input id="orderAdres" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Telefoon</label><input id="orderTelefoon" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Totaal</label><input id="orderTotaal" type="number" step="0.01" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Status</label><select id="orderStatus" class="w-full px-4 py-3 rounded-xl border border-slate-300"><option value="Nieuw">Nieuw</option><option value="Geaccepteerd">Geaccepteerd</option><option value="Betaald">Betaald</option><option value="Verzonden">Verzonden</option><option value="Geannuleerd">Geannuleerd</option></select></div>
-          <div><label class="block text-sm font-semibold mb-2">Betaald</label><select id="orderPaid" class="w-full px-4 py-3 rounded-xl border border-slate-300"><option value="Nee">Nee</option><option value="Ja">Ja</option></select></div>
-          <div><label class="block text-sm font-semibold mb-2">Betaallink</label><input id="orderPaymentLink" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div class="md:col-span-2"><label class="block text-sm font-semibold mb-2">Track & Trace</label><input id="orderTrack" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div class="md:col-span-2"><label class="block text-sm font-semibold mb-2">Producten</label><textarea id="orderProducten" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300"></textarea></div>
-          <div class="md:col-span-2"><label class="block text-sm font-semibold mb-2">Notities</label><textarea id="orderNotes" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300"></textarea></div>
-        </div>
-        <div class="flex flex-wrap gap-3 pt-2"><button type="button" onclick="closeOrderModal()" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold hover:bg-slate-50">Annuleren</button><button type="submit" class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">Opslaan</button></div>
-      </form>
-    </div>
-  </div>
-  <div id="productModal" class="fixed inset-0 bg-slate-950/60 z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[28px] max-w-5xl w-full max-h-[92vh] overflow-y-auto fade-in shadow-2xl">
-      <div class="px-5 sm:px-6 py-4 border-b border-slate-200 flex items-center justify-between sticky top-0 bg-white z-10"><div><h2 class="text-xl font-black tracking-tight" id="productModalTitle">Product bewerken</h2><p class="text-sm text-slate-500">Alle productvelden uit de Products-sheet zijn hier beschikbaar.</p></div><button onclick="closeProductModal()" class="p-2 hover:bg-slate-100 rounded-xl"><i data-lucide="x" style="width:20px;height:20px;"></i></button></div>
-      <form id="productForm" class="p-5 sm:p-6 space-y-5" onsubmit="saveProduct(event)">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div><label class="block text-sm font-semibold mb-2">Naam</label><input id="productName" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Foldernaam</label><input id="productFolderNaam" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Prijs</label><input id="productPrice" type="number" step="0.01" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Voorraad</label><input id="productStock" type="number" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div class="md:col-span-2"><label class="block text-sm font-semibold mb-2">Beschrijving</label><textarea id="productDescription" rows="4" class="w-full px-4 py-3 rounded-xl border border-slate-300"></textarea></div>
-          <div><label class="block text-sm font-semibold mb-2">Handmatige afbeelding URL</label><input id="productManualImage" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div><label class="block text-sm font-semibold mb-2">Afbeelding URL</label><input id="productImage" class="w-full px-4 py-3 rounded-xl border border-slate-300"></div>
-          <div class="md:col-span-2"><label class="flex items-center gap-3 cursor-pointer"><input id="productVisible" type="checkbox" class="w-4 h-4 rounded border-slate-300"><span class="text-sm font-semibold">Product zichtbaar</span></label></div>
-        </div>
-        <div class="rounded-2xl bg-slate-50 border border-slate-200 p-4"><p class="text-sm font-semibold mb-3">Afbeelding preview</p><div id="productImagePreview" class="rounded-2xl bg-white border border-slate-200 min-h-[220px] flex items-center justify-center text-slate-400 text-sm overflow-hidden">Preview</div></div>
-        <div class="flex flex-wrap gap-3 pt-2"><button type="button" onclick="closeProductModal()" class="px-5 py-3 rounded-xl border border-slate-300 font-semibold hover:bg-slate-50">Annuleren</button><button type="submit" class="px-5 py-3 rounded-xl bg-slate-900 text-white font-semibold hover:bg-slate-800">Opslaan</button></div>
-      </form>
-    </div>
-  </div>
-  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2"></div>
+  <div id="toastStack" class="fixed bottom-4 right-4 z-50 space-y-2"></div>
 
   <script>
-    const DEFAULT_API_ENDPOINT = "https://script.google.com/macros/s/AKfycbzgxcoJdmW2L1OqfpT2DGFKnKGejoqkuoi7iZNvlhYtb4fRXSpHR-fjVo3xB6Cq1w9u/exec";
-    const PLACEHOLDER = "https://i.postimg.cc/Kj653Ffw/download.jpg";
-    let config = { auto_refresh_interval: "30", api_endpoint: DEFAULT_API_ENDPOINT };
-    let appState = { products: [], orders: [], archivedOrders: [], currentPage: "dashboard", selectedOrder: null, selectedProduct: null, revenueChart: null, refreshInterval: null, jsonOpen: false };
-
-    function getApiUrl(){return document.getElementById("apiEndpointInput")?.value?.trim() || config.api_endpoint || DEFAULT_API_ENDPOINT}
-    function formatPrice(price){return new Intl.NumberFormat("nl-NL",{style:"currency",currency:"EUR"}).format(Number(price||0))}
-    function formatDate(dateStr){if(!dateStr)return "N/A";const d=new Date(dateStr);if(Number.isNaN(d.getTime()))return String(dateStr);return d.toLocaleDateString("nl-NL",{year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})}
-    function escapeHtml(value){return String(value==null?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\"/g,"&quot;").replace(/'/g,"&#39;")}
-
-    function showToast(message,type="success"){
-      const toast=document.createElement("div");
-      const bg=type==="error"?"bg-red-500":type==="loading"?"bg-slate-900":"bg-emerald-600";
-      const icon=type==="error"?"alert-circle":type==="loading"?"loader":"check-circle-2";
-      toast.className=bg+" text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-2 text-sm fade-in";
-      toast.innerHTML='<i data-lucide="'+icon+'" style="width:18px;height:18px;"'+(type==="loading"?' class="animate-spin"':"")+"></i><span>"+escapeHtml(message)+"</span>";
-      document.getElementById("toastContainer").appendChild(toast);
-      lucide.createIcons();
-      if(type!=="loading")setTimeout(()=>toast.remove(),3200);
-      return toast;
-    }
-
-    function toggleSidebar(forceState){
-      const sidebar=document.getElementById("sidebar");
-      const overlay=document.getElementById("sidebarOverlay");
-      const shouldOpen=typeof forceState==="boolean"?forceState:!sidebar.classList.contains("active");
-      sidebar.classList.toggle("active",shouldOpen);
-      overlay.classList.toggle("active",shouldOpen);
-    }
-
-    function navigateTo(page,btn){
-      appState.currentPage=page;
-      document.querySelectorAll('[id$="View"]').forEach(el=>el.classList.add("hidden"));
-      document.getElementById(page+"View").classList.remove("hidden");
-      document.querySelectorAll(".nav-item").forEach(el=>el.classList.remove("bg-slate-800/80"));
-      if(btn)btn.classList.add("bg-slate-800/80");
-      document.getElementById("pageTitle").textContent={dashboard:"Dashboard",orders:"Orders",products:"Producten",history:"Geschiedenis",settings:"Instellingen"}[page]||"Dashboard";
-      if(window.innerWidth<768)toggleSidebar(false);
-      if(page==="orders")renderOrdersTable();
-      if(page==="products")renderProductsTable();
-      if(page==="history")renderHistoryTable();
-    }
-
-    function toggleJsonPanel(){
-      appState.jsonOpen=!appState.jsonOpen;
-      document.getElementById("jsonPanel").classList.toggle("open",appState.jsonOpen);
-      document.getElementById("jsonToggleLabel").textContent=appState.jsonOpen?"Sluit JSON":"Open JSON";
-    }
-
-    function saveSettings(){
-      config.api_endpoint=getApiUrl();
-      config.auto_refresh_interval=document.getElementById("refreshInterval").value||"30";
-      resetAutoRefresh(parseInt(config.auto_refresh_interval,10)*1000);
-      showToast("Instellingen opgeslagen.");
-      loadAllData();
-    }
-
-    function resetAutoRefresh(interval){
-      if(appState.refreshInterval)clearInterval(appState.refreshInterval);
-      appState.refreshInterval=setInterval(()=>{ if(["dashboard","orders","history"].includes(appState.currentPage)) loadAllData(true); },interval);
-    }
-
-    function normalizeOrder(order,idx){
-      return {
-        id:order.id||("ORD-"+String(idx+1).padStart(4,"0")),
-        datum:order.datum||new Date().toISOString(),
-        naam:order.naam||"",
-        email:order.email||"",
-        adres:order.adres||"",
-        telefoon:order.telefoon||"",
-        producten:order.producten||"",
-        totaal:Number(order.totaal||0),
-        status:order.status||"Nieuw",
-        betaallink:order.betaallink||"",
-        betaald:String(order.betaald||"Nee"),
-        tracktrace:order.tracktrace||"",
-        notities:order.notities||""
-      };
-    }
-
-    function normalizeProduct(product,idx){
-      const zichtbaarRaw=product.zichtbaar;
-      return {
-        id:product.id||("PROD-"+String(idx+1).padStart(4,"0")),
-        naam:product.naam||"",
-        beschrijving:product.beschrijving||"",
-        prijs:Number(product.prijs||0),
-        voorraad:Number(product.voorraad||0),
-        Afbeeldinghandmatig:product.Afbeeldinghandmatig||"",
-        afbeelding:product.afbeelding||"",
-        folderNaam:product.folderNaam||"",
-        zichtbaar:zichtbaarRaw===true||String(zichtbaarRaw).toLowerCase()==="true"
-      };
-    }
-
-    async function loadAllData(silent){
-      const loadingToast=silent?null:showToast("Data laden...","loading");
-      try{
-        const res=await fetch(getApiUrl()+"?action=getAllData",{method:"GET",headers:{"Content-Type":"application/json"}});
-        if(!res.ok)throw new Error("HTTP "+res.status);
-        const data=await res.json();
-        appState.products=Array.isArray(data.products)?data.products.map(normalizeProduct):[];
-        const allOrders=Array.isArray(data.orders)?data.orders.map(normalizeOrder):[];
-        appState.orders=allOrders.filter(o=>o.status!=="Verzonden");
-        appState.archivedOrders=allOrders.filter(o=>o.status==="Verzonden");
-        document.getElementById("liveJsonBox").textContent=JSON.stringify({orders:allOrders,products:appState.products},null,2);
-        updateDashboard();
-        renderOrdersTable();
-        renderProductsTable();
-        renderHistoryTable();
-        renderRecentOrders();
-        if(!silent)showToast("Dashboard bijgewerkt.");
-      }catch(error){
-        console.error(error);
-        showToast("Data laden mislukt: "+(error.message||error),"error");
-      }finally{
-        if(loadingToast)loadingToast.remove();
-        document.getElementById("loadingOverlay").classList.add("hidden");
-      }
-    }
-
-    function renderOrdersTable(){
-      const tbody=document.getElementById("ordersTableBody");
-      const search=(document.getElementById("ordersSearch")?.value||"").toLowerCase();
-      const status=(document.getElementById("ordersStatusFilter")?.value||"");
-      const filtered=[...appState.orders].filter(o=>{
-        const hay=[o.id,o.naam,o.email].join(" ").toLowerCase();
-        return (!search||hay.includes(search)) && (!status||o.status===status);
-      }).sort((a,b)=>new Date(b.datum)-new Date(a.datum));
-      if(!filtered.length){tbody.innerHTML='<tr><td colspan="7" class="px-4 py-10 text-center text-slate-500 text-sm">Geen openstaande orders</td></tr>';return;}
-      tbody.innerHTML=filtered.map(o=>`<tr class="border-b border-slate-200 hover:bg-slate-50"><td class="px-4 py-4 font-bold">${escapeHtml(o.id)}</td><td class="px-4 py-4 text-sm text-slate-500">${escapeHtml(formatDate(o.datum))}</td><td class="px-4 py-4"><p class="font-semibold">${escapeHtml(o.naam)}</p><p class="text-xs text-slate-500">${escapeHtml(o.telefoon||'-')}</p></td><td class="px-4 py-4 text-sm text-slate-600">${escapeHtml(o.email)}</td><td class="px-4 py-4 font-semibold">${formatPrice(o.totaal)}</td><td class="px-4 py-4"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">${escapeHtml(o.status)}</span></td><td class="px-4 py-4"><button onclick="editOrder('${escapeHtml(o.id)}')" class="px-3 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800">Bewerk</button></td></tr>`).join("");
-    }
-
-    function renderProductsTable(){
-      const tbody=document.getElementById("productsTableBody");
-      const search=(document.getElementById("productsSearch")?.value||"").toLowerCase();
-      const filtered=appState.products.filter(p=>[p.id,p.naam,p.beschrijving,p.folderNaam].join(" ").toLowerCase().includes(search));
-      if(!filtered.length){tbody.innerHTML='<tr><td colspan="6" class="px-4 py-10 text-center text-slate-500 text-sm">Geen producten gevonden</td></tr>';return;}
-      tbody.innerHTML=filtered.map(p=>{
-        const image=p.Afbeeldinghandmatig||p.afbeelding||PLACEHOLDER;
-        return `<tr class="border-b border-slate-200 hover:bg-slate-50"><td class="px-4 py-4"><div class="flex items-center gap-3"><img src="${escapeHtml(image)}" alt="" class="w-12 h-12 rounded-xl object-cover border border-slate-200"><div><p class="font-semibold">${escapeHtml(p.naam)}</p><p class="text-xs text-slate-500">${escapeHtml(p.id)}</p></div></div></td><td class="px-4 py-4 text-sm text-slate-600 max-w-xs">${escapeHtml(p.beschrijving||'-')}</td><td class="px-4 py-4 font-semibold">${formatPrice(p.prijs)}</td><td class="px-4 py-4">${escapeHtml(p.voorraad)}</td><td class="px-4 py-4"><span class="inline-flex px-3 py-1 rounded-full text-xs font-semibold ${p.zichtbaar?'bg-emerald-100 text-emerald-700':'bg-slate-100 text-slate-700'}">${p.zichtbaar?'Zichtbaar':'Verborgen'}</span></td><td class="px-4 py-4"><button onclick="editProduct('${escapeHtml(p.id)}')" class="px-3 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800">Bewerk</button></td></tr>`;
-      }).join("");
-    }
-
-    function renderHistoryTable(){
-      const tbody=document.getElementById("historyTableBody");
-      const search=(document.getElementById("historySearch")?.value||"").toLowerCase();
-      const sort=document.getElementById("historySortFilter")?.value||"datum-desc";
-      const filtered=[...appState.archivedOrders].filter(o=>[o.id,o.naam,o.email].join(" ").toLowerCase().includes(search)).sort((a,b)=>sort==="datum-asc"?new Date(a.datum)-new Date(b.datum):sort==="totaal-desc"?Number(b.totaal)-Number(a.totaal):sort==="totaal-asc"?Number(a.totaal)-Number(b.totaal):sort==="klant-asc"?String(a.naam).localeCompare(String(b.naam)):new Date(b.datum)-new Date(a.datum));
-      if(!filtered.length){tbody.innerHTML='<tr><td colspan="6" class="px-4 py-10 text-center text-slate-500 text-sm">Geen afgeronde orders</td></tr>';return;}
-      tbody.innerHTML=filtered.map(o=>`<tr class="border-b border-slate-200 hover:bg-slate-50"><td class="px-4 py-4 font-bold">${escapeHtml(o.id)}</td><td class="px-4 py-4 text-sm text-slate-500">${escapeHtml(formatDate(o.datum))}</td><td class="px-4 py-4 font-semibold">${escapeHtml(o.naam)}</td><td class="px-4 py-4 font-semibold">${formatPrice(o.totaal)}</td><td class="px-4 py-4 text-sm">${o.tracktrace?`<a class="text-blue-700 hover:underline" href="${escapeHtml(o.tracktrace)}" target="_blank" rel="noopener noreferrer">Open link</a>`:'-'}</td><td class="px-4 py-4"><button onclick="editArchivedOrder('${escapeHtml(o.id)}')" class="px-3 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-800">Bewerk</button></td></tr>`).join("");
-    }
-
-    function renderRecentOrders(){
-      const list=document.getElementById("recentOrdersList");
-      const recent=[...appState.orders].sort((a,b)=>new Date(b.datum)-new Date(a.datum)).slice(0,5);
-      list.innerHTML=recent.length?recent.map(o=>`<button onclick="editOrder('${escapeHtml(o.id)}')" class="w-full text-left rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 p-4 transition"><div class="flex items-start justify-between gap-3"><div class="min-w-0"><p class="font-semibold truncate">${escapeHtml(o.naam)}</p><p class="text-xs text-slate-500 mt-1">${escapeHtml(formatDate(o.datum))}</p></div><div class="text-right"><p class="font-bold">${formatPrice(o.totaal)}</p><p class="text-xs text-slate-500 mt-1">${escapeHtml(o.status)}</p></div></div></button>`).join(""):'<div class="rounded-2xl bg-slate-50 border border-slate-200 p-4 text-sm text-slate-500">Nog geen orders</div>';
-    }
-
-    function updateDashboard(){
-      const all=[...appState.orders,...appState.archivedOrders];
-      const revenue=all.reduce((s,o)=>s+Number(o.totaal||0),0);
-      const pending=appState.orders.filter(o=>!["Betaald","Verzonden"].includes(o.status)).length;
-      const avg=all.length?revenue/all.length:0;
-      document.getElementById("kpiRevenue").textContent=formatPrice(revenue);
-      document.getElementById("kpiOrders").textContent=all.length;
-      document.getElementById("kpiPending").textContent=pending;
-      document.getElementById("kpiAvgOrder").textContent=formatPrice(avg);
-      renderChart(all);
-    }
-
-    function renderChart(orders){
-      const canvas=document.getElementById("revenueChart");
-      if(appState.revenueChart)appState.revenueChart.destroy();
-      const grouped={};
-      orders.forEach(o=>{const d=new Date(o.datum),k=Number.isNaN(d.getTime())?"Onbekend":d.toLocaleDateString("nl-NL");grouped[k]=(grouped[k]||0)+Number(o.totaal||0);});
-      const labels=Object.keys(grouped).slice(-7);
-      const values=labels.map(k=>grouped[k]);
-      appState.revenueChart=new Chart(canvas,{type:"line",data:{labels,datasets:[{data:values,borderColor:"#2563eb",backgroundColor:"rgba(37,99,235,.12)",fill:true,tension:.35,borderWidth:3,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
-    }
-
-    function openModal(el){el.classList.remove("hidden");el.classList.add("flex")}
-    function closeModal(el){el.classList.add("hidden");el.classList.remove("flex")}
-
-    function fillOrderForm(o){
-      document.getElementById("orderNaam").value=o.naam||"";
-      document.getElementById("orderEmail").value=o.email||"";
-      document.getElementById("orderAdres").value=o.adres||"";
-      document.getElementById("orderTelefoon").value=o.telefoon||"";
-      document.getElementById("orderProducten").value=o.producten||"";
-      document.getElementById("orderTotaal").value=Number(o.totaal||0);
-      document.getElementById("orderStatus").value=o.status||"Nieuw";
-      document.getElementById("orderPaid").value=String(o.betaald||"Nee");
-      document.getElementById("orderPaymentLink").value=o.betaallink||"";
-      document.getElementById("orderTrack").value=o.tracktrace||"";
-      document.getElementById("orderNotes").value=o.notities||"";
-    }
-
-    function editOrder(id){
-      const order=appState.orders.find(o=>o.id===id);
-      if(!order)return;
-      appState.selectedOrder={...order};
-      document.getElementById("orderModalTitle").textContent="Order bewerken";
-      fillOrderForm(order);
-      openModal(document.getElementById("orderModal"));
-    }
-
-    function editArchivedOrder(id){
-      const order=appState.archivedOrders.find(o=>o.id===id);
-      if(!order)return;
-      appState.selectedOrder={...order};
-      document.getElementById("orderModalTitle").textContent="Afgeronde order bewerken";
-      fillOrderForm(order);
-      openModal(document.getElementById("orderModal"));
-    }
-
-    function openNewOrderModal(){
-      appState.selectedOrder=null;
-      document.getElementById("orderModalTitle").textContent="Nieuwe order toevoegen";
-      fillOrderForm({naam:"",email:"",adres:"",telefoon:"",producten:"",totaal:0,status:"Nieuw",betaald:"Nee",betaallink:"",tracktrace:"",notities:""});
-      openModal(document.getElementById("orderModal"));
-    }
-
-    function closeOrderModal(){closeModal(document.getElementById("orderModal"));appState.selectedOrder=null}
-
-    function fillProductForm(p){
-      document.getElementById("productName").value=p.naam||"";
-      document.getElementById("productDescription").value=p.beschrijving||"";
-      document.getElementById("productPrice").value=Number(p.prijs||0);
-      document.getElementById("productStock").value=Number(p.voorraad||0);
-      document.getElementById("productManualImage").value=p.Afbeeldinghandmatig||"";
-      document.getElementById("productImage").value=p.afbeelding||"";
-      document.getElementById("productFolderNaam").value=p.folderNaam||"";
-      document.getElementById("productVisible").checked=p.zichtbaar===true;
-      updateProductImagePreview(p.Afbeeldinghandmatig||p.afbeelding||"");
-    }
-
-    function editProduct(id){
-      const product=appState.products.find(p=>p.id===id);
-      if(!product)return;
-      appState.selectedProduct={...product};
-      document.getElementById("productModalTitle").textContent="Product bewerken";
-      fillProductForm(product);
-      openModal(document.getElementById("productModal"));
-    }
-
-    function openNewProductModal(){
-      appState.selectedProduct=null;
-      document.getElementById("productModalTitle").textContent="Nieuw product toevoegen";
-      fillProductForm({naam:"",beschrijving:"",prijs:0,voorraad:0,Afbeeldinghandmatig:"",afbeelding:"",folderNaam:"",zichtbaar:true});
-      openModal(document.getElementById("productModal"));
-    }
-
-    function closeProductModal(){closeModal(document.getElementById("productModal"));appState.selectedProduct=null}
-    function updateProductImagePreview(url){document.getElementById("productImagePreview").innerHTML=url?'<img src="'+escapeHtml(url)+'" alt="Preview" class="w-full h-full object-contain">':'<span>Geen afbeelding</span>'}
-
-    async function postAction(action,data){
-      const res=await fetch(getApiUrl(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action,data})});
-      const payload=await res.json();
-      if(payload.success!==true)throw new Error(payload.message||payload.error||"Onbekende fout");
-      return payload;
-    }
-
-    async function saveOrder(event){
-      event.preventDefault();
-      const payload={naam:document.getElementById("orderNaam").value.trim(),email:document.getElementById("orderEmail").value.trim(),adres:document.getElementById("orderAdres").value.trim(),telefoon:document.getElementById("orderTelefoon").value.trim(),producten:document.getElementById("orderProducten").value.trim(),totaal:Number(document.getElementById("orderTotaal").value||0),status:document.getElementById("orderStatus").value,betaald:document.getElementById("orderPaid").value,betaallink:document.getElementById("orderPaymentLink").value.trim(),tracktrace:document.getElementById("orderTrack").value.trim(),notities:document.getElementById("orderNotes").value.trim()};
-      try{
-        if(appState.selectedOrder?.id){await postAction("updateOrder",{id:appState.selectedOrder.id,...payload});showToast("Order opgeslagen in de sheet.");}
-        else{await postAction("newOrder",payload);showToast("Nieuwe order toegevoegd.");}
-        closeOrderModal();
-        await loadAllData(true);
-      }catch(error){showToast("Order opslaan mislukt: "+(error.message||error),"error")}
-    }
-
-    async function saveProduct(event){
-      event.preventDefault();
-      const payload={naam:document.getElementById("productName").value.trim(),beschrijving:document.getElementById("productDescription").value.trim(),prijs:Number(document.getElementById("productPrice").value||0),voorraad:Number(document.getElementById("productStock").value||0),Afbeeldinghandmatig:document.getElementById("productManualImage").value.trim(),afbeelding:document.getElementById("productImage").value.trim(),folderNaam:document.getElementById("productFolderNaam").value.trim(),zichtbaar:document.getElementById("productVisible").checked};
-      try{
-        if(appState.selectedProduct?.id){await postAction("updateProduct",{id:appState.selectedProduct.id,...payload});showToast("Product opgeslagen in de sheet.");}
-        else{await postAction("addProduct",payload);showToast("Nieuw product toegevoegd.");}
-        closeProductModal();
-        await loadAllData(true);
-      }catch(error){showToast("Product opslaan mislukt: "+(error.message||error),"error")}
-    }
-
-    async function init(){
-      lucide.createIcons();
-      document.getElementById("apiEndpointInput").value=config.api_endpoint;
-      document.getElementById("refreshInterval").value=config.auto_refresh_interval;
-      document.getElementById("ordersSearch").addEventListener("input",renderOrdersTable);
-      document.getElementById("ordersStatusFilter").addEventListener("change",renderOrdersTable);
-      document.getElementById("productsSearch").addEventListener("input",renderProductsTable);
-      document.getElementById("historySearch").addEventListener("input",renderHistoryTable);
-      document.getElementById("historySortFilter").addEventListener("change",renderHistoryTable);
-      document.getElementById("productManualImage").addEventListener("input",e=>updateProductImagePreview(e.target.value||document.getElementById("productImage").value));
-      document.getElementById("productImage").addEventListener("input",e=>updateProductImagePreview(document.getElementById("productManualImage").value||e.target.value));
-      await loadAllData();
-      resetAutoRefresh(parseInt(config.auto_refresh_interval,10)*1000);
-    }
-
-    setTimeout(init,80);
+    const PAGE_SIZE=20, STATUS_PRIORITY=['nieuw','geaccepteerd','wacht_op_betaling','betaald','in_behandeling','verzonden','klaar_voor_ophalen','afgerond','geannuleerd'];
+    const state={orders:[],products:[],filtered:[],page:1,active:null,logs:[],searchDebounce:null};
+    const $=id=>document.getElementById(id), esc=v=>String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    const money=v=>new Intl.NumberFormat('nl-NL',{style:'currency',currency:'EUR'}).format(Number(v||0));
+    const dt=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?(v||'-'):new Intl.DateTimeFormat('nl-NL',{dateStyle:'medium',timeStyle:'short'}).format(d)};
+    const dObj=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?null:d};
+    const phone=v=>{const s=String(v||'').replace(/[^\d+]/g,'');if(!s)return '-';return s.startsWith('06')?'+31 '+s.slice(1):s};
+    const nl2br=v=>esc(v||'').replace(/\r\n|\r|\n/g,'<br>');
+    const apiBase=()=>$('apiBaseInput').value.trim(), apiKey=()=>$('apiKeyInput').value.trim();
+    function toast(msg,type='info'){const m={info:'bg-slate-900 text-white',success:'bg-emerald-600 text-white',error:'bg-rose-600 text-white'};const el=document.createElement('div');el.className=`toast-in rounded-2xl px-4 py-3 text-sm font-semibold shadow-xl ${m[type]||m.info}`;el.textContent=msg;$('toastStack').appendChild(el);setTimeout(()=>el.remove(),2600)}
+    async function apiGet(action,params={}){const url=new URL(apiBase());url.searchParams.set('action',action);Object.keys(params).forEach(k=>{if(params[k]!==''&&params[k]!=null)url.searchParams.set(k,params[k])});const r=await fetch(url.toString());return r.json()}
+    async function apiPost(payload){const r=await fetch(apiBase(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});return r.json()}
+    function log(action,payload,response){state.logs.unshift({action,payload,response,timestamp:new Date().toLocaleString('nl-NL')});renderLogs()}
+    function renderLogs(){const el=$('logContainer');if(!state.logs.length){el.innerHTML='<div class="rounded-2xl border border-dashed border-[color:var(--line)] bg-black/10 px-4 py-6 text-sm text-slate-400">Nog geen acties uitgevoerd.</div>';return}el.innerHTML=state.logs.map(e=>`<article class="rounded-2xl border border-[color:var(--line)] bg-black/15 p-4"><div class="flex flex-wrap items-center justify-between gap-3"><div><div class="text-xs font-bold uppercase tracking-[.22em] text-orange-300">${esc(e.action)}</div><div class="mt-1 text-xs text-slate-400">${esc(e.timestamp)}</div></div><div class="rounded-full px-3 py-1 text-xs font-bold ${e.response&&e.response.success?'bg-emerald-500/15 text-emerald-300':'bg-rose-500/15 text-rose-300'}">${e.response&&e.response.success?'Succes':'Fout'}</div></div><details class="mt-3"><summary class="cursor-pointer text-sm font-semibold">Payload</summary><pre class="mt-2 overflow-auto rounded-2xl bg-slate-950/70 p-3 text-xs text-slate-200">${esc(JSON.stringify(e.payload,null,2))}</pre></details><details class="mt-3"><summary class="cursor-pointer text-sm font-semibold">Response</summary><pre class="mt-2 overflow-auto rounded-2xl bg-slate-950/70 p-3 text-xs text-slate-200">${esc(JSON.stringify(e.response,null,2))}</pre></details></article>`).join('')}
+    function apiStatus(msg,error){$('apiStatus').textContent=msg;$('apiStatus').className=`mt-1 text-sm font-semibold ${error?'text-rose-300':'text-emerald-300'}`}
+    function warn(msg){$('warningBox').textContent=msg;$('warningBox').classList.remove('hidden')}
+    function clearWarn(){$('warningBox').classList.add('hidden');$('warningBox').textContent=''}
+    function badge(s){const m={nieuw:'bg-sky-500/15 text-sky-300',geaccepteerd:'bg-cyan-500/15 text-cyan-300',wacht_op_betaling:'bg-yellow-500/15 text-yellow-300',betaald:'bg-emerald-500/15 text-emerald-300',in_behandeling:'bg-orange-500/15 text-orange-300',verzonden:'bg-violet-500/15 text-violet-300',klaar_voor_ophalen:'bg-fuchsia-500/15 text-fuchsia-300',afgerond:'bg-green-500/15 text-green-300',geannuleerd:'bg-rose-500/15 text-rose-300'};return `<span class="inline-flex rounded-full px-3 py-1 text-xs font-bold ${m[s]||'bg-slate-500/15 text-slate-200'}">${esc(s||'-')}</span>`}
+    function paidIcon(v){return v?'<span class="font-bold text-emerald-300">✔</span>':'<span class="font-bold text-rose-300">✖</span>'}
+    async function load(){try{apiStatus('Laden...',false);clearWarn();const [s,p,o]=await Promise.all([apiGet('settings'),apiGet('products'),apiGet('orders_full',{api_key:apiKey()})]);log('GET settings',null,s);log('GET products',null,p);log('GET orders_full',{api_key:'***'},o);if(s.success){const x=s.data||{},fc=String(x.force_closed||'').toLowerCase()==='true',open=String(x.store_status||'').toLowerCase()==='open'&&!fc;$('storeStatus').textContent=open?'Open voor checkout':'Checkout gesloten'}if(p.success)state.products=Array.isArray(p.data)?p.data:[];if(!o.success){warn('Orders konden niet geladen worden. Controleer of deze deployment `orders_full` ondersteunt en of je API key klopt.');throw new Error(o.error&&o.error.message?o.error.message:'Orders konden niet geladen worden.')}state.orders=Array.isArray(o.data)?o.data:[];state.page=1;filter();apiStatus('Verbonden',false)}catch(err){apiStatus('Niet volledig beschikbaar',true);toast(err.message||'Laden mislukt.','error')}}
+    function filter(){const q=$('searchInput').value.trim().toLowerCase(),sf=$('statusFilter').value,pf=$('paidFilter').value,df=$('deliveryFilter').value,from=$('dateFrom').value,to=$('dateTo').value,sort=$('sortSelect').value;state.filtered=state.orders.filter(o=>{const d=dObj(o.created_at),day=d?d.toISOString().slice(0,10):'';const s=[o.order_id,o.customer_name,o.email].join(' ').toLowerCase();if(q&&s.indexOf(q)===-1)return false;if(sf!=='all'&&o.status!==sf)return false;if(pf!=='all'&&String(o.paid)!==pf)return false;if(df!=='all'&&o.delivery_type!==df)return false;if(from&&day<from)return false;if(to&&day>to)return false;return true});state.filtered.sort((a,b)=>{if(sort==='created_asc')return (dObj(a.created_at)||0)-(dObj(b.created_at)||0);if(sort==='price_desc')return Number(b.total_price||0)-Number(a.total_price||0);if(sort==='price_asc')return Number(a.total_price||0)-Number(b.total_price||0);if(sort==='status_priority')return STATUS_PRIORITY.indexOf(a.status)-STATUS_PRIORITY.indexOf(b.status);return (dObj(b.created_at)||0)-(dObj(a.created_at)||0)});metrics();table()}
+    function metrics(){$('metricOrders').textContent=state.filtered.length;$('metricRevenue').textContent=money(state.filtered.reduce((s,o)=>s+Number(o.total_price||0),0));$('metricOpen').textContent=state.filtered.filter(o=>!['afgerond','geannuleerd'].includes(o.status)).length;$('metricUnpaid').textContent=state.filtered.filter(o=>!o.paid).length}
+    function pageData(){const total=Math.max(1,Math.ceil(state.filtered.length/PAGE_SIZE));state.page=Math.min(state.page,total);const start=(state.page-1)*PAGE_SIZE;return{orders:state.filtered.slice(start,start+PAGE_SIZE),totalPages:total}}
+    function table(){const body=$('ordersBody'),empty=$('emptyState'),page=pageData();body.innerHTML='';empty.classList.toggle('hidden',state.filtered.length>0);page.orders.forEach(o=>{const tr=document.createElement('tr');tr.className='hover:bg-white/5';tr.innerHTML=`<td class="px-4 py-4 align-top">${badge(o.status)}</td><td class="px-4 py-4 align-top"><button data-id="${esc(o.order_id)}" class="font-bold text-white hover:underline">${esc(o.order_id)}</button></td><td class="px-4 py-4 align-top text-slate-400">${esc(dt(o.created_at))}</td><td class="px-4 py-4 align-top font-semibold">${esc(o.customer_name||'-')}</td><td class="px-4 py-4 align-top text-slate-400">${esc(o.email||'-')}</td><td class="px-4 py-4 align-top text-slate-400">${esc(phone(o.phone))}</td><td class="px-4 py-4 align-top">${esc(o.delivery_type||'-')}</td><td class="px-4 py-4 align-top font-bold">${esc(money(o.total_price))}</td><td class="px-4 py-4 align-top">${paidIcon(o.paid)}</td><td class="px-4 py-4 align-top"><button data-id="${esc(o.order_id)}" class="rounded-full bg-orange-500 px-3 py-1.5 text-xs font-bold text-slate-950">Open</button></td>`;body.appendChild(tr)});body.querySelectorAll('[data-id]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.id)));$('resultCount').textContent=state.filtered.length;$('pageIndicator').textContent=`${state.page} / ${page.totalPages}`;$('prevPageButton').disabled=state.page===1;$('nextPageButton').disabled=state.page>=page.totalPages}
+    function openModal(id){const o=state.orders.find(x=>x.order_id===id);if(!o)return;state.active=o;$('modalOrderId').textContent=o.order_id;$('modalCreatedAt').textContent=dt(o.created_at);$('modalStatus').value=o.status||'nieuw';$('modalPaid').checked=!!o.paid;$('modalPaymentLink').value=o.payment_link||'';$('modalTrackTrace').value=o.track_trace||'';$('modalCustomer').innerHTML=`<div><strong>${esc(o.customer_name||'-')}</strong></div><div>${esc(o.email||'-')}</div><div>${esc(phone(o.phone))}</div><div class="rounded-2xl border border-[color:var(--line)] bg-slate-950/40 p-3">${nl2br(o.address||'-')}</div><div><strong>Levering:</strong> ${esc(o.delivery_type||'-')}</div><div><strong>Totaal:</strong> ${esc(money(o.total_price))}</div>`;$('modalItems').innerHTML=o.items&&o.items.length?o.items.map(i=>`<div class="flex items-center justify-between rounded-2xl border border-[color:var(--line)] bg-slate-950/40 px-3 py-2"><div><div class="font-semibold">${esc(i.product_name||'Product')}</div><div class="text-xs text-slate-400">Aantal ${esc(i.quantity)} × ${esc(money(i.price))}</div></div><div class="font-bold">${esc(money(Number(i.price||0)*Number(i.quantity||0)))}</div></div>`).join(''):'<div class="text-slate-400">Nog geen items.</div>';$('modalLinks').innerHTML=`<div><strong>Payment link:</strong> ${o.payment_link?`<a href="${esc(o.payment_link)}" target="_blank" rel="noopener noreferrer" class="text-orange-300 underline">${esc(o.payment_link)}</a>`:'<span class="text-slate-400">Geen link</span>'}</div><div><strong>Track & trace:</strong> ${o.track_trace?`<a href="${esc(o.track_trace)}" target="_blank" rel="noopener noreferrer" class="text-fuchsia-300 underline">${esc(o.track_trace)}</a>`:'<span class="text-slate-400">Nog niet toegevoegd</span>'}</div><div><strong>Afhaaltijd:</strong> ${esc(o.pickup_time||'-')}</div><div><strong>Notities:</strong><div class="mt-2 rounded-2xl border border-[color:var(--line)] bg-slate-950/40 p-3">${nl2br(o.notes||'Geen notities')}</div></div>`;$('modalMessage').classList.add('hidden');$('modal').classList.remove('hidden');$('modal').classList.add('flex')}
+    function closeModal(){$('modal').classList.add('hidden');$('modal').classList.remove('flex');state.active=null}
+    function modalMsg(type,msg){const m={success:'mt-4 rounded-2xl bg-emerald-500/15 px-4 py-3 text-sm font-semibold text-emerald-300',error:'mt-4 rounded-2xl bg-rose-500/15 px-4 py-3 text-sm font-semibold text-rose-300',info:'mt-4 rounded-2xl bg-slate-500/15 px-4 py-3 text-sm font-semibold text-slate-200'};$('modalMessage').className=m[type]||m.info;$('modalMessage').textContent=msg;$('modalMessage').classList.remove('hidden')}
+    function patch(id,patch){state.orders=state.orders.map(o=>o.order_id===id?({...o,...patch}):o);if(state.active&&state.active.order_id===id)state.active={...state.active,...patch};filter();if(state.active)openModal(id)}
+    async function run(action,payload,optimistic,message){if(!state.active)return;const id=state.active.order_id,before=JSON.parse(JSON.stringify(state.orders));if(optimistic)patch(id,optimistic);try{const res=await apiPost(payload);log(action,payload,res);if(!res.success)throw new Error(res.error&&res.error.message?res.error.message:'Actie mislukt.');const msg=message(res.data||{});modalMsg('success',msg);toast(msg,'success');await load();openModal(id)}catch(err){state.orders=before;filter();openModal(id);modalMsg('error',err.message||'Actie mislukt.');toast(err.message||'Actie mislukt.','error')}}
+    function exportCsv(){const rows=state.filtered.map(o=>({order_id:o.order_id,created_at:o.created_at,customer_name:o.customer_name,email:o.email,phone:o.phone,address:o.address,delivery_type:o.delivery_type,status:o.status,total_price:o.total_price,paid:o.paid,payment_link:o.payment_link,track_trace:o.track_trace,pickup_time:o.pickup_time,notes:o.notes}));const headers=Object.keys(rows[0]||{order_id:'',created_at:'',customer_name:'',email:'',phone:'',address:'',delivery_type:'',status:'',total_price:'',paid:'',payment_link:'',track_trace:'',pickup_time:'',notes:''});const csv=[headers.join(',')].concat(rows.map(r=>headers.map(k=>`"${String(r[k]==null?'':r[k]).replace(/"/g,'""')}"`).join(','))).join('\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='orders-export.csv';a.click();URL.revokeObjectURL(url)}
+    function reset(){['searchInput','dateFrom','dateTo'].forEach(id=>$(id).value='');$('statusFilter').value='all';$('paidFilter').value='all';$('deliveryFilter').value='all';$('sortSelect').value='created_desc';state.page=1;filter()}
+    $('connectButton').addEventListener('click',load);$('refreshButton').addEventListener('click',load);$('exportButton').addEventListener('click',exportCsv);$('clearFiltersButton').addEventListener('click',reset);$('clearLogButton').addEventListener('click',()=>{state.logs=[];renderLogs();toast('API-log gewist.')});$('closeModalButton').addEventListener('click',closeModal);$('saveStatusButton').addEventListener('click',()=>run('updateOrderStatus',{action:'updateOrderStatus',order_id:state.active.order_id,status:$('modalStatus').value},{status:$('modalStatus').value},d=>`Status bijgewerkt naar ${d.status} voor ${d.order_id}.`));$('savePaidButton').addEventListener('click',()=>{if(!$('modalPaid').checked)return modalMsg('info','Deze API ondersteunt alleen markeren als betaald.');run('markPaid',{action:'markPaid',order_id:state.active.order_id},{paid:true,status:'betaald'},d=>`Order ${d.order_id} is gemarkeerd als betaald.`)});$('savePaymentLinkButton').addEventListener('click',()=>run('updatePaymentLink',{action:'updatePaymentLink',order_id:state.active.order_id,payment_link:$('modalPaymentLink').value.trim()},{payment_link:$('modalPaymentLink').value.trim()},d=>`Payment link opgeslagen voor ${d.order_id}.`));$('sendPaymentLinkButton').addEventListener('click',()=>run('sendPaymentLink',{action:'sendPaymentLink',order_id:state.active.order_id,payment_link:$('modalPaymentLink').value.trim()},{payment_link:$('modalPaymentLink').value.trim()},d=>`Payment link opgeslagen en verstuurd voor ${d.order_id}.`));$('sendTrackingButton').addEventListener('click',()=>run('sendTrackingUpdate',{action:'sendTrackingUpdate',order_id:state.active.order_id,track_trace:$('modalTrackTrace').value.trim()},{track_trace:$('modalTrackTrace').value.trim(),status:'verzonden'},d=>`Tracking update verstuurd voor ${d.order_id}.`));$('prevPageButton').addEventListener('click',()=>{state.page=Math.max(1,state.page-1);table()});$('nextPageButton').addEventListener('click',()=>{state.page+=1;table()});document.querySelectorAll('#statusFilter,#paidFilter,#deliveryFilter,#dateFrom,#dateTo,#sortSelect').forEach(el=>el.addEventListener('change',()=>{state.page=1;filter()}));document.querySelectorAll('[data-sort]').forEach(btn=>btn.addEventListener('click',()=>{const s=$('sortSelect');if(btn.dataset.sort==='created')s.value=s.value==='created_desc'?'created_asc':'created_desc';else s.value=s.value==='price_desc'?'price_asc':'price_desc';filter()}));$('searchInput').addEventListener('input',()=>{clearTimeout(state.searchDebounce);state.searchDebounce=setTimeout(()=>{state.page=1;filter()},220)});$('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+    renderLogs();load();
   </script>
 </body>
 </html>
